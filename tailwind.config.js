@@ -44,8 +44,8 @@ module.exports = {
       animation: {
         fadeIn: "fadeIn 1s",
         fadeInPushUp: "fadeInPushUp 1s",
-        marquee: "marquee 10s linear infinite",
-        marquee2: "marquee2 10s linear infinite",
+        marquee: "marquee 23s linear infinite",
+        marquee2: "marquee2 23s linear infinite",
       },
     },
   },

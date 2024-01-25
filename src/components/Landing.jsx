@@ -10,20 +10,24 @@ const Landing = () => {
         </span> */}
         {/* <div className="h-12 border-[#FF8126] border-4 w-[70%] rounded-full" /> */}
 
-        <div class="marquee flex whitespace-nowrap animate-marquee">
-          <div class="marquee-content font-Faction font-extrabold text-7xl tracking-normal">
-            SARVAG KALARI&ensp;SARVAG KALARI&ensp;SARVAG KALARI&ensp;
+        <div class="marquee font-Manrope font-normal tracking-tighter text-5xl flex whitespace-nowrap animate-marquee">
+          <div class="marquee-content">
+            freelance dev&ensp;self taught
+            designer&ensp;entreprenur&ensp;undergrad student&ensp;
           </div>
-          <div class="marquee-content font-Faction font-extrabold text-7xl tracking-normal">
-            SARVAG KALARI&ensp;SARVAG KALARI&ensp;SARVAG KALARI&ensp;
+          <div class="marquee-content">
+            freelance dev&ensp;self taught
+            designer&ensp;entreprenur&ensp;undergrad student&ensp;
           </div>
         </div>
         <div class="marquee2 flex whitespace-nowrap animate-marquee">
-          <div class="marquee-content font-Faction font-extrabold text-7xl tracking-normal">
-            SARVAG KALARI&ensp;SARVAG KALARI&ensp;SARVAG KALARI&ensp;
+          <div class="marquee-content">
+            freelance dev&ensp;self taught
+            designer&ensp;entreprenur&ensp;undergrad student&ensp;
           </div>
-          <div class="marquee-content font-Faction font-extrabold text-7xl tracking-normal">
-            SARVAG KALARI&ensp;SARVAG KALARI&ensp;SARVAG KALARI&ensp;
+          <div class="marquee-content">
+            freelance dev&ensp;self taught
+            designer&ensp;entreprenur&ensp;undergrad student&ensp;
           </div>
         </div>
       </div>
