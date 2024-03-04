@@ -13,9 +13,10 @@ module.exports = {
       fontFamily: {
         Manrope: ["Manrope", "sans-serif"],
         Faction: ["var(--faction)", "sans-serif"],
+        apercu: ["var(--apercu)", "sans-serif"],
       },
       backgroundImage: {
-        "grainy-bg": "url('/assets/grainybg.jpeg')",
+        "grainy-bg": "url('/assets/bg-gradient.png')",
       },
       keyframes: {
         fadeIn: {

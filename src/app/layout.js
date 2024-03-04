@@ -1,13 +1,37 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
 import localFont from "@next/font/local";
 
-const font = localFont({
+const faction = localFont({
   src: "../../public/fonts/PramukhRounded-Bold.otf",
   variable: "--faction",
 });
 
-const inter = Inter({ subsets: ["latin"] });
+const apercu = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Apercu/Apercu Light.otf",
+      weight: "300",
+      style: "light",
+    },
+    {
+      path: "../../public/fonts/Apercu/Apercu Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/Apercu/Apercu Medium.otf",
+      weight: "500",
+      style: "regular",
+    },
+    {
+      path: "../../public/fonts/Apercu/Apercu Bold.otf",
+      weight: "700",
+      variable: "bold",
+    },
+  ],
+  variable: "--apercu",
+});
+
 
 export const metadata = {
   title: "sarvagk",
@@ -17,7 +41,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={font.className}>{children}</body>
+      <body className={`${faction.className} ${apercu.variable}`}>{children}</body>
     </html>
   );
 }

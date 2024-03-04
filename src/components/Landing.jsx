@@ -1,94 +1,40 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
+import Navbar from "./Navbar";
+import PhysicsSimulation from "./PhysicsSimulation";
 
 const Landing = () => {
+  const matterContainerRef = useRef(null);
+
   return (
     <div className="overflow-x-hidden">
-      <div className="py-5 flex flex-row items-center justify-between relative overflow-hidden mt-3 text-black">
-        {/* <span className="text-black font-Faction font-extrabold text-7xl tracking-normal whitespace-nowrap">
-          SARVAG KALARI
-        </span> */}
-        {/* <div className="h-12 border-[#FF8126] border-4 w-[70%] rounded-full" /> */}
-
-        <div class="marquee font-Manrope font-normal tracking-tighter text-5xl flex whitespace-nowrap animate-marquee">
-          <div class="marquee-content">
-            freelance dev&ensp;self taught
-            designer&ensp;entreprenur&ensp;undergrad student&ensp;
+      <Navbar />
+      <div className="bg-grainy-bg h-screen relative">
+        <div className="flex h-[83%] w-screen">
+          <div className="w-[70%] h-[46%] bg-opacity-10 bg-green-200 border-b-2 border-r-1 py-12 pl-12 border-black">
+            <span className="text-8xl text-black font-bold font-Manrope">
+              i make <span className="text-[#98E41B]">apps</span> and{" "}
+              <span className="text-[#98E41B]">websites</span>
+            </span>
           </div>
-          <div class="marquee-content">
-            freelance dev&ensp;self taught
-            designer&ensp;entreprenur&ensp;undergrad student&ensp;
-          </div>
-        </div>
-        <div class="marquee2 flex whitespace-nowrap animate-marquee">
-          <div class="marquee-content">
-            freelance dev&ensp;self taught
-            designer&ensp;entreprenur&ensp;undergrad student&ensp;
-          </div>
-          <div class="marquee-content">
-            freelance dev&ensp;self taught
-            designer&ensp;entreprenur&ensp;undergrad student&ensp;
+          <div
+            className="h-full relative z-10 w-[30%] border-black border-l-2 border-b-2 rounded-bl-xl "
+            ref={matterContainerRef}
+          >
+            <div className="w-full absolute z-0 whitespace-nowrap border-b-2 border-black bg-[#E7FFC0] h-[12%] flex gap-4 items-center px-6 font-Manrope">
+              <span className="text-xl font-bold text-black">my stack</span>
+              <span className="text-xl font-bold text-black">my stack</span>
+              <span className="text-xl font-bold text-black">my stack</span>
+              <span className="text-xl font-bold text-black">my stack</span>
+            </div>
+            <PhysicsSimulation className="border-black" matterContainerRef={matterContainerRef} />
           </div>
         </div>
-      </div>
-      {/* <img src="/assets/sqiggle.png" className="m-auto w-[100%] " /> */}
-
-      {/*slider */}
-      {/* <div class="px-24 py-5 flex flex-row items-center justify-between bg-grainy-bg bg-left-bottom relative overflow-hidden">
-        <div class="marquee flex whitespace-nowrap animate-marquee">
-          <div class="marquee-content font-Faction font-extrabold text-7xl tracking-normal">
-            SARVAG KALARI&ensp;SARVAG KALARI&ensp;SARVAG KALARI&ensp;
-          </div>
-          <div class="marquee-content font-Faction font-extrabold text-7xl tracking-normal">
-            SARVAG KALARI&ensp;SARVAG KALARI&ensp;SARVAG KALARI&ensp;
-          </div>
+        <div className="bg-[#E7FFC0] absolute font-apercu font-bold text-black border-2 border-[#42C98E] rounded-3xl top-1/3 mt-[6.3%] left-16 w-[61%] h-[39%] px-24">
+          <span className="absolute py-12 text-2xl">what do i put here</span>
         </div>
-        <div class="marquee2 flex whitespace-nowrap animate-marquee">
-          <div class="marquee-content font-Faction font-extrabold text-7xl tracking-normal">
-            SARVAG KALARI&ensp;SARVAG KALARI&ensp;SARVAG KALARI&ensp;
-          </div>
-          <div class="marquee-content font-Faction font-extrabold text-7xl tracking-normal">
-            SARVAG KALARI&ensp;SARVAG KALARI&ensp;SARVAG KALARI&ensp;
-          </div>
-        </div>
-      </div> */}
-
-      <div className="mt-2 px-24 ">
-        <div className="flex gap-10 items-center">
-          <span className="text-black font-Manrope font-extrabold text-6xl tracking-tighter animate-fade-in-push-up">
-            freelance dev
-          </span>
-          <img src="/assets/star.png" className="w-24" />
-          <span className="text-black font-Manrope font-extrabold text-6xl tracking-tighter animate-fade-in-push-up animate-delay-2000ms">
-            self taught designer
-          </span>
-        </div>
-        <div className="flex gap-20 items-center mt-6">
-          <span className="text-black font-Manrope font-extrabold text-6xl tracking-tighter">
-            entreprenur
-          </span>
-          <span className="text-black font-Manrope font-extrabold text-6xl tracking-tighter">
-            undergrad student
-          </span>
-        </div>
-      </div>
-      <div className="px-24 pb-16 flex items-center align-middle">
-        <img
-          src="/assets/grid.png"
-          className="m-auto w-[100%] py-16 relative"
-        />
-        <img
-          src="/assets/huntsjob.png"
-          className="absolute xl:-bottom-3 2xl:bottom-16 lg:left-[32%] xl:h-1/2 2xl:h-3/5"
-        />
-        <img
-          src="/assets/ll.png"
-          className="absolute xl:bottom-20 2xl:bottom-16 lg:left-[55%] xl:h-1/3 2xl:h-3/5"
-        />
-        <img
-          src="/assets/mmdb.png"
-          className="absolute xl:bottom-3 2xl:bottom-16 lg:left-[59%] xl:h-[35%] 2xl:h-3/5"
-        />
       </div>
     </div>
   );

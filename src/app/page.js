@@ -5,7 +5,6 @@ export default function Home() {
   return (
     <div className="bg-white">
       <Landing />
-      <Landing2 />
     </div>
   );
 }

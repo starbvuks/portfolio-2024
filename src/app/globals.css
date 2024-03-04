@@ -18,6 +18,11 @@
   }
 }
 
+.matter-container {
+  background-color: transparent; /* Replace #desiredColor with your color */
+ }
+ 
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
