@@ -10,7 +10,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex items-center font-apercu justify-between h-24 px-12 bg-gray-[#C9C9C9] text-black border-black border-b-2">
+    <nav className="bg-white flex items-center font-apercu justify-between h-24 px-12 bg-gray-[#C9C9C9] text-black border-black border-b-2">
       <div className="ml-4 font-bold text-2xl">sarvag kalari</div>
       <div className="mr-4 text-lg flex gap-7 underline">
         <button className="mr-2 ">about</button>
