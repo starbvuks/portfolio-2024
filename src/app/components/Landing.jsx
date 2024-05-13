@@ -121,6 +121,11 @@ const data = {
         url: "https://stackoverflow.com/users/13939799/starbvuks",
         number: "3",
       },
+      {
+        name: "SPOTIFY",
+        url: "https://open.spotify.com/user/nl8l3a15fcwt16ziq91rp82eq?si=x_g4W9_6SbqNENbHlJkjCg",
+        number: "4",
+      },
     ],
   },
 };
@@ -171,7 +176,7 @@ const Landing = () => {
             PORTFOLIO 2024
           </span>
         </div>
-        <div className="">
+        <div>
           <button
             onClick={toggleMode}
             className={

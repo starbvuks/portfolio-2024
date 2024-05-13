@@ -1,3 +1,4 @@
+import Head from "next/head";
 import "./globals.css";
 import localFont from "@next/font/local";
 
@@ -11,20 +12,20 @@ const esenka = localFont({
     {
       path: "../../public/fonts/Esenka-Light.otf",
       weight: "300",
-      style: "light"
+      style: "light",
     },
     {
       path: "../../public/fonts/Esenka-Regular.otf",
       weight: "400",
-      style: "normal"
+      style: "normal",
     },
     {
       path: "../../public/fonts/Esenka-Black.otf",
       weight: "900",
-      style: "black"
+      style: "black",
     },
-],
-variable: "--esenka",
+  ],
+  variable: "--esenka",
 });
 
 const apercu = localFont({
@@ -53,7 +54,6 @@ const apercu = localFont({
   variable: "--apercu",
 });
 
-
 export const metadata = {
   title: "Sarvag K. Portfolio",
   description: "i like building cool shit",
@@ -62,7 +62,27 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${apercu.variable} ${gambarino.variable} ${esenka.variable}`}>{children}</body>
+      <Head>
+        <title>Sarvag K. Portfolio</title>
+        <meta name="title" content="Sarvag K. Portfolio" />
+        <meta name="description" content="had fun making this one" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Sarvag K. Portfolio" />
+        <meta property="og:description" content="had fun making this one" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:title" content="Sarvag K. Portfolio" />
+        <meta
+          property="twitter:description"
+          content="had fun making this one"
+        />
+      </Head>
+      <body
+        className={`${apercu.variable} ${gambarino.variable} ${esenka.variable}`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
