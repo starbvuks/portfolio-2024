@@ -137,23 +137,23 @@ const Landing = () => {
     <div
       className={
         darkMode
-          ? `text-[#DBDBDB] flex flex-col bg-[#131313]`
-          : `text-[#131313] flex flex-col bg-[#DBDBDB]`
+          ? `text-[#DBDBDB] flex flex-col bg-[#131313] transition-all duration-500`
+          : `text-[#131313] flex flex-col bg-[#DBDBDB] transition-all duration-500`
       }
     >
       <div
         className={
           darkMode
-            ? `flex justify-between items-end p-4 md:p-8 border-b-2 border-[#242424]`
-            : `flex justify-between items-end p-4 md:p-8 border-b-2 border-[#d2d2d2]`
+            ? `flex justify-between items-end p-4 md:p-8 border-b-2 border-[#242424] transition-all duration-500`
+            : `flex justify-between items-end p-4 md:p-8 border-b-2 border-[#d2d2d2] transition-all duration-500`
         }
       >
         <div className="flex items-end">
           <span
             className={
               darkMode
-                ? "font-gambarino text-4xl md:text-7xl text-[#DBDBDB] hover:text-[#8BCD00] cursor-help tracking-tight"
-                : "font-gambarino text-4xl md:text-7xl text-[#323232] hover:text-[#8BCD00] cursor-help tracking-tight"
+                ? "font-gambarino text-4xl md:text-7xl text-[#DBDBDB] hover:text-[#8BCD00] cursor-help tracking-tight transition-all duration-500"
+                : "font-gambarino text-4xl md:text-7xl text-[#323232] hover:text-[#8BCD00] cursor-help tracking-tight transition-all duration-500"
             }
           >
             Sarvag Kalari
@@ -161,8 +161,8 @@ const Landing = () => {
           <span
             className={
               darkMode
-                ? "flex items-center font-gambarino font-light text-sm md:text-lg text-[#323232] tracking-tight"
-                : "flex items-center font-gambarino font-light text-sm md:text-lg text-[#aaaaaa] tracking-tight"
+                ? "flex items-center font-gambarino font-light text-sm md:text-lg text-[#323232] tracking-tight transition-all duration-500"
+                : "flex items-center font-gambarino font-light text-sm md:text-lg text-[#aaaaaa] tracking-tight transition-all duration-500"
             }
           >
             <span className="text-xl md:text-2xl tracking-tighter">
@@ -176,8 +176,8 @@ const Landing = () => {
             onClick={toggleMode}
             className={
               darkMode
-                ? `rounded-full w-16 text-xl h-16 flex items-center justify-center border-[2px] border-[#242424] hover:scale-105 transition-all`
-                : `rounded-full w-16 text-xl h-16 flex items-center justify-center border-[2px] border-[#aaaaaa] hover:scale-105 transition-all`
+                ? `rounded-full w-16 text-xl h-16 flex items-center justify-center border-[2px] border-[#242424] hover:scale-105 transition-all delay-100`
+                : `rounded-full w-16 text-xl h-16 flex items-center justify-center border-[2px] border-[#aaaaaa] hover:scale-105 transition-all delay-100`
             }
           >
             {darkMode ? "☀️" : "🌑"}
@@ -189,16 +189,16 @@ const Landing = () => {
       <div
         className={
           darkMode
-            ? "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424]"
-            : "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#d2d2d2]"
+            ? "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424] transition-all duration-500"
+            : "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#d2d2d2] transition-all duration-500"
         }
       >
         {/* Title */}
         <div
           className={
             darkMode
-              ? "flex justify-between text-[#323232] text-2xl md:text-4xl"
-              : "flex justify-between text-[#aaaaaa] text-2xl md:text-4xl"
+              ? "flex justify-between text-[#323232] text-2xl md:text-4xl transition-all duration-500"
+              : "flex justify-between text-[#aaaaaa] text-2xl md:text-4xl transition-all duration-500"
           }
         >
           <span className="font-gambarino">What</span>
@@ -209,8 +209,8 @@ const Landing = () => {
         <div
           className={
             darkMode
-              ? "flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC]"
-              : "flex justify-between font-esenka text-sm md:text-3xl text-[#3c3c3c]"
+              ? "flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC] transition-all duration-500"
+              : "flex justify-between font-esenka text-sm md:text-3xl text-[#3c3c3c] transition-all duration-500"
           }
         >
           <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
@@ -233,16 +233,16 @@ const Landing = () => {
       <div
         className={
           darkMode
-            ? "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424]"
-            : "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#d2d2d2]"
+            ? "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424] transition-all duration-500"
+            : "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#d2d2d2] transition-all duration-500"
         }
       >
         {/* Title */}
         <div
           className={
             darkMode
-              ? "flex justify-between text-[#323232] text-2xl md:text-4xl"
-              : "flex justify-between text-[#aaaaaa] text-2xl md:text-4xl"
+              ? "flex justify-between text-[#323232] text-2xl md:text-4xl transition-all duration-500"
+              : "flex justify-between text-[#aaaaaa] text-2xl md:text-4xl transition-all duration-500"
           }
         >
           <span className="font-gambarino">Tech</span>
@@ -252,8 +252,8 @@ const Landing = () => {
         <div
           className={
             darkMode
-              ? "flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC]"
-              : "flex justify-between font-esenka text-sm md:text-3xl text-[#3c3c3c]"
+              ? "flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC] transition-all duration-500"
+              : "flex justify-between font-esenka text-sm md:text-3xl text-[#3c3c3c] transition-all duration-500"
           }
         >
           <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
@@ -276,16 +276,16 @@ const Landing = () => {
       <div
         className={
           darkMode
-            ? "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424]"
-            : "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#d2d2d2]"
+            ? "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424] transition-all duration-500"
+            : "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#d2d2d2] transition-all duration-500"
         }
       >
         {/* Title */}
         <div
           className={
             darkMode
-              ? "flex justify-between text-[#323232] text-2xl md:text-4xl"
-              : "flex justify-between text-[#aaaaaa] text-2xl md:text-4xl"
+              ? "flex justify-between text-[#323232] text-2xl md:text-4xl transition-all duration-500"
+              : "flex justify-between text-[#aaaaaa] text-2xl md:text-4xl transition-all duration-500"
           }
         >
           <span className="font-gambarino">Experience</span>
@@ -294,8 +294,8 @@ const Landing = () => {
         <div
           className={
             darkMode
-              ? "flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC]"
-              : "flex justify-between font-esenka text-sm md:text-3xl text-[#3c3c3c]"
+              ? "flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC] transition-all duration-500"
+              : "flex justify-between font-esenka text-sm md:text-3xl text-[#3c3c3c] transition-all duration-500"
           }
         >
           <div className="flex flex-col gap-2 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
@@ -338,8 +338,8 @@ const Landing = () => {
       <div
         className={
           darkMode
-            ? "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424]"
-            : "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#d2d2d2]"
+            ? "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424] transition-all duration-500"
+            : "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#d2d2d2] transition-all duration-500"
         }
       >
         {/* Title */}
@@ -396,8 +396,8 @@ const Landing = () => {
       <div
         className={
           darkMode
-            ? "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424]"
-            : "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#d2d2d2]"
+            ? "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424] transition-all duration-500"
+            : "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#d2d2d2] transition-all duration-500"
         }
       >
         {/* Title */}
