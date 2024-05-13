@@ -54,11 +54,6 @@ const apercu = localFont({
   variable: "--apercu",
 });
 
-export const metadata = {
-  title: "Sarvag K. Portfolio",
-  description: "i like building cool shit",
-};
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
