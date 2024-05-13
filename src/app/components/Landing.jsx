@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
 const data = {
   whatIDo: {
@@ -125,30 +126,93 @@ const data = {
 };
 
 const Landing = () => {
+  const [darkMode, setDarkMode] = useState(true);
+
+  const toggleMode = () => {
+    setDarkMode((prevMode) => !prevMode);
+    console.log(darkMode);
+  };
+
   return (
-    <div className="text-[#DBDBDB] flex flex-col">
-      <div className="flex items-end p-4 md:p-8 border-b-2 border-[#242424]">
-        <span className="font-gambarino text-4xl md:text-7xl text-[#DBDBDB] hover:text-[#8BCD00] cursor-cell tracking-tight">
-          Sarvag Kalari
-        </span>
-        <span className="flex items-center font-gambarino font-light text-sm md:text-lg text-[#323232] tracking-tight">
-          <span className="text-xl md:text-2xl tracking-tighter">
-            &emsp; // &emsp;
+    <div
+      className={
+        darkMode
+          ? `text-[#DBDBDB] flex flex-col bg-[#131313]`
+          : `text-[#131313] flex flex-col bg-[#DBDBDB]`
+      }
+    >
+      <div
+        className={
+          darkMode
+            ? `flex justify-between items-end p-4 md:p-8 border-b-2 border-[#242424]`
+            : `flex justify-between items-end p-4 md:p-8 border-b-2 border-[#d2d2d2]`
+        }
+      >
+        <div className="flex items-end">
+          <span
+            className={
+              darkMode
+                ? "font-gambarino text-4xl md:text-7xl text-[#DBDBDB] hover:text-[#8BCD00] cursor-help tracking-tight"
+                : "font-gambarino text-4xl md:text-7xl text-[#323232] hover:text-[#8BCD00] cursor-help tracking-tight"
+            }
+          >
+            Sarvag Kalari
           </span>
-          PORTFOLIO 2024
-        </span>
+          <span
+            className={
+              darkMode
+                ? "flex items-center font-gambarino font-light text-sm md:text-lg text-[#323232] tracking-tight"
+                : "flex items-center font-gambarino font-light text-sm md:text-lg text-[#aaaaaa] tracking-tight"
+            }
+          >
+            <span className="text-xl md:text-2xl tracking-tighter">
+              &emsp; // &emsp;
+            </span>
+            PORTFOLIO 2024
+          </span>
+        </div>
+        <div className="">
+          <button
+            onClick={toggleMode}
+            className={
+              darkMode
+                ? `rounded-full w-16 text-xl h-16 flex items-center justify-center border-[2px] border-[#242424] hover:scale-105 transition-all`
+                : `rounded-full w-16 text-xl h-16 flex items-center justify-center border-[2px] border-[#aaaaaa] hover:scale-105 transition-all`
+            }
+          >
+            {darkMode ? "☀️" : "🌑"}
+          </button>
+        </div>
       </div>
 
       {/* WHAT I DO */}
-      <div className="flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424]">
+      <div
+        className={
+          darkMode
+            ? "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424]"
+            : "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#d2d2d2]"
+        }
+      >
         {/* Title */}
-        <div className="flex justify-between text-[#323232] text-2xl md:text-4xl">
+        <div
+          className={
+            darkMode
+              ? "flex justify-between text-[#323232] text-2xl md:text-4xl"
+              : "flex justify-between text-[#aaaaaa] text-2xl md:text-4xl"
+          }
+        >
           <span className="font-gambarino">What</span>
           <span className="font-gambarino">I</span>
           <span className="font-gambarino">Do</span>
         </div>
         {/* Items */}
-        <div className="flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC]">
+        <div
+          className={
+            darkMode
+              ? "flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC]"
+              : "flex justify-between font-esenka text-sm md:text-3xl text-[#3c3c3c]"
+          }
+        >
           <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
             {data.whatIDo.items.map((item, index) => (
               <div key={index} className="flex justify-between w-full">
@@ -166,14 +230,32 @@ const Landing = () => {
       </div>
 
       {/* TECH STACK */}
-      <div className="flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424]">
+      <div
+        className={
+          darkMode
+            ? "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424]"
+            : "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#d2d2d2]"
+        }
+      >
         {/* Title */}
-        <div className="flex justify-between text-[#323232] text-2xl md:text-4xl">
+        <div
+          className={
+            darkMode
+              ? "flex justify-between text-[#323232] text-2xl md:text-4xl"
+              : "flex justify-between text-[#aaaaaa] text-2xl md:text-4xl"
+          }
+        >
           <span className="font-gambarino">Tech</span>
           <span className="font-gambarino">Stack</span>
         </div>
         {/* Items */}
-        <div className="flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC]">
+        <div
+          className={
+            darkMode
+              ? "flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC]"
+              : "flex justify-between font-esenka text-sm md:text-3xl text-[#3c3c3c]"
+          }
+        >
           <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
             {data.techStack.items.map((item, index) => (
               <div key={index} className="flex justify-between w-full">
@@ -191,24 +273,52 @@ const Landing = () => {
       </div>
 
       {/* EXPERIENCE */}
-      <div className="flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424]">
+      <div
+        className={
+          darkMode
+            ? "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424]"
+            : "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#d2d2d2]"
+        }
+      >
         {/* Title */}
-        <div className="flex justify-between text-[#323232] text-2xl md:text-4xl">
+        <div
+          className={
+            darkMode
+              ? "flex justify-between text-[#323232] text-2xl md:text-4xl"
+              : "flex justify-between text-[#aaaaaa] text-2xl md:text-4xl"
+          }
+        >
           <span className="font-gambarino">Experience</span>
         </div>
         {/* Items */}
-        <div className="flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC]">
+        <div
+          className={
+            darkMode
+              ? "flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC]"
+              : "flex justify-between font-esenka text-sm md:text-3xl text-[#3c3c3c]"
+          }
+        >
           <div className="flex flex-col gap-2 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
             {data.experience.items.map((item, index) => (
               <div key={index} className="flex justify-between w-full">
                 <div className="flex gap-2 md:gap-4 items-end">
                   <a
                     href={item.url}
-                    className="border-b-[1px] hover:text-[#8BCD00] hover:border-[#8BCD00] cursor-pointer transition"
+                    className={
+                      darkMode
+                        ? "border-b-[1px] hover:text-[#8BCD00] hover:border-[#8BCD00] cursor-pointer transition"
+                        : "border-b-[1px] border-[#3c3c3c] hover:text-[#8BCD00] hover:border-[#8BCD00] cursor-pointer transition"
+                    }
                   >
                     {item.name}
                   </a>
-                  <span className="font-esenka font-light text-xs md:text-base text-[#323232]">
+                  <span
+                    className={
+                      darkMode
+                        ? "font-esenka font-light text-xs md:text-base text-[#323232]"
+                        : "font-esenka font-light text-xs md:text-base text-[#939393]"
+                    }
+                  >
                     {item.role}, &nbsp; {item.year}
                   </span>
                 </div>
@@ -225,13 +335,31 @@ const Landing = () => {
       </div>
 
       {/* EDUCATION */}
-      <div className="flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424]">
+      <div
+        className={
+          darkMode
+            ? "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424]"
+            : "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#d2d2d2]"
+        }
+      >
         {/* Title */}
-        <div className="flex justify-between text-[#323232] text-2xl md:text-4xl">
+        <div
+          className={
+            darkMode
+              ? "flex justify-between text-[#323232] text-2xl md:text-4xl"
+              : "flex justify-between text-[#aaaaaa] text-2xl md:text-4xl"
+          }
+        >
           <span className="font-gambarino">Education</span>
         </div>
         {/* Items */}
-        <div className="flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC]">
+        <div
+          className={
+            darkMode
+              ? "flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC]"
+              : "flex justify-between font-esenka text-sm md:text-3xl text-[#3c3c3c]"
+          }
+        >
           <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
             {data.education.items.map((item, index) => (
               <div key={index} className="flex justify-between w-full">
@@ -242,7 +370,13 @@ const Landing = () => {
                   >
                     {item.name}
                   </a>
-                  <span className="font-esenka font-light text-xs md:text-base text-[#323232]">
+                  <span
+                    className={
+                      darkMode
+                        ? "font-esenka font-light text-xs md:text-base text-[#323232]"
+                        : "font-esenka font-light text-xs md:text-base text-[#939393]"
+                    }
+                  >
                     {item.degree}, &nbsp; {item.year}
                   </span>
                 </div>
@@ -259,13 +393,31 @@ const Landing = () => {
       </div>
 
       {/* SOCIALS */}
-      <div className="flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424]">
+      <div
+        className={
+          darkMode
+            ? "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#242424]"
+            : "flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-[#d2d2d2]"
+        }
+      >
         {/* Title */}
-        <div className="flex justify-between text-[#323232] text-2xl md:text-4xl">
+        <div
+          className={
+            darkMode
+              ? "flex justify-between text-[#323232] text-2xl md:text-4xl"
+              : "flex justify-between text-[#aaaaaa] text-2xl md:text-4xl"
+          }
+        >
           <span className="font-gambarino">Socials</span>
         </div>
         {/* Items */}
-        <div className="flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC]">
+        <div
+          className={
+            darkMode
+              ? "flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC]"
+              : "flex justify-between font-esenka text-sm md:text-3xl text-[#3c3c3c]"
+          }
+        >
           <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
             {data.socials.items.map((item, index) => (
               <div key={index} className="flex justify-between w-full">
@@ -286,16 +438,22 @@ const Landing = () => {
           </div>
         </div>
       </div>
-      
+
       {/* CONTACT */}
       <div className="flex flex-col px-4 md:px-8 py-4 md:py-6">
         {/* Title */}
-        <div className="flex justify-between text-[#323232] text-2xl md:text-4xl">
+        <div
+          className={
+            darkMode
+              ? "flex justify-between text-[#323232] text-2xl md:text-4xl"
+              : "flex justify-between text-[#aaaaaa] text-2xl md:text-4xl"
+          }
+        >
           <span className="font-gambarino">Contact</span>
           <span className="font-gambarino">Me</span>
         </div>
         {/* Items */}
-        <div className="flex flex-col mt-8 md:mt-14 justify-between font-apercu text-sm md:text-xl text-[#515151] tracking-tight">
+        <div className={darkMode ? "flex flex-col mt-8 md:mt-14 justify-between font-apercu text-sm md:text-xl text-[#515151] tracking-tight" : "flex flex-col mt-8 md:mt-14 justify-between font-apercu text-sm md:text-xl text-[#939393] tracking-tight"}>
           <a>sarvagk@gmail.com</a>
           <a>+91 95335 86416</a>
         </div>
