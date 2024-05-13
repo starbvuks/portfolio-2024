@@ -306,7 +306,7 @@ const Landing = () => {
           <div className="flex flex-col gap-2 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
             {data.experience.items.map((item, index) => (
               <div key={index} className="flex justify-between w-full">
-                <div className="flex flex-col gap-2 md:gap-4 md:flex md:items-end">
+                <div className="flex flex-col gap-2 md:gap-4 md:flex md:flex-row md:items-end">
                   <a
                     href={item.url}
                     className={
@@ -368,7 +368,7 @@ const Landing = () => {
           <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
             {data.education.items.map((item, index) => (
               <div key={index} className="flex justify-between w-full">
-                <div className="flex flex-col gap-0 md:gap-4 md:flex md:items-end">
+                <div className="flex flex-col gap-0 md:gap-4 md:flex md:flex-row md:items-end">
                   <a
                     href={item.url}
                     className="hover:text-[#8BCD00] cursor-pointer transition mt-2 md:mt-0"
