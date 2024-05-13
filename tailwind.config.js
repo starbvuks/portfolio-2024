@@ -11,9 +11,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        Manrope: ["Manrope", "sans-serif"],
-        Faction: ["var(--faction)", "sans-serif"],
         apercu: ["var(--apercu)", "sans-serif"],
+        gambarino: ["var(--gambarino)", "sans-serif"],
+        esenka: ["var(--esenka)", "sans-serif"],
       },
       backgroundImage: {
         "grainy-bg": "url('/assets/bg-gradient.png')",

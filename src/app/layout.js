@@ -1,9 +1,30 @@
 import "./globals.css";
 import localFont from "@next/font/local";
 
-const faction = localFont({
-  src: "../../public/fonts/PramukhRounded-Bold.otf",
-  variable: "--faction",
+const gambarino = localFont({
+  src: "../../public/fonts/Gambarino.otf",
+  variable: "--gambarino",
+});
+
+const esenka = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Esenka-Light.otf",
+      weight: "300",
+      style: "light"
+    },
+    {
+      path: "../../public/fonts/Esenka-Regular.otf",
+      weight: "400",
+      style: "normal"
+    },
+    {
+      path: "../../public/fonts/Esenka-Black.otf",
+      weight: "900",
+      style: "black"
+    },
+],
+variable: "--esenka",
 });
 
 const apercu = localFont({
@@ -41,7 +62,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${faction.className} ${apercu.variable}`}>{children}</body>
+      <body className={`${apercu.variable} ${gambarino.variable} ${esenka.variable}`}>{children}</body>
     </html>
   );
 }

@@ -61,7 +61,7 @@ const Landing = () => {
               </span>
               <span className="text-8xl text-black font-bold font-Manrope">
               and
-              </span>
+              </span> 
             </div>
             <span className="text-[#98E41B] text-8xl font-bold font-Manrope mt-3" ref={siteRef}>websites</span>
           </div>
