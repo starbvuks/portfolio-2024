@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 const data = {
   whatIDo: {
@@ -26,6 +26,8 @@ const data = {
       { name: "POSTGRESQL", number: "8" },
       { name: "EXPRESS JS", number: "9" },
       { name: "STRAPI CMS", number: "10" },
+      { name: "TAILWIND CSS", number: "11" },
+      { name: "AWS SUITE", number: "12" },
     ],
   },
   experience: {
@@ -132,21 +134,21 @@ const data = {
 };
 
 const Landing = () => {
-    const router = useRouter();
-    
+  const router = useRouter();
+
   const [darkMode, setDarkMode] = useState(true);
-  const [typedSequence, setTypedSequence] = useState('');
+  const [typedSequence, setTypedSequence] = useState("");
 
   useEffect(() => {
-    const secretSequence = 's3crets';
+    const secretSequence = "s3crets";
 
     const handleKeyPress = (event) => {
       const { key } = event;
       const newTypedSequence = typedSequence + key;
 
       if (newTypedSequence === secretSequence) {
-        router.push('/s3crets');
-        setTypedSequence(''); // Reset typed sequence after successful match
+        router.push("/s3crets");
+        setTypedSequence(""); // Reset typed sequence after successful match
       } else if (!secretSequence.startsWith(newTypedSequence)) {
         // If the typed sequence doesn't match the beginning of the secret sequence,
         // reset the typed sequence to start fresh.
@@ -156,10 +158,10 @@ const Landing = () => {
       }
     };
 
-    window.addEventListener('keydown', handleKeyPress);
+    window.addEventListener("keydown", handleKeyPress);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyPress);
+      window.removeEventListener("keydown", handleKeyPress);
     };
   }, [router, typedSequence]);
 
@@ -488,7 +490,13 @@ const Landing = () => {
           <span className="font-gambarino">Me</span>
         </div>
         {/* Items */}
-        <div className={darkMode ? "flex flex-col mt-8 md:mt-14 justify-between font-apercu text-sm md:text-xl text-[#515151] tracking-tight" : "flex flex-col mt-8 md:mt-14 justify-between font-apercu text-sm md:text-xl text-[#939393] tracking-tight"}>
+        <div
+          className={
+            darkMode
+              ? "flex flex-col mt-8 md:mt-20 justify-between font-apercu text-sm md:text-xl text-[#515151] tracking-tight"
+              : "flex flex-col mt-8 md:mt-20 justify-between font-apercu text-sm md:text-xl text-[#939393] tracking-tight"
+          }
+        >
           <a>sarvagk@gmail.com</a>
           <a>+91 95335 86416</a>
         </div>
@@ -496,4 +504,5 @@ const Landing = () => {
     </div>
   );
 };
+
 export default Landing;

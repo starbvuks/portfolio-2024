@@ -1,9 +1,38 @@
 "use client";
-import React, { useState } from "react";
-import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import { useRouter } from 'next/navigation';
 
 const Secrets = () => {
+  const router = useRouter();
+
   const [darkMode, setDarkMode] = useState(true);
+  const [typedSequence, setTypedSequence] = useState('');
+
+  useEffect(() => {
+    const secretSequence = "goback";
+
+    const handleKeyPress = (event) => {
+      const { key } = event;
+      const newTypedSequence = typedSequence + key;
+
+      if (newTypedSequence === secretSequence) {
+        router.push("/");
+        setTypedSequence(""); // Reset typed sequence after successful match
+      } else if (!secretSequence.startsWith(newTypedSequence)) {
+        // If the typed sequence doesn't match the beginning of the secret sequence,
+        // reset the typed sequence to start fresh.
+        setTypedSequence(key);
+      } else {
+        setTypedSequence(newTypedSequence);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [router, typedSequence]);
 
   const toggleMode = () => {
     setDarkMode((prevMode) => !prevMode);
