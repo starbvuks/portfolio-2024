@@ -333,7 +333,7 @@ const Landing = () => {
           <span className="font-gambarino">Contact</span>
           <span className="font-gambarino">Me</span>
         </div>
-        <div className="flex flex-col mt-14 justify-between font-apercu text-xl text-[#515151]">
+        <div className="flex flex-col mt-14 justify-between font-apercu text-xl text-[#515151] tracking-tight">
             <a>sarvagk@gmail.com</a>
             <a>+91 95335 86416</a>
         </div>
