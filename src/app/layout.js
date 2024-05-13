@@ -71,6 +71,7 @@ export default function RootLayout({ children }) {
         <meta property="og:title" content="Sarvag K. Portfolio" />
         <meta property="og:description" content="had fun making this one" />
 
+
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:title" content="Sarvag K. Portfolio" />
         <meta

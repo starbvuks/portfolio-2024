@@ -166,11 +166,11 @@ const Landing = () => {
           <span
             className={
               darkMode
-                ? "flex items-center font-gambarino font-light text-sm md:text-lg text-[#323232] tracking-tight transition-all duration-500"
-                : "flex items-center font-gambarino font-light text-sm md:text-lg text-[#aaaaaa] tracking-tight transition-all duration-500"
+                ? "flex items-center font-gambarino font-light text-xs md:text-lg text-[#323232] tracking-tight transition-all duration-500"
+                : "flex items-center font-gambarino font-light text-xs md:text-lg text-[#aaaaaa] tracking-tight transition-all duration-500"
             }
           >
-            <span className="text-xl md:text-2xl tracking-tighter">
+            <span className="text-base md:text-2xl tracking-tighter">
               &emsp; // &emsp;
             </span>
             PORTFOLIO 2024
@@ -181,8 +181,8 @@ const Landing = () => {
             onClick={toggleMode}
             className={
               darkMode
-                ? `rounded-full w-16 text-xl h-16 flex items-center justify-center border-[2px] border-[#242424] hover:scale-105 transition-all delay-100`
-                : `rounded-full w-16 text-xl h-16 flex items-center justify-center border-[2px] border-[#aaaaaa] hover:scale-105 transition-all delay-100`
+                ? `rounded-full w-9 h-9 text-lg md:w-16 md:text-xl md:h-16 flex items-center justify-center border-[1px] md:border-[2px] border-[#242424] hover:scale-105 transition-all delay-100`
+                : `rounded-full w-9 h-9 text-lg md:w-16 md:text-xl md:h-16 flex items-center justify-center border-[1px] md:border-[2px] border-[#aaaaaa] hover:scale-105 transition-all delay-100`
             }
           >
             {darkMode ? "☀️" : "🌑"}
@@ -214,8 +214,8 @@ const Landing = () => {
         <div
           className={
             darkMode
-              ? "flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC] transition-all duration-500"
-              : "flex justify-between font-esenka text-sm md:text-3xl text-[#3c3c3c] transition-all duration-500"
+              ? "flex justify-between font-esenka text-lg md:text-3xl text-[#ECECEC] transition-all duration-500"
+              : "flex justify-between font-esenka text-lg md:text-3xl text-[#3c3c3c] transition-all duration-500"
           }
         >
           <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
@@ -257,8 +257,8 @@ const Landing = () => {
         <div
           className={
             darkMode
-              ? "flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC] transition-all duration-500"
-              : "flex justify-between font-esenka text-sm md:text-3xl text-[#3c3c3c] transition-all duration-500"
+              ? "flex justify-between font-esenka text-lg md:text-3xl text-[#ECECEC] transition-all duration-500"
+              : "flex justify-between font-esenka text-lg md:text-3xl text-[#3c3c3c] transition-all duration-500"
           }
         >
           <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
@@ -299,14 +299,14 @@ const Landing = () => {
         <div
           className={
             darkMode
-              ? "flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC] transition-all duration-500"
-              : "flex justify-between font-esenka text-sm md:text-3xl text-[#3c3c3c] transition-all duration-500"
+              ? "flex justify-between font-esenka text-lg md:text-3xl text-[#ECECEC] transition-all duration-500"
+              : "flex justify-between font-esenka text-lg md:text-3xl text-[#3c3c3c] transition-all duration-500"
           }
         >
           <div className="flex flex-col gap-2 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
             {data.experience.items.map((item, index) => (
               <div key={index} className="flex justify-between w-full">
-                <div className="flex gap-2 md:gap-4 items-end">
+                <div className="flex flex-col gap-2 md:gap-4 md:flex md:items-end">
                   <a
                     href={item.url}
                     className={
@@ -328,7 +328,7 @@ const Landing = () => {
                   </span>
                 </div>
                 <span
-                  className="font-esenka font-normal text-xs md:text-xl"
+                  className="font-esenka font-normal text-xs md:text-xl mt-3 md:mt-0"
                   style={index === 0 ? { paddingRight: "3px" } : {}}
                 >
                   {item.number}
@@ -361,17 +361,17 @@ const Landing = () => {
         <div
           className={
             darkMode
-              ? "flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC]"
-              : "flex justify-between font-esenka text-sm md:text-3xl text-[#3c3c3c]"
+              ? "flex justify-between font-esenka text-lg md:text-3xl text-[#ECECEC]"
+              : "flex justify-between font-esenka text-lg md:text-3xl text-[#3c3c3c]"
           }
         >
           <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
             {data.education.items.map((item, index) => (
               <div key={index} className="flex justify-between w-full">
-                <div className="flex gap-2 md:gap-4 items-end">
+                <div className="flex flex-col gap-0 md:gap-4 md:flex md:items-end">
                   <a
                     href={item.url}
-                    className="hover:text-[#8BCD00] cursor-pointer transition"
+                    className="hover:text-[#8BCD00] cursor-pointer transition mt-2 md:mt-0"
                   >
                     {item.name}
                   </a>
@@ -386,7 +386,7 @@ const Landing = () => {
                   </span>
                 </div>
                 <span
-                  className="font-esenka font-normal text-xs md:text-xl"
+                  className="font-esenka font-normal text-xs md:text-xl mt-3 md:mt-0"
                   style={index === 0 ? { paddingRight: "3px" } : {}}
                 >
                   {item.number}
@@ -419,8 +419,8 @@ const Landing = () => {
         <div
           className={
             darkMode
-              ? "flex justify-between font-esenka text-sm md:text-3xl text-[#ECECEC]"
-              : "flex justify-between font-esenka text-sm md:text-3xl text-[#3c3c3c]"
+              ? "flex justify-between font-esenka text-lg md:text-3xl text-[#ECECEC]"
+              : "flex justify-between font-esenka text-lg md:text-3xl text-[#3c3c3c]"
           }
         >
           <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
