@@ -27,17 +27,7 @@ const data = {
       { name: "EXPRESS JS", number: "9" },
       { name: "STRAPI CMS", number: "10" },
       { name: "TAILWIND CSS", number: "11" },
-
-    ],
-  },
-  tools: {
-    title: ["Tech", "Stack"],
-    items: [
-      { name: "VERCEL", number: "1" },
-      { name: "AWS SUITE", number: "2" },
-      { name: "ADOBE PS, AI", number: "3" },
-      { name: "FIGMA", number: "4" },
-      { name: "VS CODE", number: "5" },
+      { name: "AWS SUITE", number: "12" },
     ],
   },
   experience: {
@@ -138,11 +128,6 @@ const data = {
         name: "SPOTIFY",
         url: "https://open.spotify.com/user/nl8l3a15fcwt16ziq91rp82eq?si=x_g4W9_6SbqNENbHlJkjCg",
         number: "4",
-      },
-      {
-        name: "INSTAGRAM",
-        url: "https://www.instagram.com/sarvagk",
-        number: "5",
       },
     ],
   },
@@ -269,80 +254,39 @@ const Landing = () => {
       </div>
 
       {/* TECH STACK */}
-      <div className="flex justify-between">
+      <div
+        className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
+          darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
+        }`}
+      >
+        {/* Title */}
         <div
-          className={`flex w-[70%] flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 border-r-2 transition-all duration-500 ${
-            darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
+          className={`flex justify-between text-2xl md:text-4xl transition-all duration-500  ${
+            darkMode ? "text-[#323232]" : "text-[#aaaaaa]"
           }`}
         >
-          {/* Title */}
-          <div
-            className={`flex justify-between text-2xl md:text-4xl transition-all duration-500  ${
-              darkMode ? "text-[#323232]" : "text-[#aaaaaa]"
-            }`}
-          >
-            <span className="font-gambarino">Tech</span>
-            <span className="font-gambarino">Stack</span>
-          </div>
-          {/* Items */}
-          <div
-            className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
-              darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
-            }
-          `}
-          >
-            <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
-              {data.techStack.items.map((item, index) => (
-                <div key={index} className="flex justify-between w-full">
-                  <a>{item.name}</a>
-                  <span
-                    className="font-esenka font-normal text-xs md:text-xl"
-                    style={index === 0 ? { paddingRight: "3px" } : {}}
-                  >
-                    {item.number}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+          <span className="font-gambarino">Tech</span>
+          <span className="font-gambarino">Stack</span>
         </div>
-        {/* Tools */}
+        {/* Items */}
         <div
-          className={`flex w-[30%] flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 bg-orange-600 ${
-            darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
-          }`}
-        >
-          {/* Title */}
-          <div
-            className={`flex justify-between text-2xl md:text-4xl transition-all duration-500  ${
-              darkMode ? "text-[#323232]" : "text-[#aaaaaa]"
-            }`}
-          >
-            <span className="font-gambarino">Tools</span>
-            <span className="font-gambarino">Of</span>
-            <span className="font-gambarino">The</span>
-            <span className="font-gambarino">Trade</span>
-          </div>
-          {/* Items */}
-          <div
-            className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
-              darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
-            }
+          className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
+            darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+          }
           `}
-          >
-            <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
-              {data.tools.items.map((item, index) => (
-                <div key={index} className="flex justify-between w-full">
-                  <a>{item.name}</a>
-                  <span
-                    className="font-esenka font-normal text-xs md:text-xl"
-                    style={index === 0 ? { paddingRight: "3px" } : {}}
-                  >
-                    {item.number}
-                  </span>
-                </div>
-              ))}
-            </div>
+        >
+          <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
+            {data.techStack.items.map((item, index) => (
+              <div key={index} className="flex justify-between w-full">
+                <a>{item.name}</a>
+                <span
+                  className="font-esenka font-normal text-xs md:text-xl"
+                  style={index === 0 ? { paddingRight: "3px" } : {}}
+                >
+                  {item.number}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

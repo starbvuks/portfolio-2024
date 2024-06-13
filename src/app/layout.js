@@ -1,6 +1,7 @@
 import Head from "next/head";
 import "./globals.css";
 import localFont from "@next/font/local";
+import { Analytics } from "@vercel/analytics/react"
 
 const gambarino = localFont({
   src: "../../public/fonts/Gambarino.otf",
