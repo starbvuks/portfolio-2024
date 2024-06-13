@@ -1,7 +1,7 @@
 import Head from "next/head";
 import "./globals.css";
 import localFont from "@next/font/local";
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 
 const gambarino = localFont({
   src: "../../public/fonts/Gambarino.otf",
@@ -67,7 +67,6 @@ export default function RootLayout({ children }) {
         <meta property="og:title" content="Sarvag K. Portfolio" />
         <meta property="og:description" content="had fun making this one" />
 
-
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:title" content="Sarvag K. Portfolio" />
         <meta
@@ -75,6 +74,7 @@ export default function RootLayout({ children }) {
           content="had fun making this one"
         />
       </Head>
+      <Analytics />
       <body
         className={`${apercu.variable} ${gambarino.variable} ${esenka.variable}`}
       >
