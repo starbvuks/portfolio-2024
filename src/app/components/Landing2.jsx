@@ -129,6 +129,11 @@ const data = {
         url: "https://open.spotify.com/user/nl8l3a15fcwt16ziq91rp82eq?si=x_g4W9_6SbqNENbHlJkjCg",
         number: "4",
       },
+      {
+        name: "INSTAGRAM",
+        url: "https://www.instagram.com/sarvagk",
+        number: "5",
+      },
     ],
   },
 };
