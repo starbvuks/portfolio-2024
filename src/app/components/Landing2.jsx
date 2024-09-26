@@ -34,53 +34,60 @@ const data = {
     title: ["Experience"],
     items: [
       {
-        name: "ALEPH INNOVATION",
-        role: "Founder, Lead Developer",
+        name: "GAMITRONICS",
+        role: "Video Game Producer",
         year: "2024",
-        url: "https://alephinnov.com",
+        url: "https://gamitronics.com",
         number: "1",
       },
       {
-        name: "TALENTMAPP",
-        role: "Co Founder, Lead Developer",
+        name: "ALEPH INNOVATION",
+        role: "Founder",
         year: "2024",
-        url: "https://talentmapp.co",
+        url: "https://alephinnov.com",
         number: "2",
+      },
+      {
+        name: "TALENTMAPP",
+        role: "Co Founder, CTO",
+        year: "2023",
+        url: "https://talentmapp.co",
+        number: "3",
       },
       {
         name: "STARTUP GRIND HYDERABAD",
         role: "Chapter Director",
         year: "2024",
         url: "https://www.startupgrind.com/hyderabad/",
-        number: "3",
+        number: "4",
       },
       {
         name: "SoAD ARCHIVAL PLATFORM",
         role: "Lead Developer",
         year: "2023",
         url: "https://portfolio.soad.co.in/",
-        number: "4",
+        number: "5",
       },
       {
         name: "HUNTSJOB",
         role: "Front-End Developer",
         year: "2023",
         url: "https://play.google.com/store/apps/details?id=com.googlesignexbee",
-        number: "5",
+        number: "6",
       },
       {
         name: "LANDMARK LOCATOR",
         role: "Bootcamp Capstone Project - Full-Stack Developer",
         year: "2021",
         url: "https://landmark-locator.vercel.app/",
-        number: "6",
+        number: "7",
       },
       {
         name: "MMDB v2",
         role: "Another Bootcamp Capstone Project - Full-Stack Developer",
         year: "2021",
         url: "https://mmdbv2.vercel.app/",
-        number: "7",
+        number: "8",
       },
     ],
   },
@@ -191,14 +198,14 @@ const Landing = () => {
             className={`font-gambarino text-4xl md:text-7xl cursor-help tracking-tight transition-all duration-500 ${
               darkMode
                 ? " text-[#DBDBDB] hover:text-[#8BCD00]"
-                : " text-[#323232] hover:text-[#8BCD00]"
+                : " text-[#464545] hover:text-[#8BCD00]"
             }`}
           >
             Sarvag Kalari
           </span>
           <span
             className={`flex items-center font-gambarino font-light text-xs md:text-lg tracking-tight transition-all duration-500 ${
-              darkMode ? " text-[#323232]" : "text-[#aaaaaa]"
+              darkMode ? " text-[#464545]" : "text-[#aaaaaa]"
             }`}
           >
             <span className="text-base md:text-2xl tracking-tighter">
@@ -228,7 +235,7 @@ const Landing = () => {
         {/* Title */}
         <div
           className={`flex justify-between text-2xl md:text-4xl transition-all duration-500  ${
-            darkMode ? "text-[#323232]" : "text-[#aaaaaa]"
+            darkMode ? "text-[#464545]" : "text-[#aaaaaa]"
           }`}
         >
           <span className="font-gambarino">What</span>
@@ -267,7 +274,7 @@ const Landing = () => {
         {/* Title */}
         <div
           className={`flex justify-between text-2xl md:text-4xl transition-all duration-500  ${
-            darkMode ? "text-[#323232]" : "text-[#aaaaaa]"
+            darkMode ? "text-[#464545]" : "text-[#aaaaaa]"
           }`}
         >
           <span className="font-gambarino">Tech</span>
@@ -305,7 +312,7 @@ const Landing = () => {
         {/* Title */}
         <div
           className={`flex justify-between text-2xl md:text-4xl transition-all duration-500  ${
-            darkMode ? "text-[#323232]" : "text-[#aaaaaa]"
+            darkMode ? "text-[#464545]" : "text-[#aaaaaa]"
           }`}
         >
           <span className="font-gambarino">Experience</span>
@@ -323,7 +330,7 @@ const Landing = () => {
                 <div className="flex flex-col gap-2 md:gap-4 md:flex md:flex-row md:items-end">
                   <a
                     href={item.url}
-                    className={`border-b-[1px] hover:text-[#8BCD00] cursor-pointer transition ${
+                    className={`border-b-[1px] border-dashed hover:border-solid hover:text-[#8BCD00] cursor-pointer transition ${
                       darkMode
                         ? "border-[#ECECEC] hover:border-[#8BCD00]"
                         : "border-[#3c3c3c] hover:border-[#8BCD00]"
@@ -334,7 +341,7 @@ const Landing = () => {
 
                   <span
                     className={`font-esenka font-light text-xs md:text-base ${
-                      darkMode ? " text-[#323232]" : "text-[#939393]"
+                      darkMode ? " text-[#464545]" : "text-[#939393]"
                     }`}
                   >
                     {item.role}, &nbsp; {item.year}
@@ -361,7 +368,7 @@ const Landing = () => {
         {/* Title */}
         <div
           className={`flex justify-between text-2xl md:text-4xl transition-all duration-500  ${
-            darkMode ? "text-[#323232]" : "text-[#aaaaaa]"
+            darkMode ? "text-[#464545]" : "text-[#aaaaaa]"
           }`}
         >
           <span className="font-gambarino">Education</span>
@@ -385,7 +392,7 @@ const Landing = () => {
                   </a>
                   <span
                     className={`font-esenka font-light text-xs md:text-base ${
-                      darkMode ? " text-[#323232]" : "text-[#939393]"
+                      darkMode ? " text-[#464545]" : "text-[#939393]"
                     }`}
                   >
                     {item.degree}, &nbsp; {item.year}
@@ -412,7 +419,7 @@ const Landing = () => {
         {/* Title */}
         <div
           className={`flex justify-between text-2xl md:text-4xl transition-all duration-500  ${
-            darkMode ? "text-[#323232]" : "text-[#aaaaaa]"
+            darkMode ? "text-[#464545]" : "text-[#aaaaaa]"
           }`}
         >
           <span className="font-gambarino">Socials</span>
@@ -450,7 +457,7 @@ const Landing = () => {
         {/* Title */}
         <div
           className={`flex justify-between text-2xl md:text-4xl transition-all duration-500  ${
-            darkMode ? "text-[#323232]" : "text-[#aaaaaa]"
+            darkMode ? "text-[#464545]" : "text-[#aaaaaa]"
           }`}
         >
           <span className="font-gambarino">Contact</span>
