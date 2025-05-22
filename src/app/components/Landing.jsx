@@ -44,7 +44,7 @@ const data = {
     items: [
       {
         name: "GAMITRONICS",
-        role: "Video Game Producer",
+        role: "Backend Developer Intern (3 Months) | Video Game Producer",
         year: "2024",
         url: "https://gamitronics.com",
         number: "1",
@@ -220,7 +220,7 @@ const Landing = () => {
             <span className="text-base md:text-2xl tracking-tighter">
               &emsp; // &emsp;
             </span>
-            PORTFOLIO 2024
+            PORTFOLIO 2025
           </span>
         </div>
         <div>

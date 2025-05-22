@@ -6,9 +6,9 @@ const data = {
   whatIDo: {
     title: ["What", "I", "Do"],
     items: [
-      { name: "FRONT END DEV", number: "1" },
-      { name: "BACK END DEV", number: "2" },
-      { name: "APPLICATION DEV", number: "3" },
+      { name: "FULL STACK DEV", number: "1" },
+      { name: "APPLICATION DEV", number: "2" },
+      { name: "PROJECT MANAGEMENT", number: "3" },
       { name: "UI / UX DESIGN", number: "4" },
       { name: "BRAND DESIGN", number: "5" },
     ],
@@ -34,19 +34,26 @@ const data = {
     title: ["Experience"],
     items: [
       {
+        name: "FITBOOK",
+        role: "Developer",
+        year: "2025",
+        url: "https://fitbook.club",
+        number: "1",
+      },
+      {
         name: "GAMITRONICS",
-        role: "Video Game Producer",
+        role: "Backend Developer Intern (3 Months) | Video Game Producer",
         year: "2024",
         url: "https://gamitronics.com",
         number: "1",
       },
-      {
-        name: "ALEPH INNOVATION",
-        role: "Founder",
-        year: "2024",
-        url: "https://alephinnov.com",
-        number: "2",
-      },
+      // {
+      //   name: "ALEPH INNOVATION",
+      //   role: "Founder",
+      //   year: "2024",
+      //   url: "https://alephinnov.com",
+      //   number: "2",
+      // },
       {
         name: "TALENTMAPP",
         role: "Co Founder, CTO",
@@ -66,6 +73,13 @@ const data = {
         role: "Lead Developer",
         year: "2023",
         url: "https://portfolio.soad.co.in/",
+        number: "5",
+      },
+      {
+        name: "Hospital Management System",
+        role: "Lead Developer",
+        year: "2023",
+        url: "https://github.com/starbvuks/ayush-hms",
         number: "5",
       },
       {
@@ -136,11 +150,11 @@ const data = {
         url: "https://open.spotify.com/user/nl8l3a15fcwt16ziq91rp82eq?si=x_g4W9_6SbqNENbHlJkjCg",
         number: "4",
       },
-      {
-        name: "INSTAGRAM",
-        url: "https://www.instagram.com/sarvagk",
-        number: "5",
-      },
+      // {
+      //   name: "INSTAGRAM",
+      //   url: "https://www.instagram.com/sarvagk",
+      //   number: "5",
+      // },
     ],
   },
 };
