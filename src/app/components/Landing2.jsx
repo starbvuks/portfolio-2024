@@ -281,8 +281,7 @@ const Landing = () => {
   const [showMatrix, setShowMatrix] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [contentHeight, setContentHeight] = useState(0);
-  const [viewportHeight, setViewportHeight] = useState(0);
+  const [hasExpandedContent, setHasExpandedContent] = useState(false);
   const canvasRef = useRef(null);
   const contactRef = useRef(null);
   const contentRef = useRef(null);
@@ -299,46 +298,16 @@ const Landing = () => {
     contact: true, // Contact always open
   });
 
-  // Update layout measurements when sections expand/collapse
+  // Check if any section is expanded
   useEffect(() => {
-    const updateLayout = () => {
-      if (isMobile && mainContentRef.current) {
-        setContentHeight(mainContentRef.current.scrollHeight);
-      }
-    };
-    
-    updateLayout();
-    
-    // Small delay to ensure DOM has updated after transitions complete
-    const timeoutId = setTimeout(updateLayout, 500);
-    return () => clearTimeout(timeoutId);
-  }, [expandedSections, isMobile]);
+    const anyExpanded = Object.values(expandedSections).some(value => value && value !== expandedSections.contact);
+    setHasExpandedContent(anyExpanded);
+  }, [expandedSections]);
 
-  // Use ResizeObserver to monitor content height changes
-  useEffect(() => {
-    if (!mainContentRef.current) return;
-    
-    const resizeObserver = new ResizeObserver(() => {
-      if (isMobile && mainContentRef.current) {
-        setContentHeight(mainContentRef.current.scrollHeight);
-        setViewportHeight(window.innerHeight);
-      }
-    });
-    
-    resizeObserver.observe(mainContentRef.current);
-    return () => resizeObserver.disconnect();
-  }, [isMobile]);
-
-  // Check if device is mobile and handle viewport measurements
+  // Check if device is mobile
   useEffect(() => {
     const checkMobile = () => {
-      const isMobileView = window.innerWidth < 768;
-      setIsMobile(isMobileView);
-      setViewportHeight(window.innerHeight);
-      
-      if (mainContentRef.current) {
-        setContentHeight(mainContentRef.current.scrollHeight);
-      }
+      setIsMobile(window.innerWidth < 768);
     };
     
     checkMobile();
@@ -786,498 +755,355 @@ const Landing = () => {
         </div>
       </div>
 
-      {/* Main content wrapper - using flex to push contact to bottom when possible */}
-      <div 
-        ref={mainContentRef}
-        className="flex flex-col flex-grow"
-      >
-        {/* Content sections container */}
-        <div className="flex flex-col">
-          {/* WHAT I DO */}
-          <div
-            className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
-              darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
-            }`}
-          >
-            {/* Title with toggle */}
+      {/* Page content container - use flex to push Contact to bottom when no expanded sections */}
+      <div className={`flex flex-col flex-grow ${isMobile && !hasExpandedContent ? 'justify-between' : ''}`}>
+        {/* Main content wrapper */}
+        <div 
+          ref={mainContentRef}
+          className="flex flex-col"
+        >
+          {/* Content sections container */}
+          <div className="flex flex-col">
+            {/* WHAT I DO */}
             <div
-              className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
-                darkMode
-                  ? "text-[#464545] hover:text-[#8BCD00]"
-                  : "text-[#aaaaaa] hover:text-[#8BCD00]"
-              }`}
-              onClick={() => toggleSection("whatIDo")}
-            >
-              <span className="font-gambarino">What</span>
-              <span className="font-gambarino">I</span>
-              <span className="font-gambarino flex items-center">
-                Do
-                <button
-                  className={`ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#8BCD00] ${
-                    darkMode ? "hover:text-[#8BCD00]" : "hover:text-[#8BCD00]"
-                  }`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleSection("whatIDo");
-                  }}
-                >
-                  {expandedSections.whatIDo ? (
-                    <span className="text-xl md:text-2xl transform translate-y-[-2px]">
-                      −
-                    </span>
-                  ) : (
-                    <span className="text-xl md:text-2xl">+</span>
-                  )}
-                </button>
-              </span>
-            </div>
-            {/* Items */}
-            <div
-              className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                expandedSections.whatIDo
-                  ? "max-h-[500px] opacity-100"
-                  : "max-h-0 opacity-0"
+              className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
+                darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
               }`}
             >
+              {/* Title with toggle */}
               <div
-                className={`transition-all duration-500 ${
-                  darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+                className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
+                  darkMode
+                    ? "text-[#464545] hover:text-[#8BCD00]"
+                    : "text-[#aaaaaa] hover:text-[#8BCD00]"
                 }`}
+                onClick={() => toggleSection("whatIDo")}
               >
-                <div className="font-esenka text-lg md:text-3xl font-black py-4 md:py-8 w-full">
-                  {/* Two column layout with proper alignment */}
-                  <div className="flex justify-between w-full">
-                    {[...Array(2)].map((_, colIndex) => {
-                      const itemsPerColumn = Math.ceil(
-                        data.whatIDo.items.length / 2
-                      );
-                      const startIndex = colIndex * itemsPerColumn;
-                      const columnItems = data.whatIDo.items.slice(
-                        startIndex,
-                        startIndex + itemsPerColumn
-                      );
-
-                      return (
-                        <div
-                          key={colIndex}
-                          className={`flex flex-col gap-2 md:gap-4 ${
-                            colIndex === 0 ? "" : "text-right"
-                          }`}
-                        >
-                          {columnItems.map((item, index) => (
-                            <div
-                              key={index}
-                              className={`flex items-center transform transition-all duration-300 hover:translate-x-1 ${
-                                colIndex === 1 ? "flex-row-reverse" : ""
-                              }`}
-                              style={{
-                                transitionDelay: `${index * 50}ms`,
-                                opacity: expandedSections.whatIDo ? 1 : 0,
-                                transform: expandedSections.whatIDo
-                                  ? "translateY(0px)"
-                                  : "translateY(20px)",
-                              }}
-                            >
-                              <div
-                                className={`w-6 md:w-8 text-center font-esenka font-normal text-xs md:text-xl ${
-                                  darkMode ? "text-[#464545]" : "text-[#aaaaaa]"
-                                }`}
-                              >
-                                {item.number}
-                              </div>
-                              <div
-                                className={`${
-                                  colIndex === 0 ? "ml-3" : "mr-3"
-                                } hover:text-[#8BCD00] transition-colors duration-300`}
-                              >
-                                {item.name}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                <span className="font-gambarino">What</span>
+                <span className="font-gambarino">I</span>
+                <span className="font-gambarino flex items-center">
+                  Do
+                  <button
+                    className={`ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#8BCD00] ${
+                      darkMode ? "hover:text-[#8BCD00]" : "hover:text-[#8BCD00]"
+                    }`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleSection("whatIDo");
+                    }}
+                  >
+                    {expandedSections.whatIDo ? (
+                      <span className="text-xl md:text-2xl transform translate-y-[-2px]">
+                        −
+                      </span>
+                    ) : (
+                      <span className="text-xl md:text-2xl">+</span>
+                    )}
+                  </button>
+                </span>
               </div>
-            </div>
-          </div>
-
-          {/* TECH STACK */}
-          <div
-            className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
-              darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
-            }`}
-          >
-            {/* Title with toggle */}
-            <div
-              className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
-                darkMode
-                  ? "text-[#464545] hover:text-[#8BCD00]"
-                  : "text-[#aaaaaa] hover:text-[#8BCD00]"
-              }`}
-              onClick={() => toggleSection("techStack")}
-            >
-              <span className="font-gambarino">Tech</span>
-              <span className="font-gambarino flex items-center">
-                Stack
-                <button
-                  className={`ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#8BCD00] ${
-                    darkMode ? "hover:text-[#8BCD00]" : "hover:text-[#8BCD00]"
+              {/* Items */}
+              <div
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                  expandedSections.whatIDo
+                    ? "max-h-[500px] opacity-100"
+                    : "max-h-0 opacity-0"
+                }`}
+              >
+                <div
+                  className={`transition-all duration-500 ${
+                    darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
                   }`}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    toggleSection("techStack");
-                  }}
                 >
-                  {expandedSections.techStack ? (
-                    <span className="text-xl md:text-2xl transform translate-y-[-2px]">
-                      −
-                    </span>
-                  ) : (
-                    <span className="text-xl md:text-2xl">+</span>
-                  )}
-                </button>
-              </span>
-            </div>
-            {/* Items */}
-            <div
-              className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                expandedSections.techStack
-                  ? "max-h-[1200px] opacity-100"
-                  : "max-h-0 opacity-0"
-              }`}
-            >
-              <div
-                className={`transition-all duration-500 ${
-                  darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
-                }`}
-              >
-                <div className="font-esenka text-lg md:text-3xl font-black py-4 md:py-8 w-full">
-                  {/* Three column layout with proper alignment */}
-                  <div className="flex justify-between w-full">
-                    {[...Array(3)].map((_, colIndex) => {
-                      const itemsPerColumn = Math.ceil(
-                        data.techStack.items.length / 3
-                      );
-                      const startIndex = colIndex * itemsPerColumn;
-                      const columnItems = data.techStack.items.slice(
-                        startIndex,
-                        startIndex + itemsPerColumn
-                      );
+                  <div className="font-esenka text-lg md:text-3xl font-black py-4 md:py-8 w-full">
+                    {/* Two column layout with proper alignment */}
+                    <div className="flex justify-between w-full">
+                      {[...Array(2)].map((_, colIndex) => {
+                        const itemsPerColumn = Math.ceil(
+                          data.whatIDo.items.length / 2
+                        );
+                        const startIndex = colIndex * itemsPerColumn;
+                        const columnItems = data.whatIDo.items.slice(
+                          startIndex,
+                          startIndex + itemsPerColumn
+                        );
 
-                      return (
-                        <div
-                          key={colIndex}
-                          className={`flex flex-col gap-2 md:gap-4 ${
-                            colIndex === 0
-                              ? ""
-                              : colIndex === 1
-                              ? "items-center text-center"
-                              : "items-end text-right"
-                          }`}
-                        >
-                          {columnItems.map((item, index) => (
-                            <div
-                              key={index}
-                              className={`flex items-center transform transition-all duration-300 hover:translate-x-1 ${
-                                colIndex === 0
-                                  ? ""
-                                  : colIndex === 1
-                                  ? "justify-center"
-                                  : "flex-row-reverse"
-                              }`}
-                              style={{
-                                transitionDelay: `${index * 30}ms`,
-                                opacity: expandedSections.techStack ? 1 : 0,
-                                transform: expandedSections.techStack
-                                  ? "translateY(0px)"
-                                  : "translateY(20px)",
-                              }}
-                            >
-                              <div
-                                className={`w-6 md:w-8 text-center font-esenka font-normal text-xs md:text-xl ${
-                                  darkMode ? "text-[#464545]" : "text-[#aaaaaa]"
-                                }`}
-                              >
-                                {item.number}
-                              </div>
-                              <div
-                                className={`${
-                                  colIndex === 0
-                                    ? "ml-3"
-                                    : colIndex === 1
-                                    ? "mx-3"
-                                    : "mr-3"
-                                } hover:text-[#8BCD00] transition-colors duration-300`}
-                              >
-                                {item.name}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* EXPERIENCE */}
-          <div
-            className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
-              darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
-            }`}
-          >
-            {/* Title with toggle */}
-            <div
-              className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
-                darkMode
-                  ? "text-[#464545] hover:text-[#8BCD00]"
-                  : "text-[#aaaaaa] hover:text-[#8BCD00]"
-              }`}
-              onClick={() => toggleSection("experience")}
-            >
-              <span className="font-gambarino">Experience</span>
-              <button
-                className={`ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#8BCD00] ${
-                  darkMode ? "hover:text-[#8BCD00]" : "hover:text-[#8BCD00]"
-                }`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleSection("experience");
-                }}
-              >
-                {expandedSections.experience ? (
-                  <span className="text-xl md:text-lg transform translate-y-[-2px]">
-                    −
-                  </span>
-                ) : (
-                  <span className="text-xl md:text-lg">+</span>
-                )}
-              </button>
-            </div>
-            {/* Items */}
-            <div
-              className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                expandedSections.experience
-                  ? "max-h-[2000px] opacity-100"
-                  : "max-h-0 opacity-0"
-              }`}
-            >
-              <div
-                className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
-                  darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
-                }`}
-              >
-                <div className="flex flex-col gap-3 md:gap-6 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
-                  {data.experience.items.map((item, index) => (
-                    <div
-                      key={index}
-                      className="flex flex-col w-full transform transition-all duration-300"
-                      style={{
-                        transitionDelay: `${index * 100}ms`,
-                        opacity: expandedSections.experience ? 1 : 0,
-                        transform: expandedSections.experience
-                          ? "translateY(0px)"
-                          : "translateY(20px)",
-                      }}
-                    >
-                      <div className="flex justify-between w-full">
-                        <div className="flex flex-col gap-2 md:gap-4 md:flex md:flex-row md:items-end">
-                          <div className="flex items-center group/item">
-                            <a
-                              href={item.url}
-                              className={`border-b-[1px] border-dashed hover:border-solid hover:text-[#8BCD00] cursor-pointer transition ${
-                                darkMode
-                                  ? "border-[#ECECEC] hover:border-[#8BCD00]"
-                                  : "border-[#3c3c3c] hover:border-[#8BCD00]"
-                              }`}
-                            >
-                              {item.name}
-                            </a>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                toggleExpand(index);
-                              }}
-                              className={`ml-2 w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded-full hover:text-[#8BCD00] transition-colors duration-300 group-hover/item:text-[#8BCD00]`}
-                            >
-                              {expandedExperience === index ? (
-                                <span className="text-xl md:text-xl transform translate-y-[-2px]">
-                                  −
-                                </span>
-                              ) : (
-                                <span className="text-xl md:text-xl">+</span>
-                              )}
-                            </button>
-                          </div>
-
-                          <span
-                            className={`font-esenka font-light text-xs md:text-base ${
-                              darkMode ? " text-[#464545]" : "text-[#939393]"
+                        return (
+                          <div
+                            key={colIndex}
+                            className={`flex flex-col gap-2 md:gap-4 ${
+                              colIndex === 0 ? "" : "text-right"
                             }`}
                           >
-                            {item.role}, &nbsp; {item.year}
-                          </span>
-                        </div>
-                        <span
-                          className="font-esenka font-normal text-xs md:text-xl mt-3 md:mt-0"
-                          style={index === 0 ? { paddingRight: "3px" } : {}}
-                        >
-                          {item.number}
-                        </span>
-                      </div>
-
-                      <div
-                        className={`mt-2 pl-4 text-sm md:text-base font-normal border-l-2 transition-all duration-500 overflow-hidden max-w-[90%] md:max-w-[40%] ${
-                          expandedExperience === index
-                            ? "max-h-[300px] opacity-100"
-                            : "max-h-0 opacity-0"
-                        } ${
-                          darkMode
-                            ? "border-[#242424] text-[#A0A0A0]"
-                            : "border-[#d2d2d2] text-[#646464]"
-                        }`}
-                      >
-                        <p className="mb-2">{item.description}</p>
-                        {item.technologies && (
-                          <div className="flex flex-wrap gap-2 mt-2">
-                            {item.technologies.map((tech, i) => (
-                              <span
-                                key={i}
-                                className={`text-xs px-2 py-1 rounded-sm transform transition-all duration-300 ${
-                                  darkMode
-                                    ? "bg-[#242424] text-[#ECECEC]"
-                                    : "bg-[#e9e9e9] text-[#464545]"
+                            {columnItems.map((item, index) => (
+                              <div
+                                key={index}
+                                className={`flex items-center transform transition-all duration-300 hover:translate-x-1 ${
+                                  colIndex === 1 ? "flex-row-reverse" : ""
                                 }`}
                                 style={{
-                                  transitionDelay: `${i * 50}ms`,
-                                  opacity: expandedExperience === index ? 1 : 0,
-                                  transform:
-                                    expandedExperience === index
-                                      ? "translateY(0px)"
-                                      : "translateY(10px)",
+                                  transitionDelay: `${index * 50}ms`,
+                                  opacity: expandedSections.whatIDo ? 1 : 0,
+                                  transform: expandedSections.whatIDo
+                                    ? "translateY(0px)"
+                                    : "translateY(20px)",
                                 }}
                               >
-                                {tech}
-                              </span>
+                                <div
+                                  className={`w-6 md:w-8 text-center font-esenka font-normal text-xs md:text-xl ${
+                                    darkMode ? "text-[#464545]" : "text-[#aaaaaa]"
+                                  }`}
+                                >
+                                  {item.number}
+                                </div>
+                                <div
+                                  className={`${
+                                    colIndex === 0 ? "ml-3" : "mr-3"
+                                  } hover:text-[#8BCD00] transition-colors duration-300`}
+                                >
+                                  {item.name}
+                                </div>
+                              </div>
                             ))}
                           </div>
-                        )}
-                      </div>
+                        );
+                      })}
                     </div>
-                  ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* EDUCATION */}
-          <div
-            className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
-              darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
-            }`}
-          >
-            {/* Title with toggle */}
+            {/* TECH STACK */}
             <div
-              className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
-                darkMode
-                  ? "text-[#464545] hover:text-[#8BCD00]"
-                  : "text-[#aaaaaa] hover:text-[#8BCD00]"
-              }`}
-              onClick={() => toggleSection("education")}
-            >
-              <span className="font-gambarino">Education</span>
-              <button
-                className={`ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#8BCD00] ${
-                  darkMode ? "hover:text-[#8BCD00]" : "hover:text-[#8BCD00]"
-                }`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleSection("education");
-                }}
-              >
-                {expandedSections.education ? (
-                  <span className="text-xl md:text-lg transform translate-y-[-2px]">
-                    −
-                  </span>
-                ) : (
-                  <span className="text-xl md:text-lg">+</span>
-                )}
-              </button>
-            </div>
-            {/* Items */}
-            <div
-              className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                expandedSections.education
-                  ? "max-h-[600px] opacity-100"
-                  : "max-h-0 opacity-0"
+              className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
+                darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
               }`}
             >
+              {/* Title with toggle */}
               <div
-                className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
-                  darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+                className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
+                  darkMode
+                    ? "text-[#464545] hover:text-[#8BCD00]"
+                    : "text-[#aaaaaa] hover:text-[#8BCD00]"
+                }`}
+                onClick={() => toggleSection("techStack")}
+              >
+                <span className="font-gambarino">Tech</span>
+                <span className="font-gambarino flex items-center">
+                  Stack
+                  <button
+                    className={`ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#8BCD00] ${
+                      darkMode ? "hover:text-[#8BCD00]" : "hover:text-[#8BCD00]"
+                    }`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleSection("techStack");
+                    }}
+                  >
+                    {expandedSections.techStack ? (
+                      <span className="text-xl md:text-2xl transform translate-y-[-2px]">
+                        −
+                      </span>
+                    ) : (
+                      <span className="text-xl md:text-2xl">+</span>
+                    )}
+                  </button>
+                </span>
+              </div>
+              {/* Items */}
+              <div
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                  expandedSections.techStack
+                    ? "max-h-[1200px] opacity-100"
+                    : "max-h-0 opacity-0"
                 }`}
               >
-                <div className="flex flex-col gap-4 md:gap-6 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
-                  {data.education.items.map((item, index) => (
-                    <div
-                      key={index}
-                      className="flex flex-col w-full transform transition-all duration-300"
-                      style={{
-                        transitionDelay: `${index * 100}ms`,
-                        opacity: expandedSections.education ? 1 : 0,
-                        transform: expandedSections.education
-                          ? "translateY(0px)"
-                          : "translateY(20px)",
-                      }}
-                    >
-                      <div className="flex justify-between w-full">
-                        <div className="flex flex-col gap-0 md:gap-4 md:flex md:flex-row md:items-end">
-                          <div className="flex items-center group/item">
-                            <a
-                              href={item.url}
-                              className="hover:text-[#8BCD00] cursor-pointer transition mt-2 md:mt-0"
-                            >
-                              {item.name}
-                            </a>
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                toggleEducation(index);
-                              }}
-                              className={`ml-2 w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded-full hover:text-[#8BCD00] transition-colors duration-300 group-hover/item:text-[#8BCD00]`}
-                            >
-                              {expandedEducation === index ? (
-                                <span className="text-xl md:text-xl transform translate-y-[-2px]">
-                                  −
-                                </span>
-                              ) : (
-                                <span className="text-xl md:text-xl">+</span>
-                              )}
-                            </button>
-                          </div>
-                          <span
-                            className={`font-esenka font-light text-xs md:text-base ${
-                              darkMode ? " text-[#464545]" : "text-[#939393]"
+                <div
+                  className={`transition-all duration-500 ${
+                    darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+                  }`}
+                >
+                  <div className="font-esenka text-lg md:text-3xl font-black py-4 md:py-8 w-full">
+                    {/* Three column layout with proper alignment */}
+                    <div className="flex justify-between w-full">
+                      {[...Array(3)].map((_, colIndex) => {
+                        const itemsPerColumn = Math.ceil(
+                          data.techStack.items.length / 3
+                        );
+                        const startIndex = colIndex * itemsPerColumn;
+                        const columnItems = data.techStack.items.slice(
+                          startIndex,
+                          startIndex + itemsPerColumn
+                        );
+
+                        return (
+                          <div
+                            key={colIndex}
+                            className={`flex flex-col gap-2 md:gap-4 ${
+                              colIndex === 0
+                                ? ""
+                                : colIndex === 1
+                                ? "items-center text-center"
+                                : "items-end text-right"
                             }`}
                           >
-                            {item.degree}, &nbsp; {item.year}
+                            {columnItems.map((item, index) => (
+                              <div
+                                key={index}
+                                className={`flex items-center transform transition-all duration-300 hover:translate-x-1 ${
+                                  colIndex === 0
+                                    ? ""
+                                    : colIndex === 1
+                                    ? "justify-center"
+                                    : "flex-row-reverse"
+                                }`}
+                                style={{
+                                  transitionDelay: `${index * 30}ms`,
+                                  opacity: expandedSections.techStack ? 1 : 0,
+                                  transform: expandedSections.techStack
+                                    ? "translateY(0px)"
+                                    : "translateY(20px)",
+                                }}
+                              >
+                                <div
+                                  className={`w-6 md:w-8 text-center font-esenka font-normal text-xs md:text-xl ${
+                                    darkMode ? "text-[#464545]" : "text-[#aaaaaa]"
+                                  }`}
+                                >
+                                  {item.number}
+                                </div>
+                                <div
+                                  className={`${
+                                    colIndex === 0
+                                      ? "ml-3"
+                                      : colIndex === 1
+                                      ? "mx-3"
+                                      : "mr-3"
+                                  } hover:text-[#8BCD00] transition-colors duration-300`}
+                                >
+                                  {item.name}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* EXPERIENCE */}
+            <div
+              className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
+                darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
+              }`}
+            >
+              {/* Title with toggle */}
+              <div
+                className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
+                  darkMode
+                    ? "text-[#464545] hover:text-[#8BCD00]"
+                    : "text-[#aaaaaa] hover:text-[#8BCD00]"
+                }`}
+                onClick={() => toggleSection("experience")}
+              >
+                <span className="font-gambarino">Experience</span>
+                <button
+                  className={`ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#8BCD00] ${
+                    darkMode ? "hover:text-[#8BCD00]" : "hover:text-[#8BCD00]"
+                  }`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleSection("experience");
+                  }}
+                >
+                  {expandedSections.experience ? (
+                    <span className="text-xl md:text-lg transform translate-y-[-2px]">
+                      −
+                    </span>
+                  ) : (
+                    <span className="text-xl md:text-lg">+</span>
+                  )}
+                </button>
+              </div>
+              {/* Items */}
+              <div
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                  expandedSections.experience
+                    ? "max-h-[2000px] opacity-100"
+                    : "max-h-0 opacity-0"
+                }`}
+              >
+                <div
+                  className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
+                    darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+                  }`}
+                >
+                  <div className="flex flex-col gap-3 md:gap-6 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
+                    {data.experience.items.map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col w-full transform transition-all duration-300"
+                        style={{
+                          transitionDelay: `${index * 100}ms`,
+                          opacity: expandedSections.experience ? 1 : 0,
+                          transform: expandedSections.experience
+                            ? "translateY(0px)"
+                            : "translateY(20px)",
+                        }}
+                      >
+                        <div className="flex justify-between w-full">
+                          <div className="flex flex-col gap-2 md:gap-4 md:flex md:flex-row md:items-end">
+                            <div className="flex items-center group/item">
+                              <a
+                                href={item.url}
+                                className={`border-b-[1px] border-dashed hover:border-solid hover:text-[#8BCD00] cursor-pointer transition ${
+                                  darkMode
+                                    ? "border-[#ECECEC] hover:border-[#8BCD00]"
+                                    : "border-[#3c3c3c] hover:border-[#8BCD00]"
+                                }`}
+                              >
+                                {item.name}
+                              </a>
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  toggleExpand(index);
+                                }}
+                                className={`ml-2 w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded-full hover:text-[#8BCD00] transition-colors duration-300 group-hover/item:text-[#8BCD00]`}
+                              >
+                                {expandedExperience === index ? (
+                                  <span className="text-xl md:text-xl transform translate-y-[-2px]">
+                                    −
+                                  </span>
+                                ) : (
+                                  <span className="text-xl md:text-xl">+</span>
+                                )}
+                              </button>
+                            </div>
+
+                            <span
+                              className={`font-esenka font-light text-xs md:text-base ${
+                                darkMode ? " text-[#464545]" : "text-[#939393]"
+                              }`}
+                            >
+                              {item.role}, &nbsp; {item.year}
+                            </span>
+                          </div>
+                          <span
+                            className="font-esenka font-normal text-xs md:text-xl mt-3 md:mt-0"
+                            style={index === 0 ? { paddingRight: "3px" } : {}}
+                          >
+                            {item.number}
                           </span>
                         </div>
-                        <span
-                          className="font-esenka font-normal text-xs md:text-xl mt-3 md:mt-0"
-                          style={index === 0 ? { paddingRight: "3px" } : {}}
-                        >
-                          {item.number}
-                        </span>
-                      </div>
-                      {item.description && (
+
                         <div
                           className={`mt-2 pl-4 text-sm md:text-base font-normal border-l-2 transition-all duration-500 overflow-hidden max-w-[90%] md:max-w-[40%] ${
-                            expandedEducation === index
+                            expandedExperience === index
                               ? "max-h-[300px] opacity-100"
                               : "max-h-0 opacity-0"
                           } ${
@@ -1286,100 +1112,243 @@ const Landing = () => {
                               : "border-[#d2d2d2] text-[#646464]"
                           }`}
                         >
-                          <p>{item.description}</p>
+                          <p className="mb-2">{item.description}</p>
+                          {item.technologies && (
+                            <div className="flex flex-wrap gap-2 mt-2">
+                              {item.technologies.map((tech, i) => (
+                                <span
+                                  key={i}
+                                  className={`text-xs px-2 py-1 rounded-sm transform transition-all duration-300 ${
+                                    darkMode
+                                      ? "bg-[#242424] text-[#ECECEC]"
+                                      : "bg-[#e9e9e9] text-[#464545]"
+                                  }`}
+                                  style={{
+                                    transitionDelay: `${i * 50}ms`,
+                                    opacity: expandedExperience === index ? 1 : 0,
+                                    transform:
+                                      expandedExperience === index
+                                        ? "translateY(0px)"
+                                        : "translateY(10px)",
+                                  }}
+                                >
+                                  {tech}
+                                </span>
+                              ))}
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                  ))}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          {/* SOCIALS */}
-          <div
-            className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
-              darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
-            }`}
-          >
-            {/* Title with toggle */}
+            {/* EDUCATION */}
             <div
-              className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
-                darkMode
-                  ? "text-[#464545] hover:text-[#8BCD00]"
-                  : "text-[#aaaaaa] hover:text-[#8BCD00]"
-              }`}
-              onClick={() => toggleSection("socials")}
-            >
-              <span className="font-gambarino">Socials</span>
-              <button
-                className={`ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#8BCD00] ${
-                  darkMode ? "hover:text-[#8BCD00]" : "hover:text-[#8BCD00]"
-                }`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleSection("socials");
-                }}
-              >
-                {expandedSections.socials ? (
-                  <span className="text-xl md:text-lg transform translate-y-[-2px]">
-                    −
-                  </span>
-                ) : (
-                  <span className="text-xl md:text-lg">+</span>
-                )}
-              </button>
-            </div>
-            {/* Items */}
-            <div
-              className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                expandedSections.socials
-                  ? "max-h-[300px] opacity-100"
-                  : "max-h-0 opacity-0"
+              className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
+                darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
               }`}
             >
+              {/* Title with toggle */}
               <div
-                className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
-                  darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+                className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
+                  darkMode
+                    ? "text-[#464545] hover:text-[#8BCD00]"
+                    : "text-[#aaaaaa] hover:text-[#8BCD00]"
+                }`}
+                onClick={() => toggleSection("education")}
+              >
+                <span className="font-gambarino">Education</span>
+                <button
+                  className={`ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#8BCD00] ${
+                    darkMode ? "hover:text-[#8BCD00]" : "hover:text-[#8BCD00]"
+                  }`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleSection("education");
+                  }}
+                >
+                  {expandedSections.education ? (
+                    <span className="text-xl md:text-lg transform translate-y-[-2px]">
+                      −
+                    </span>
+                  ) : (
+                    <span className="text-xl md:text-lg">+</span>
+                  )}
+                </button>
+              </div>
+              {/* Items */}
+              <div
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                  expandedSections.education
+                    ? "max-h-[600px] opacity-100"
+                    : "max-h-0 opacity-0"
                 }`}
               >
-                <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
-                  {data.socials.items.map((item, index) => (
-                    <div
-                      key={index}
-                      className="flex justify-between w-full transform transition-all duration-300"
-                      style={{
-                        transitionDelay: `${index * 50}ms`,
-                        opacity: expandedSections.socials ? 1 : 0,
-                        transform: expandedSections.socials
-                          ? "translateY(0px)"
-                          : "translateY(20px)",
-                      }}
-                    >
-                      <a
-                        href={item.url}
-                        className="hover:text-[#8BCD00] cursor-pointer transition"
+                <div
+                  className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
+                    darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+                  }`}
+                >
+                  <div className="flex flex-col gap-4 md:gap-6 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
+                    {data.education.items.map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col w-full transform transition-all duration-300"
+                        style={{
+                          transitionDelay: `${index * 100}ms`,
+                          opacity: expandedSections.education ? 1 : 0,
+                          transform: expandedSections.education
+                            ? "translateY(0px)"
+                            : "translateY(20px)",
+                        }}
                       >
-                        {item.name}
-                      </a>
-                      <span
-                        className="font-esenka font-normal text-xs md:text-xl"
-                        style={index === 0 ? { paddingRight: "3px" } : {}}
+                        <div className="flex justify-between w-full">
+                          <div className="flex flex-col gap-0 md:gap-4 md:flex md:flex-row md:items-end">
+                            <div className="flex items-center group/item">
+                              <a
+                                href={item.url}
+                                className="hover:text-[#8BCD00] cursor-pointer transition mt-2 md:mt-0"
+                              >
+                                {item.name}
+                              </a>
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  toggleEducation(index);
+                                }}
+                                className={`ml-2 w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded-full hover:text-[#8BCD00] transition-colors duration-300 group-hover/item:text-[#8BCD00]`}
+                              >
+                                {expandedEducation === index ? (
+                                  <span className="text-xl md:text-xl transform translate-y-[-2px]">
+                                    −
+                                  </span>
+                                ) : (
+                                  <span className="text-xl md:text-xl">+</span>
+                                )}
+                              </button>
+                            </div>
+                            <span
+                              className={`font-esenka font-light text-xs md:text-base ${
+                                darkMode ? " text-[#464545]" : "text-[#939393]"
+                              }`}
+                            >
+                              {item.degree}, &nbsp; {item.year}
+                            </span>
+                          </div>
+                          <span
+                            className="font-esenka font-normal text-xs md:text-xl mt-3 md:mt-0"
+                            style={index === 0 ? { paddingRight: "3px" } : {}}
+                          >
+                            {item.number}
+                          </span>
+                        </div>
+                        {item.description && (
+                          <div
+                            className={`mt-2 pl-4 text-sm md:text-base font-normal border-l-2 transition-all duration-500 overflow-hidden max-w-[90%] md:max-w-[40%] ${
+                              expandedEducation === index
+                                ? "max-h-[300px] opacity-100"
+                                : "max-h-0 opacity-0"
+                            } ${
+                              darkMode
+                                ? "border-[#242424] text-[#A0A0A0]"
+                                : "border-[#d2d2d2] text-[#646464]"
+                            }`}
+                          >
+                            <p>{item.description}</p>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* SOCIALS */}
+            <div
+              className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
+                darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
+              }`}
+            >
+              {/* Title with toggle */}
+              <div
+                className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
+                  darkMode
+                    ? "text-[#464545] hover:text-[#8BCD00]"
+                    : "text-[#aaaaaa] hover:text-[#8BCD00]"
+                }`}
+                onClick={() => toggleSection("socials")}
+              >
+                <span className="font-gambarino">Socials</span>
+                <button
+                  className={`ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#8BCD00] ${
+                    darkMode ? "hover:text-[#8BCD00]" : "hover:text-[#8BCD00]"
+                  }`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleSection("socials");
+                  }}
+                >
+                  {expandedSections.socials ? (
+                    <span className="text-xl md:text-lg transform translate-y-[-2px]">
+                      −
+                    </span>
+                  ) : (
+                    <span className="text-xl md:text-lg">+</span>
+                  )}
+                </button>
+              </div>
+              {/* Items */}
+              <div
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                  expandedSections.socials
+                    ? "max-h-[300px] opacity-100"
+                    : "max-h-0 opacity-0"
+                }`}
+              >
+                <div
+                  className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
+                    darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+                  }`}
+                >
+                  <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
+                    {data.socials.items.map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex justify-between w-full transform transition-all duration-300"
+                        style={{
+                          transitionDelay: `${index * 50}ms`,
+                          opacity: expandedSections.socials ? 1 : 0,
+                          transform: expandedSections.socials
+                            ? "translateY(0px)"
+                            : "translateY(20px)",
+                        }}
                       >
-                        {item.number}
-                      </span>
-                    </div>
-                  ))}
+                        <a
+                          href={item.url}
+                          className="hover:text-[#8BCD00] cursor-pointer transition"
+                        >
+                          {item.name}
+                        </a>
+                        <span
+                          className="font-esenka font-normal text-xs md:text-xl"
+                          style={index === 0 ? { paddingRight: "3px" } : {}}
+                        >
+                          {item.number}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        
-        {/* Spacer that grows to push contact to bottom on mobile when content is shorter than viewport */}
-        {isMobile && contentHeight < viewportHeight - 200 && <div className="flex-grow" />}
 
-        {/* CONTACT - Now with proper positioning */}
+        {/* CONTACT section */}
         <div 
           ref={contactRef}
           className={`flex flex-col px-4 md:px-8 py-4 md:py-6 transition-all duration-300 ${
