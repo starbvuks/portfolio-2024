@@ -19,7 +19,7 @@ const data = {
   techStack: {
     title: ["Tech", "Stack"],
     items: [
-      { name: "JAVASCRIPT (ES6+)", number: "1" },
+      { name: "JAVASCRIPT", number: "1" },
       { name: "REACT JS", number: "2" },
       { name: "REACT NATIVE", number: "3" },
       { name: "NEXT JS", number: "4" },
@@ -307,7 +307,7 @@ const Landing = () => {
   // Check if device is mobile
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 1008);
     };
     
     checkMobile();
@@ -1021,11 +1021,11 @@ const Landing = () => {
                   }}
                 >
                   {expandedSections.experience ? (
-                    <span className="text-xl md:text-lg transform translate-y-[-2px]">
+                    <span className="text-sm md:text-lg transform translate-y-[-2px]">
                       −
                     </span>
                   ) : (
-                    <span className="text-xl md:text-lg">+</span>
+                    <span className="text-sm md:text-lg">+</span>
                   )}
                 </button>
               </div>
@@ -1171,11 +1171,11 @@ const Landing = () => {
                   }}
                 >
                   {expandedSections.education ? (
-                    <span className="text-xl md:text-lg transform translate-y-[-2px]">
+                    <span className="text-sm md:text-lg transform translate-y-[-2px]">
                       −
                     </span>
                   ) : (
-                    <span className="text-xl md:text-lg">+</span>
+                    <span className="text-sm md:text-lg">+</span>
                   )}
                 </button>
               </div>
@@ -1293,11 +1293,11 @@ const Landing = () => {
                   }}
                 >
                   {expandedSections.socials ? (
-                    <span className="text-xl md:text-lg transform translate-y-[-2px]">
+                    <span className="text-sm md:text-lg transform translate-y-[-2px]">
                       −
                     </span>
                   ) : (
-                    <span className="text-xl md:text-lg">+</span>
+                    <span className="text-sm md:text-lg">+</span>
                   )}
                 </button>
               </div>
