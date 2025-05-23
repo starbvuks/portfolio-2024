@@ -45,7 +45,7 @@ const data = {
         role: "Backend Developer Intern (3 Months) | Video Game Producer",
         year: "2024",
         url: "https://gamitronics.com",
-        number: "1",
+        number: "2",
       },
       // {
       //   name: "ALEPH INNOVATION",
@@ -80,28 +80,28 @@ const data = {
         role: "Lead Developer",
         year: "2023",
         url: "https://github.com/starbvuks/ayush-hms",
-        number: "5",
+        number: "6",
       },
       {
         name: "HUNTSJOB",
         role: "Front-End Developer",
         year: "2023",
         url: "https://play.google.com/store/apps/details?id=com.googlesignexbee",
-        number: "6",
+        number: "7",
       },
       {
         name: "LANDMARK LOCATOR",
         role: "Bootcamp Capstone Project - Full-Stack Developer",
         year: "2021",
         url: "https://landmark-locator.vercel.app/",
-        number: "7",
+        number: "8",
       },
       {
         name: "MMDB v2",
         role: "Another Bootcamp Capstone Project - Full-Stack Developer",
         year: "2021",
         url: "https://mmdbv2.vercel.app/",
-        number: "8",
+        number: "9",
       },
     ],
   },
@@ -143,12 +143,12 @@ const data = {
       {
         name: "STACK OVERFLOW",
         url: "https://stackoverflow.com/users/13939799/starbvuks",
-        number: "3",
+        number: "2",
       },
       {
         name: "SPOTIFY",
         url: "https://open.spotify.com/user/nl8l3a15fcwt16ziq91rp82eq?si=x_g4W9_6SbqNENbHlJkjCg",
-        number: "4",
+        number: "3",
       },
       // {
       //   name: "INSTAGRAM",
@@ -225,7 +225,7 @@ const Landing = () => {
             <span className="text-base md:text-2xl tracking-tighter">
               &emsp; // &emsp;
             </span>
-            PORTFOLIO 2024
+            PORTFOLIO 2025
           </span>
         </div>
         <div>
