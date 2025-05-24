@@ -297,6 +297,8 @@ const Landing = () => {
     socials: false,
     contact: true, // Contact always open
   });
+  const [showToggleText, setShowToggleText] = useState(false);
+  const [isRotating, setIsRotating] = useState(false);
 
   // Check if any section is expanded
   useEffect(() => {
@@ -318,14 +320,26 @@ const Landing = () => {
     };
   }, []);
 
-  // Add global styles to prevent blue highlight on mobile
+  // Add global styles for animations and mobile tap highlight prevention
   useEffect(() => {
-    // Add style to prevent blue highlight on mobile
     const style = document.createElement('style');
     style.innerHTML = `
       * {
         -webkit-tap-highlight-color: transparent;
         -webkit-touch-callout: none;
+      }
+      
+      @keyframes spin-slow {
+        from {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        to {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+      
+      .animate-spin-slow {
+        animation: spin-slow 18s linear infinite;
       }
     `;
     document.head.appendChild(style);
@@ -478,6 +492,12 @@ const Landing = () => {
 
   const toggleMode = () => {
     setIsTransitioning(true);
+    setIsRotating(true);
+    
+    // Reset rotation after animation completes
+    setTimeout(() => {
+      setIsRotating(false);
+    }, 2000);
 
     // Create transition effect
     const transitionCanvas = document.createElement("canvas");
@@ -533,7 +553,7 @@ const Landing = () => {
         requestAnimationFrame(animate);
       } else {
         // Animation complete - toggle the actual mode
-        setDarkMode((prevMode) => !prevMode);
+    setDarkMode((prevMode) => !prevMode);
 
         // Clean up with a fade out effect
         const fadeOut = (opacity) => {
@@ -716,41 +736,44 @@ const Landing = () => {
           </span>
         </div>
         <div>
+          <div className="relative group">
           <button
-            ref={toggleButtonRef}
+              ref={toggleButtonRef}
             onClick={toggleMode}
-            disabled={isTransitioning}
-            className={`rounded-full w-10 h-10 text-lg md:w-16 md:h-16 md:text-xl flex items-center justify-center border-[1px] md:border-[2px] hover:scale-110 transform transition-all duration-300 ${
-              darkMode 
-                ? `border-[#242424] hover:border-[#8BCD00]` 
-                : `border-[#aaaaaa] hover:border-[#8BCD00]`
-            } ${isTransitioning ? "opacity-0" : "opacity-100"}`}
-            aria-label="Toggle dark mode"
-          >
-            <div className="relative overflow-hidden h-full w-full flex items-center justify-center">
-              <span
-                className={`absolute transition-all duration-500 ${
-                  darkMode
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-10 opacity-0"
-                }`}
-              >
-                🌑
-              </span>
-              <span
-                className={`absolute transition-all duration-500 ${
-                  darkMode
-                    ? "translate-y-10 opacity-0"
-                    : "translate-y-0 opacity-100"
-                }`}
-              >
-                ☀️
-              </span>
-            </div>
-            <div className={`absolute inset-0 rounded-full opacity-0 hover:opacity-20 transition-opacity duration-300 ${
-              darkMode ? "bg-[#8BCD00]" : "bg-[#8BCD00]"
-            }`}></div>
-          </button>
+              disabled={isTransitioning}
+              onMouseEnter={() => setShowToggleText(true)}
+              onMouseLeave={() => setShowToggleText(false)}
+              className={`relative rounded-full w-10 h-10 text-lg md:w-16 md:h-16 md:text-xl flex items-center justify-center border-[1px] md:border-[2px] hover:scale-110 transform transition-all duration-300 ${
+                darkMode 
+                  ? `border-[#242424] hover:border-[#8BCD00]` 
+                  : `border-[#aaaaaa] hover:border-[#8BCD00]`
+              } ${isTransitioning ? "opacity-0" : "opacity-100"}`}
+              aria-label={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+            >
+              <div className="relative overflow-hidden h-full w-full flex items-center justify-center">
+                <span
+                  className={`absolute transition-all duration-500 ${
+                    darkMode
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-10 opacity-0"
+                  }`}
+                >
+                  🌑
+                </span>
+                <span
+                  className={`absolute transition-all duration-500 ${
+                    darkMode
+                      ? "translate-y-10 opacity-0"
+                      : "translate-y-0 opacity-100"
+                  }`}
+                >
+                  ☀️
+                </span>
+              </div>
+              
+            
+            </button>
+          </div>
         </div>
       </div>
 
@@ -763,12 +786,12 @@ const Landing = () => {
         >
           {/* Content sections container */}
           <div className="flex flex-col">
-            {/* WHAT I DO */}
-            <div
-              className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
-                darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
-              }`}
-            >
+      {/* WHAT I DO */}
+      <div
+        className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
+          darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
+        }`}
+      >
               {/* Title with toggle */}
               <div
                 className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
@@ -777,9 +800,9 @@ const Landing = () => {
                     : "text-[#aaaaaa] hover:text-[#8BCD00]"
                 }`}
                 onClick={() => toggleSection("whatIDo")}
-              >
-                <span className="font-gambarino">What</span>
-                <span className="font-gambarino">I</span>
+        >
+          <span className="font-gambarino">What</span>
+          <span className="font-gambarino">I</span>
                 <span className="font-gambarino flex items-center">
                   Do
                   <button
@@ -800,9 +823,9 @@ const Landing = () => {
                     )}
                   </button>
                 </span>
-              </div>
-              {/* Items */}
-              <div
+        </div>
+        {/* Items */}
+        <div
                 className={`overflow-hidden transition-all duration-500 ease-in-out ${
                   expandedSections.whatIDo
                     ? "max-h-[500px] opacity-100"
@@ -811,7 +834,7 @@ const Landing = () => {
               >
                 <div
                   className={`transition-all duration-500 ${
-                    darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+            darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
                   }`}
                 >
                   <div className="font-esenka text-lg md:text-3xl font-black py-4 md:py-8 w-full">
@@ -852,8 +875,8 @@ const Landing = () => {
                                   className={`w-6 md:w-8 text-center font-esenka font-normal text-xs md:text-xl ${
                                     darkMode ? "text-[#464545]" : "text-[#aaaaaa]"
                                   }`}
-                                >
-                                  {item.number}
+                >
+                  {item.number}
                                 </div>
                                 <div
                                   className={`${
@@ -862,23 +885,23 @@ const Landing = () => {
                                 >
                                   {item.name}
                                 </div>
-                              </div>
-                            ))}
+              </div>
+            ))}
                           </div>
                         );
                       })}
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
+          </div>
+        </div>
+      </div>
 
-            {/* TECH STACK */}
-            <div
-              className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
-                darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
-              }`}
-            >
+      {/* TECH STACK */}
+      <div
+        className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
+          darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
+        }`}
+      >
               {/* Title with toggle */}
               <div
                 className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
@@ -887,8 +910,8 @@ const Landing = () => {
                     : "text-[#aaaaaa] hover:text-[#8BCD00]"
                 }`}
                 onClick={() => toggleSection("techStack")}
-              >
-                <span className="font-gambarino">Tech</span>
+        >
+          <span className="font-gambarino">Tech</span>
                 <span className="font-gambarino flex items-center">
                   Stack
                   <button
@@ -909,9 +932,9 @@ const Landing = () => {
                     )}
                   </button>
                 </span>
-              </div>
-              {/* Items */}
-              <div
+        </div>
+        {/* Items */}
+        <div
                 className={`overflow-hidden transition-all duration-500 ease-in-out ${
                   expandedSections.techStack
                     ? "max-h-[1200px] opacity-100"
@@ -920,7 +943,7 @@ const Landing = () => {
               >
                 <div
                   className={`transition-all duration-500 ${
-                    darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+            darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
                   }`}
                 >
                   <div className="font-esenka text-lg md:text-3xl font-black py-4 md:py-8 w-full">
@@ -969,8 +992,8 @@ const Landing = () => {
                                   className={`w-6 md:w-8 text-center font-esenka font-normal text-xs md:text-xl ${
                                     darkMode ? "text-[#464545]" : "text-[#aaaaaa]"
                                   }`}
-                                >
-                                  {item.number}
+                >
+                  {item.number}
                                 </div>
                                 <div
                                   className={`${
@@ -983,23 +1006,23 @@ const Landing = () => {
                                 >
                                   {item.name}
                                 </div>
-                              </div>
-                            ))}
+              </div>
+            ))}
                           </div>
                         );
                       })}
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
+          </div>
+        </div>
+      </div>
 
-            {/* EXPERIENCE */}
-            <div
-              className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
-                darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
-              }`}
-            >
+      {/* EXPERIENCE */}
+      <div
+        className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
+          darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
+        }`}
+      >
               {/* Title with toggle */}
               <div
                 className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
@@ -1008,8 +1031,8 @@ const Landing = () => {
                     : "text-[#aaaaaa] hover:text-[#8BCD00]"
                 }`}
                 onClick={() => toggleSection("experience")}
-              >
-                <span className="font-gambarino">Experience</span>
+        >
+          <span className="font-gambarino">Experience</span>
                 <button
                   className={`ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#8BCD00] ${
                     darkMode ? "hover:text-[#8BCD00]" : "hover:text-[#8BCD00]"
@@ -1027,8 +1050,8 @@ const Landing = () => {
                     <span className="text-sm md:text-lg">+</span>
                   )}
                 </button>
-              </div>
-              {/* Items */}
+        </div>
+        {/* Items */}
               <div
                 className={`overflow-hidden transition-all duration-500 ease-in-out ${
                   expandedSections.experience
@@ -1036,13 +1059,13 @@ const Landing = () => {
                     : "max-h-0 opacity-0"
                 }`}
               >
-                <div
-                  className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
-                    darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+        <div
+          className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
+            darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
                   }`}
-                >
+        >
                   <div className="flex flex-col gap-3 md:gap-6 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
-                    {data.experience.items.map((item, index) => (
+            {data.experience.items.map((item, index) => (
                       <div
                         key={index}
                         className="flex flex-col w-full transform transition-all duration-300"
@@ -1055,18 +1078,18 @@ const Landing = () => {
                         }}
                       >
                         <div className="flex justify-between w-full">
-                          <div className="flex flex-col gap-2 md:gap-4 md:flex md:flex-row md:items-end">
+                <div className="flex flex-col gap-2 md:gap-4 md:flex md:flex-row md:items-end">
                             <div className="flex items-center group/item">
-                              <a
-                                href={item.url}
-                                className={`border-b-[1px] border-dashed hover:border-solid hover:text-[#8BCD00] cursor-pointer transition ${
-                                  darkMode
-                                    ? "border-[#ECECEC] hover:border-[#8BCD00]"
-                                    : "border-[#3c3c3c] hover:border-[#8BCD00]"
-                                }`}
-                              >
-                                {item.name}
-                              </a>
+                  <a
+                    href={item.url}
+                    className={`border-b-[1px] border-dashed hover:border-solid hover:text-[#8BCD00] cursor-pointer transition ${
+                      darkMode
+                        ? "border-[#ECECEC] hover:border-[#8BCD00]"
+                        : "border-[#3c3c3c] hover:border-[#8BCD00]"
+                    }`}
+                  >
+                    {item.name}
+                  </a>
                               <button
                                 onClick={(e) => {
                                   e.stopPropagation();
@@ -1084,21 +1107,21 @@ const Landing = () => {
                               </button>
                             </div>
 
-                            <span
-                              className={`font-esenka font-light text-xs md:text-base ${
-                                darkMode ? " text-[#464545]" : "text-[#939393]"
-                              }`}
-                            >
-                              {item.role}, &nbsp; {item.year}
-                            </span>
-                          </div>
-                          <span
-                            className="font-esenka font-normal text-xs md:text-xl mt-3 md:mt-0"
-                            style={index === 0 ? { paddingRight: "3px" } : {}}
-                          >
-                            {item.number}
-                          </span>
-                        </div>
+                  <span
+                    className={`font-esenka font-light text-xs md:text-base ${
+                      darkMode ? " text-[#464545]" : "text-[#939393]"
+                    }`}
+                  >
+                    {item.role}, &nbsp; {item.year}
+                  </span>
+                </div>
+                <span
+                  className="font-esenka font-normal text-xs md:text-xl mt-3 md:mt-0"
+                  style={index === 0 ? { paddingRight: "3px" } : {}}
+                >
+                  {item.number}
+                </span>
+              </div>
 
                         <div
                           className={`mt-2 pl-4 text-sm md:text-base font-normal border-l-2 transition-all duration-500 overflow-hidden max-w-[90%] md:max-w-[40%] ${
@@ -1140,16 +1163,16 @@ const Landing = () => {
                       </div>
                     ))}
                   </div>
-                </div>
-              </div>
-            </div>
+          </div>
+        </div>
+      </div>
 
-            {/* EDUCATION */}
-            <div
-              className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
-                darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
-              }`}
-            >
+      {/* EDUCATION */}
+      <div
+        className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
+          darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
+        }`}
+      >
               {/* Title with toggle */}
               <div
                 className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
@@ -1158,8 +1181,8 @@ const Landing = () => {
                     : "text-[#aaaaaa] hover:text-[#8BCD00]"
                 }`}
                 onClick={() => toggleSection("education")}
-              >
-                <span className="font-gambarino">Education</span>
+        >
+          <span className="font-gambarino">Education</span>
                 <button
                   className={`ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#8BCD00] ${
                     darkMode ? "hover:text-[#8BCD00]" : "hover:text-[#8BCD00]"
@@ -1177,8 +1200,8 @@ const Landing = () => {
                     <span className="text-sm md:text-lg">+</span>
                   )}
                 </button>
-              </div>
-              {/* Items */}
+        </div>
+        {/* Items */}
               <div
                 className={`overflow-hidden transition-all duration-500 ease-in-out ${
                   expandedSections.education
@@ -1186,13 +1209,13 @@ const Landing = () => {
                     : "max-h-0 opacity-0"
                 }`}
               >
-                <div
-                  className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
-                    darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+        <div
+          className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
+            darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
                   }`}
-                >
+        >
                   <div className="flex flex-col gap-4 md:gap-6 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
-                    {data.education.items.map((item, index) => (
+            {data.education.items.map((item, index) => (
                       <div
                         key={index}
                         className="flex flex-col w-full transform transition-all duration-300"
@@ -1205,14 +1228,14 @@ const Landing = () => {
                         }}
                       >
                         <div className="flex justify-between w-full">
-                          <div className="flex flex-col gap-0 md:gap-4 md:flex md:flex-row md:items-end">
+                <div className="flex flex-col gap-0 md:gap-4 md:flex md:flex-row md:items-end">
                             <div className="flex items-center group/item">
-                              <a
-                                href={item.url}
-                                className="hover:text-[#8BCD00] cursor-pointer transition mt-2 md:mt-0"
-                              >
-                                {item.name}
-                              </a>
+                  <a
+                    href={item.url}
+                    className="hover:text-[#8BCD00] cursor-pointer transition mt-2 md:mt-0"
+                  >
+                    {item.name}
+                  </a>
                               <button
                                 onClick={(e) => {
                                   e.stopPropagation();
@@ -1229,20 +1252,20 @@ const Landing = () => {
                                 )}
                               </button>
                             </div>
-                            <span
-                              className={`font-esenka font-light text-xs md:text-base ${
-                                darkMode ? " text-[#464545]" : "text-[#939393]"
-                              }`}
-                            >
-                              {item.degree}, &nbsp; {item.year}
-                            </span>
-                          </div>
-                          <span
-                            className="font-esenka font-normal text-xs md:text-xl mt-3 md:mt-0"
-                            style={index === 0 ? { paddingRight: "3px" } : {}}
-                          >
-                            {item.number}
-                          </span>
+                  <span
+                    className={`font-esenka font-light text-xs md:text-base ${
+                      darkMode ? " text-[#464545]" : "text-[#939393]"
+                    }`}
+                  >
+                    {item.degree}, &nbsp; {item.year}
+                  </span>
+                </div>
+                <span
+                  className="font-esenka font-normal text-xs md:text-xl mt-3 md:mt-0"
+                  style={index === 0 ? { paddingRight: "3px" } : {}}
+                >
+                  {item.number}
+                </span>
                         </div>
                         {item.description && (
                           <div
@@ -1259,19 +1282,19 @@ const Landing = () => {
                             <p>{item.description}</p>
                           </div>
                         )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
               </div>
-            </div>
+            ))}
+                  </div>
+          </div>
+        </div>
+      </div>
 
-            {/* SOCIALS */}
-            <div
-              className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
-                darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
-              }`}
-            >
+      {/* SOCIALS */}
+      <div
+        className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
+          darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
+        }`}
+      >
               {/* Title with toggle */}
               <div
                 className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
@@ -1280,8 +1303,8 @@ const Landing = () => {
                     : "text-[#aaaaaa] hover:text-[#8BCD00]"
                 }`}
                 onClick={() => toggleSection("socials")}
-              >
-                <span className="font-gambarino">Socials</span>
+        >
+          <span className="font-gambarino">Socials</span>
                 <button
                   className={`ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#8BCD00] ${
                     darkMode ? "hover:text-[#8BCD00]" : "hover:text-[#8BCD00]"
@@ -1299,8 +1322,8 @@ const Landing = () => {
                     <span className="text-sm md:text-lg">+</span>
                   )}
                 </button>
-              </div>
-              {/* Items */}
+        </div>
+        {/* Items */}
               <div
                 className={`overflow-hidden transition-all duration-500 ease-in-out ${
                   expandedSections.socials
@@ -1308,13 +1331,13 @@ const Landing = () => {
                     : "max-h-0 opacity-0"
                 }`}
               >
-                <div
-                  className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
-                    darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+        <div
+          className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
+            darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
                   }`}
-                >
-                  <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
-                    {data.socials.items.map((item, index) => (
+        >
+          <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
+            {data.socials.items.map((item, index) => (
                       <div
                         key={index}
                         className="flex justify-between w-full transform transition-all duration-300"
@@ -1326,26 +1349,26 @@ const Landing = () => {
                             : "translateY(20px)",
                         }}
                       >
-                        <a
-                          href={item.url}
-                          className="hover:text-[#8BCD00] cursor-pointer transition"
-                        >
-                          {item.name}
-                        </a>
-                        <span
-                          className="font-esenka font-normal text-xs md:text-xl"
-                          style={index === 0 ? { paddingRight: "3px" } : {}}
-                        >
-                          {item.number}
-                        </span>
-                      </div>
-                    ))}
+                <a
+                  href={item.url}
+                  className="hover:text-[#8BCD00] cursor-pointer transition"
+                >
+                  {item.name}
+                </a>
+                <span
+                  className="font-esenka font-normal text-xs md:text-xl"
+                  style={index === 0 ? { paddingRight: "3px" } : {}}
+                >
+                  {item.number}
+                </span>
+              </div>
+            ))}
                   </div>
                 </div>
               </div>
-            </div>
           </div>
         </div>
+      </div>
 
         {/* CONTACT section */}
         <div 
@@ -1357,20 +1380,20 @@ const Landing = () => {
           {/* Title without toggle */}
           <div
             className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 ${
-              darkMode ? "text-[#464545]" : "text-[#aaaaaa]"
-            }`}
-          >
-            <span className="font-gambarino">Contact</span>
-            <span className="font-gambarino">Me</span>
-          </div>
+            darkMode ? "text-[#464545]" : "text-[#aaaaaa]"
+          }`}
+        >
+          <span className="font-gambarino">Contact</span>
+          <span className="font-gambarino">Me</span>
+        </div>
           
           {/* Always visible content */}
           <div className="transition-all duration-500 ease-in-out">
-            <div
+        <div
               className={`flex flex-row justify-between mt-8 md:mt-20 font-gambarino text-sm md:text-xl tracking-normal ${
-                darkMode ? " text-[#515151]" : " text-[#939393]"
-              }`}
-            >
+            darkMode ? " text-[#515151]" : " text-[#939393]"
+          }`}
+        >
               <div className="flex flex-col mb-4 md:mb-0">
                 <a
                   href="mailto:sarvagk@gmail.com"
@@ -1385,7 +1408,7 @@ const Landing = () => {
                   +1 (214) 899-2025
                 </a>
                 <span
-                  className="hover:text-[#8BCD00] transition-colors duration-300 mt-3"
+                  className="text-[#8BCD00]/50 transition-colors duration-300 mt-3"
                 >
                   Green Card Holder
                 </span>
