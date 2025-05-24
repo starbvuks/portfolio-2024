@@ -1408,7 +1408,7 @@ const Landing = () => {
                   +1 (214) 899-2025
                 </a>
                 <span
-                  className="text-[#8BCD00]/50 transition-colors duration-300 mt-3"
+                  className="text-[#515151]/75 invisible lg:visible transition-colors duration-300 mt-3"
                 >
                   Green Card Holder
                 </span>
