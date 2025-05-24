@@ -678,14 +678,13 @@ const Landing = () => {
       {showEgg && (
         <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
           <div
-            className={`p-6 rounded-md shadow-lg transform scale-up transition-all duration-500 ${
+            className={`p-6 transform scale-up transition-all duration-500 ${
               darkMode
-                ? "bg-[#242424] text-[#ECECEC]"
-                : "bg-[#f2f2f2] text-[#3c3c3c]"
+                ? "text-[#ECECEC]"
+                : "text-[#3c3c3c]"
             }`}
           >
-            <p className="text-xl font-bold mb-2">Konami Code Activated</p>
-            <p className="text-[#8BCD00]">Welcome to the Matrix</p>
+            <p className="font-gambarino text-xl font-bold mb-2">Konami Code Activated</p>
           </div>
         </div>
       )}
@@ -1368,7 +1367,7 @@ const Landing = () => {
           {/* Always visible content */}
           <div className="transition-all duration-500 ease-in-out">
             <div
-              className={`flex flex-row justify-between mt-8 md:mt-20 font-apercu text-sm md:text-xl tracking-tight ${
+              className={`flex flex-row justify-between mt-8 md:mt-20 font-gambarino text-sm md:text-xl tracking-normal ${
                 darkMode ? " text-[#515151]" : " text-[#939393]"
               }`}
             >
@@ -1380,11 +1379,16 @@ const Landing = () => {
                   sarvagk@gmail.com
                 </a>
                 <a
-                  href="tel:+919533586416"
+                  href="tel:+1 (214) 899-2025"
                   className="hover:text-[#8BCD00] transition-colors duration-300"
                 >
-                  +91 95335 86416
+                  +1 (214) 899-2025
                 </a>
+                <span
+                  className="hover:text-[#8BCD00] transition-colors duration-300 mt-3"
+                >
+                  Green Card Holder
+                </span>
               </div>
 
               <div className="flex flex-col text-right md:text-left">
@@ -1393,7 +1397,7 @@ const Landing = () => {
                   Full-Stack Developer & Video Game Producer
                 </p>
                 {!isMobile && (
-                  <div className="flex justify-center mt-3 mb-2 opacity-75">
+                  <div className="flex justify-center mt-3 mb-2 opacity-80">
                     <div
                       className="flex items-center space-x-1 cursor-help"
                       title="Try the Konami code!"
