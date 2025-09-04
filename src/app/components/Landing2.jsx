@@ -77,7 +77,7 @@ const data = {
       {
         name: "STARTUP GRIND HYDERABAD",
         role: "Chapter Director",
-        year: "Feb 2024 - Present",
+        year: "Feb 2024 - Apr 2025",
         url: "https://www.startupgrind.com/hyderabad/",
         number: "2",
         description:
@@ -92,7 +92,7 @@ const data = {
       {
         name: "TALENTMAPP",
         role: "Co-Founder",
-        year: "Feb 2023 - Present",
+        year: "Feb 2023 - June 2025",
         url: "https://talentmapp.co",
         number: "3",
         description:
@@ -240,7 +240,7 @@ const data = {
     items: [
       {
         name: "WOXSEN UNIVERSITY",
-        degree: "B.tech",
+        degree: "Bachelors in Computer Science",
         year: "2021 - 2025",
         url: "https://woxsen.edu.in/academics/programs/b-tech/",
         number: "1",
@@ -393,6 +393,16 @@ const Landing = () => {
       @keyframes asciiPulse {
         0%, 100% { opacity: 0.85; }
         50% { opacity: 1; }
+      }
+
+      /* Zero-gravity effect */
+      .fallable {
+        transition: transform 0.6s ease;
+        will-change: transform;
+      }
+      .gravity .fallable {
+        transform: translateY(110vh) rotate(var(--rot, 0deg));
+        transition: transform 1.1s cubic-bezier(.2,.7,.2,1);
       }
     `;
     document.head.appendChild(style);
@@ -871,8 +881,8 @@ const Landing = () => {
           <span
             className={`font-gambarino text-4xl md:text-7xl cursor-help tracking-tight transition-all duration-500 ${
               darkMode
-                ? " text-[#DBDBDB] hover:text-[#8BCD00]"
-                : " text-[#464545] hover:text-[#8BCD00]"
+                ? " hover:text-[#DBDBDB] text-[#8BCD00]/80"
+                : " hover:text-[#464545] text-[#8BCD00]/80"
             }`}
           >
             Sarvag Kalari
@@ -988,7 +998,7 @@ const Landing = () => {
               darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
             }`}
           >
-            <div className="pl-4 md:pl-8 py-4 md:py-8 max-w-[90%] md:max-w-[60%]">
+            <div className="pl-4 md:pl-8 py-4 md:py-8 max-w-[90%] md:max-w-[60%] lg:max-w-[70%]">
               <p
                 className={`${
                   darkMode ? "text-[#A0A0A0]" : "text-[#646464]"
@@ -996,7 +1006,7 @@ const Landing = () => {
               >
                 {data.about.bio}
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-8">
                 {data.about.highlights.map((group, gi) => (
                   <div key={gi}>
                     <p
@@ -1744,7 +1754,7 @@ const Landing = () => {
               >
         <div
           className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
-            darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+            darkMode ? " text-[#c2c1c1]" : "text-[#3c3c3c]"
                   }`}
         >
                   <div className="flex flex-col gap-4 md:gap-6 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
@@ -1943,7 +1953,7 @@ const Landing = () => {
                 <span
                   className="text-[#515151]/75 transition-colors duration-300 mt-3"
                 >
-                  Green Card Holder
+                  Green Card Holder / <span className="text-[#515151]/50">Indian Citizen</span>
                 </span>
               </div>
 
