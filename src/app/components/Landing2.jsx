@@ -7,13 +7,9 @@ const data = {
     title: ["What", "I", "Do"],
     items: [
       { name: "FULL STACK DEV", number: "1" },
-      { name: "APPLICATION DEV", number: "2" },
-      { name: "PROJECT MANAGEMENT", number: "3" },
-      { name: "UI / UX DESIGN", number: "4" },
-      { name: "BRAND DESIGN", number: "5" },
-      { name: "API DESIGN", number: "6" },
-      { name: "RESPONSIVE DESIGN", number: "7" },
-      { name: "AGILE METHODOLOGIES", number: "8" },
+      { name: "MOBILE APP DEV", number: "2" },
+      { name: "API DESIGN & DEV", number: "3" },
+      { name: "EMBEDDED SYSTEMS (learning)", number: "4" },
     ],
   },
   techStack: {
@@ -25,7 +21,7 @@ const data = {
       { name: "NEXT JS", number: "4" },
       { name: "NODE JS", number: "5" },
       { name: "EXPRESS JS", number: "6" },
-      { name: "REDUX", number: "7" },
+      { name: "RUST", number: "7" },
       { name: "TAILWIND CSS", number: "8" },
       { name: "FIREBASE", number: "9" },
       { name: "MONGODB", number: "10" },
@@ -47,6 +43,75 @@ const data = {
     title: ["Experience"],
     items: [
       {
+        name: "GAMITRONICS",
+        url: "https://gamitronics.com",
+        number: "1",
+        roles: [
+          {
+            title: "Video Game Producer",
+            year: "Aug 2024 - April 2025",
+            description:
+              "Managed cross-team coordination and weekly task planning across active game projects. Oversaw task tracking and documentation using ClickUp and internal wiki systems. Built workflows for testing, daily logs, and milestone-based reporting.",
+            technologies: [
+              "ClickUp",
+              "Wiki Documentation",
+              "Team Coordination",
+              "QA Workflows",
+            ],
+          },
+          {
+            title: "Game Backend Developer - Intern",
+            year: "May 2024 - Aug 2024",
+            description:
+              "Developed an end-to-end Backend for a Unity VR game. Tasks included API design and development, Database architecture and implementation, integration and deployment. Worked with various platform SDKs to implement player authentication and cross-platform functionality.",
+            technologies: [
+              "ExpressJS",
+              "MongoDB",
+              "Steamworks SDK",
+              "Oculus API",
+              "PSN API",
+            ],
+          },
+        ],
+      },
+      {
+        name: "STARTUP GRIND HYDERABAD",
+        role: "Chapter Director",
+        year: "Feb 2024 - Present",
+        url: "https://www.startupgrind.com/hyderabad/",
+        number: "2",
+        description:
+          "Appointed as Chapter Director for the Hyderabad Startup Grind Chapter. Role includes: Hosting events, community management, strong communication and network outreach, and most importantly making friends along the way.",
+        technologies: [
+          "Event Management",
+          "Community Building",
+          "Network Development",
+          "Communication",
+        ],
+      },
+      {
+        name: "TALENTMAPP",
+        role: "Co-Founder",
+        year: "Feb 2023 - Present",
+        url: "https://talentmapp.co",
+        number: "3",
+        description:
+          "Co-founder at talentmapp, a startup built to solve the current issues in talent sourcing and build a global community for talented individuals in various industries. The platform is an AI People Search platform that understands subjective talent needs and intelligently returns matching profiles. Currently under development, working prototype is for laptop screens only.",
+        technologies: [
+          "React",
+          "Node.js",
+          "MongoDB",
+          "OpenAI",
+          "Next.js",
+          "LinkedIn OAuth",
+        ],
+      },
+    ],
+  },
+  projects: {
+    title: ["Projects"],
+    items: [
+      {
         name: "FITBOOK",
         role: "Developer",
         year: "2025",
@@ -63,42 +128,11 @@ const data = {
         ],
       },
       {
-        name: "GAMITRONICS",
-        role: "Video Game Producer",
-        year: "Aug 2024 - April 2025",
-        url: "https://gamitronics.com",
-        number: "2",
-        description:
-          "Managed cross-team coordination and weekly task planning across active game projects. Oversaw task tracking and documentation using ClickUp and internal wiki systems. Built workflows for testing, daily logs, and milestone-based reporting.",
-        technologies: [
-          "ClickUp",
-          "Wiki Documentation",
-          "Team Coordination",
-          "QA Workflows",
-        ],
-      },
-      {
-        name: "GAMITRONICS",
-        role: "Game Backend Developer - Intern",
-        year: "May 2024 - Aug 2024",
-        url: "https://gamitronics.com",
-        number: "3",
-        description:
-          "Developed an end-to-end Backend for a Unity VR game. Tasks included API design and development, Database architecture and implementation, integration and deployment. Worked with various platform SDKs to implement player authentication and cross-platform functionality.",
-        technologies: [
-          "ExpressJS",
-          "MongoDB",
-          "Steamworks SDK",
-          "Oculus API",
-          "PSN API",
-        ],
-      },
-      {
         name: "ALEPH INNOVATION",
         role: "Founder",
         year: "Nov 2023 - Present",
         url: "https://alephinnov.com",
-        number: "4",
+        number: "2",
         description:
           "Services start-up proficient in digital product design and development. Provides end-to-end solutions for UI/UX Design, Web Development, Application Development and Cloud services.",
         technologies: [
@@ -109,43 +143,11 @@ const data = {
         ],
       },
       {
-        name: "STARTUP GRIND HYDERABAD",
-        role: "Chapter Director",
-        year: "Feb 2024 - Present",
-        url: "https://www.startupgrind.com/hyderabad/",
-        number: "5",
-        description:
-          "Appointed as Chapter Director for the Hyderabad Startup Grind Chapter. Role includes: Hosting events, community management, strong communication and network outreach, and most importantly making friends along the way.",
-        technologies: [
-          "Event Management",
-          "Community Building",
-          "Network Development",
-          "Communication",
-        ],
-      },
-      {
-        name: "TALENTMAPP",
-        role: "Co-Founder",
-        year: "Feb 2023 - Present",
-        url: "https://talentmapp.co",
-        number: "6",
-        description:
-          "Co-founder at talentmapp, a startup built to solve the current issues in talent sourcing and build a global community for talented individuals in various industries. The platform is an AI People Search platform that understands subjective talent needs and intelligently returns matching profiles. Currently under development, working prototype is for laptop screens only.",
-        technologies: [
-          "React",
-          "Node.js",
-          "MongoDB",
-          "OpenAI",
-          "Next.js",
-          "LinkedIn OAuth",
-        ],
-      },
-      {
         name: "DESIGN AND ARCHITECTURE ARCHIVE",
         role: "Lead Developer",
         year: "Nov 2023 - Feb 2024",
         url: "https://portfolio.soad.co.in/",
-        number: "7",
+        number: "3",
         description:
           "A web based platform for an organization to upload, archive, and display in-house projects and module work to potential recruiters, peers, family, etc. The platform accounts for displaying projects in various file types for all project categories with a multiple login access hierarchy for admins, visitors, recruiters and employees.",
         technologies: ["NextJS", "TailwindCSS", "Strapi CMS", "AWS EC2", "S3"],
@@ -155,7 +157,7 @@ const data = {
         role: "Lead Developer",
         year: "Oct 2023 - Dec 2023",
         url: "https://github.com/starbvuks/ayush-hms",
-        number: "8",
+        number: "4",
         description:
           "End-To-End Hospital + Dispensary management system for Samsung Tablets, developed in React Native, Expo SDK front end and a PostgreSQL backend. Attendance Management with geolocation and calculation of employee to dispensary location distance. EHR, i.e: patient entry records. Fully interactive admin dashboard for data visualization and employee management.",
         technologies: [
@@ -171,7 +173,7 @@ const data = {
         role: "Front-End Developer",
         year: "Apr 2023 - May 2023",
         url: "https://play.google.com/store/apps/details?id=com.googlesignexbee",
-        number: "9",
+        number: "5",
         description:
           "Developed entire cross-platform mobile application using React Native as per client specifications. Re-designed pre-existing UI and Pattern Library implementing custom-built components using React Native's StyleSheet.",
         technologies: [
@@ -181,31 +183,55 @@ const data = {
           "Cross-platform",
         ],
       },
+    ],
+    bootcampCapstones: {
+      title: "Bootcamp Capstone Projects",
+      items: [
+        {
+          name: "LANDMARK LOCATOR",
+          role: "Full-Stack Developer",
+          year: "2021",
+          url: "https://landmark-locator.vercel.app/",
+          number: "1",
+          description:
+            "Implemented the front-end of the landmark/tourist attraction reference site using React.js, ensuring a user-friendly interface and responsive design. Integrated Mapbox for coordinate data visualization, enhancing the user experience by providing interactive maps. Developed the back-end authentication system and landmark data storage using MongoDB, allowing for secure user login and data management.",
+          technologies: ["React.js", "Mapbox API", "MongoDB", "Authentication"],
+        },
+        {
+          name: "MMDB v2",
+          role: "Full-Stack Developer",
+          year: "2021",
+          url: "https://mmdbv2.vercel.app/",
+          number: "2",
+          description:
+            "Developed a movie database web application similar to IMDb using React and styled-components for a modern and interactive user interface. Implemented user authentication using Firebase SDK, allowing users to securely log in and interact with personalized features. Tailwind CSS was used to design a simple, functional and responsive user interface. Developing a custom MongoDB-based REST API to replace the TMDb API, allowing for more control over the application's data and features.",
+          technologies: [
+            "React",
+            "Firebase SDK",
+            "Tailwind CSS",
+            "MongoDB",
+            "REST API",
+          ],
+        },
+      ],
+    },
+  },
+  about: {
+    title: ["About", "Me"],
+    bio:
+      "Acquiring new skills across all kinds of domiains, quickly picking ideas up on the job, and tinkering with things I find interesting is where my core strengths lie. Recent computer science grad actively applying for jobs",  
+    highlights: [
       {
-        name: "LANDMARK LOCATOR",
-        role: "Full-Stack Developer",
-        year: "2021",
-        url: "https://landmark-locator.vercel.app/",
-        number: "10",
-        description:
-          "Implemented the front-end of the landmark/tourist attraction reference site using React.js, ensuring a user-friendly interface and responsive design. Integrated Mapbox for coordinate data visualization, enhancing the user experience by providing interactive maps. Developed the back-end authentication system and landmark data storage using MongoDB, allowing for secure user login and data management.",
-        technologies: ["React.js", "Mapbox API", "MongoDB", "Authentication"],
+        label: "Interests",
+        items: ["problem solving", "attending events", "programming", "video games", "writing"],
       },
       {
-        name: "MMDB v2",
-        role: "Full-Stack Developer",
-        year: "2021",
-        url: "https://mmdbv2.vercel.app/",
-        number: "11",
-        description:
-          "Developed a movie database web application similar to IMDb using React and styled-components for a modern and interactive user interface. Implemented user authentication using Firebase SDK, allowing users to securely log in and interact with personalized features. Tailwind CSS was used to design a simple, functional and responsive user interface. Developing a custom MongoDB-based REST API to replace the TMDb API, allowing for more control over the application's data and features.",
-        technologies: [
-          "React",
-          "Firebase SDK",
-          "Tailwind CSS",
-          "MongoDB",
-          "REST API",
-        ],
+        label: "Passions",
+        items: ["executing on random project ideas", "coffee", "film/music analysis", "learning"],
+      },
+      {
+        label: "Currently learning",
+        items: ["Rust", "graphics pipelines", "embedded systems", "compliances for AI startups"],
       },
     ],
   },
@@ -276,6 +302,13 @@ const Landing = () => {
   const [typedSequence, setTypedSequence] = useState("");
   const [expandedExperience, setExpandedExperience] = useState(null);
   const [expandedEducation, setExpandedEducation] = useState(null);
+  const [expandedProject, setExpandedProject] = useState(null);
+  const [expandedCapstone, setExpandedCapstone] = useState(null);
+  const [showLoader, setShowLoader] = useState(true);
+  const [loadProgress, setLoadProgress] = useState(0);
+  const [loaderDone, setLoaderDone] = useState(false);
+  const loaderStartRef = useRef(null);
+  const [spinnerIndex, setSpinnerIndex] = useState(0);
   const [konami, setKonami] = useState("");
   const [showEgg, setShowEgg] = useState(false);
   const [showMatrix, setShowMatrix] = useState(false);
@@ -293,6 +326,8 @@ const Landing = () => {
     whatIDo: false,
     techStack: false,
     experience: false,
+    projects: false,
+    about: false,
     education: false,
     socials: false,
     contact: true, // Contact always open
@@ -341,6 +376,24 @@ const Landing = () => {
       .animate-spin-slow {
         animation: spin-slow 18s linear infinite;
       }
+
+      @keyframes loaderBar {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(0%); }
+      }
+
+      .loader-tilt {
+        transform: perspective(600px) rotateX(8deg) rotateY(-8deg);
+      }
+
+      .ascii-pulse {
+        animation: asciiPulse 1.2s ease-in-out infinite;
+      }
+
+      @keyframes asciiPulse {
+        0%, 100% { opacity: 0.85; }
+        50% { opacity: 1; }
+      }
     `;
     document.head.appendChild(style);
     
@@ -348,6 +401,68 @@ const Landing = () => {
       document.head.removeChild(style);
     };
   }, []);
+
+  // Lightweight loader progress
+  useEffect(() => {
+    if (!showLoader) return;
+    if (!loaderStartRef.current) loaderStartRef.current = performance.now();
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mediaQuery.matches) {
+      setLoadProgress(100);
+      setLoaderDone(true);
+      const t = setTimeout(() => setShowLoader(false), 200);
+      return () => clearTimeout(t);
+    }
+
+    let raf;
+    let start;
+    const duration = 1500; // give time for effect
+    const minDisplay = 1400; // ensure full play
+    const step = (ts) => {
+      if (!start) start = ts;
+      const elapsed = ts - start;
+      const progress = Math.min(100, Math.round((elapsed / duration) * 100));
+      setLoadProgress(progress);
+      if (progress < 100) {
+        raf = requestAnimationFrame(step);
+      } else {
+        setLoaderDone(true);
+        const totalElapsed = ts - (loaderStartRef.current || ts);
+        const remaining = Math.max(0, minDisplay - totalElapsed);
+        setTimeout(() => setShowLoader(false), 350 + remaining);
+      }
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [showLoader]);
+
+  // Loader spinner frames
+  useEffect(() => {
+    if (!showLoader) return;
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mediaQuery.matches) return; // respect reduced motion
+    const frames = ['|', '/', '-', '\\'];
+    const interval = setInterval(() => {
+      setSpinnerIndex((i) => (i + 1) % frames.length);
+    }, 120);
+    return () => clearInterval(interval);
+  }, [showLoader]);
+
+  // Helper to create Spotify embed URL from shared URL
+  const getSpotifyEmbedUrl = (url) => {
+    if (!url) return null;
+    try {
+      const u = new URL(url);
+      const parts = u.pathname.split('/').filter(Boolean);
+      const type = parts[0];
+      const id = parts[1];
+      if (!type || !id) return null;
+      if (!['album', 'playlist', 'track', 'artist'].includes(type)) return null;
+      return `https://open.spotify.com/embed/${type}/${id}`;
+    } catch (e) {
+      return null;
+    }
+  };
 
   useEffect(() => {
     const secretSequence = "s3crets";
@@ -608,6 +723,22 @@ const Landing = () => {
     }
   };
 
+  const toggleProject = (index) => {
+    if (expandedProject === index) {
+      setExpandedProject(null);
+    } else {
+      setExpandedProject(index);
+    }
+  };
+
+  const toggleCapstone = (index) => {
+    if (expandedCapstone === index) {
+      setExpandedCapstone(null);
+    } else {
+      setExpandedCapstone(index);
+    }
+  };
+
   const toggleSection = (section) => {
     if (section === "contact") return;
 
@@ -692,6 +823,28 @@ const Landing = () => {
           className="fixed inset-0 z-40 pointer-events-none"
           style={{ opacity: 0.7 }}
         />
+      )}
+
+      {/* Lightweight Loader Overlay */}
+      {showLoader && (
+        <div
+          className={`fixed inset-0 z-50 flex flex-col items-center justify-center transition-opacity duration-500 ${loaderDone ? 'opacity-0' : 'opacity-100'} ${darkMode ? 'bg-[#131313] text-[#DBDBDB]' : 'bg-[#DBDBDB] text-[#131313]'}`}
+          aria-hidden={loaderDone}
+        >
+          <div className={`font-mono text-xs md:text-sm select-none ${darkMode ? 'text-[#8BCD00]' : 'text-[#3c3c3c]'}`}>
+            <span className="tracking-widest">[ {['|','/','-','\\'][spinnerIndex]} ]</span>
+            <span className="ml-2">Loading portfolio</span>
+          </div>
+          <div className="mt-4 w-[82%] md:w-[60%] max-w-md">
+            <div className={`h-2 md:h-3 rounded-sm overflow-hidden ${darkMode ? 'bg-[#1c1c1c]' : 'bg-[#cfcfcf]'} loader-tilt`}>
+              <div
+                className={`h-full ${darkMode ? 'bg-[#8BCD00]' : 'bg-[#8BCD00]'} transition-all duration-150`}
+                style={{ width: `${loadProgress}%` }}
+              />
+            </div>
+            <div className={`mt-2 text-center text-[10px] md:text-xs ${darkMode ? 'text-[#6a6a6a]' : 'text-[#7a7a7a]'}`}>{loadProgress}%</div>
+          </div>
+        </div>
       )}
 
       {/* Easter egg popup */}
@@ -786,6 +939,95 @@ const Landing = () => {
         >
           {/* Content sections container */}
           <div className="flex flex-col">
+      {/* ABOUT ME (first section) */}
+      <div
+        className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
+          darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
+        }`}
+      >
+              {/* Title with toggle */}
+              <div
+                className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
+                  darkMode
+                    ? "text-[#464545] hover:text-[#8BCD00]"
+                    : "text-[#aaaaaa] hover:text-[#8BCD00]"
+                }`}
+                onClick={() => toggleSection("about")}
+        >
+          <span className="font-gambarino">About</span>
+                <span className="font-gambarino flex items-center">
+                  Me
+                  <button
+                    className={`ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#8BCD00] ${
+                      darkMode ? "hover:text-[#8BCD00]" : "hover:text-[#8BCD00]"
+                    }`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleSection("about");
+                    }}
+                  >
+                    {expandedSections.about ? (
+                      <span className={`text-sm md:text-lg transform translate-y-[-2px] ${expandedSections.about ? 'text-[#8BCD00]' : ''}`}>
+                        −
+                      </span>
+                    ) : (
+                      <span className="text-sm md:text-lg">+</span>
+                    )}
+                  </button>
+                </span>
+        </div>
+        <div
+          className={`overflow-hidden transition-all duration-500 ease-in-out ${
+            expandedSections.about
+              ? "max-h-[800px] opacity-100"
+              : "max-h-0 opacity-0"
+          }`}
+        >
+          <div
+            className={`font-esenka text-base md:text-xl transition-all duration-500 ${
+              darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+            }`}
+          >
+            <div className="pl-4 md:pl-8 py-4 md:py-8 max-w-[90%] md:max-w-[60%]">
+              <p
+                className={`${
+                  darkMode ? "text-[#A0A0A0]" : "text-[#646464]"
+                } mb-4 md:mb-6`}
+              >
+                {data.about.bio}
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+                {data.about.highlights.map((group, gi) => (
+                  <div key={gi}>
+                    <p
+                      className={`font-gambarino text-lg md:text-2xl ${
+                        darkMode ? "text-[#9a9a9a]" : "text-[#7a7a7a]"
+                      }`}
+                    >
+                      {group.label}
+                    </p>
+                    <div className="mt-2 flex flex-wrap gap-2">
+                      {group.items.map((chip, ci) => (
+                        <span
+                          key={ci}
+                          className={`text-xs md:text-sm px-2 py-1 rounded-sm ${
+                            darkMode
+                              ? "bg-[#242424] text-[#ECECEC]"
+                              : "bg-[#e9e9e9] text-[#464545]"
+                          }`}
+                        >
+                          {chip}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* WHAT I DO */}
       <div
         className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
@@ -815,7 +1057,7 @@ const Landing = () => {
                     }}
                   >
                     {expandedSections.whatIDo ? (
-                      <span className="text-xl md:text-2xl transform translate-y-[-2px]">
+                      <span className={`text-xl md:text-2xl transform translate-y-[-2px] ${expandedSections.whatIDo ? 'text-[#8BCD00]' : ''}`}>
                         −
                       </span>
                     ) : (
@@ -834,7 +1076,7 @@ const Landing = () => {
               >
                 <div
                   className={`transition-all duration-500 ${
-            darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+            darkMode ? " text-[#c2c1c1]" : "text-[#3c3c3c]"
                   }`}
                 >
                   <div className="font-esenka text-lg md:text-3xl font-black py-4 md:py-8 w-full">
@@ -924,7 +1166,7 @@ const Landing = () => {
                     }}
                   >
                     {expandedSections.techStack ? (
-                      <span className="text-xl md:text-2xl transform translate-y-[-2px]">
+                      <span className={`text-xl md:text-2xl transform translate-y-[-2px] ${expandedSections.techStack ? 'text-[#8BCD00]' : ''}`}>
                         −
                       </span>
                     ) : (
@@ -943,7 +1185,7 @@ const Landing = () => {
               >
                 <div
                   className={`transition-all duration-500 ${
-            darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+            darkMode ? " text-[#c2c1c1]" : "text-[#3c3c3c]"
                   }`}
                 >
                   <div className="font-esenka text-lg md:text-3xl font-black py-4 md:py-8 w-full">
@@ -1043,7 +1285,7 @@ const Landing = () => {
                   }}
                 >
                   {expandedSections.experience ? (
-                    <span className="text-sm md:text-lg transform translate-y-[-2px]">
+                    <span className={`text-sm md:text-lg transform translate-y-[-2px] ${expandedSections.experience ? 'text-[#8BCD00]' : ''}`}>
                       −
                     </span>
                   ) : (
@@ -1061,7 +1303,7 @@ const Landing = () => {
               >
         <div
           className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
-            darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+            darkMode ? " text-[#c2c1c1]" : "text-[#3c3c3c]"
                   }`}
         >
                   <div className="flex flex-col gap-3 md:gap-6 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
@@ -1107,13 +1349,15 @@ const Landing = () => {
                               </button>
                             </div>
 
-                  <span
-                    className={`font-esenka font-light text-xs md:text-base ${
-                      darkMode ? " text-[#464545]" : "text-[#939393]"
-                    }`}
-                  >
-                    {item.role}, &nbsp; {item.year}
-                  </span>
+                  {item.role && (
+                    <span
+                      className={`font-esenka font-light text-xs md:text-base ${
+                        darkMode ? " text-[#464545]" : "text-[#939393]"
+                      }`}
+                    >
+                      {item.role}, &nbsp; {item.year}
+                    </span>
+                  )}
                 </div>
                 <span
                   className="font-esenka font-normal text-xs md:text-xl mt-3 md:mt-0"
@@ -1123,9 +1367,223 @@ const Landing = () => {
                 </span>
               </div>
 
+                        {item.roles ? (
+                          <div
+                            className={`mt-2 pl-4 transition-all duration-500 overflow-hidden ${
+                              expandedExperience === index
+                                ? "max-h-[800px] opacity-100"
+                                : "max-h-0 opacity-0"
+                            }`}
+                          >
+                            <div className="flex flex-col gap-4 md:gap-6 max-w-[90%] md:max-w-[60%]">
+                              {item.roles.map((role, rIndex) => (
+                                <div
+                                  key={rIndex}
+                                  className={`border-l-2 pl-4 md:pl-5 font-normal ${
+                                    darkMode
+                                      ? "border-[#242424]"
+                                      : "border-[#d2d2d2]"
+                                  }`}
+                                  style={{
+                                    transitionDelay: `${rIndex * 80}ms`,
+                                    opacity: expandedExperience === index ? 1 : 0,
+                                    transform:
+                                      expandedExperience === index
+                                        ? "translateY(0px)"
+                                        : "translateY(10px)",
+                                  }}
+                                >
+                                  <div className="flex items-baseline justify-between">
+                                    <span className="text-base md:text-2xl font-medium">
+                                      {role.title}
+                                    </span>
+                                    <span
+                                      className={`font-esenka font-light text-[10px] md:text-sm ${
+                                        darkMode ? " text-[#464545]" : "text-[#939393]"
+                                      }`}
+                                    >
+                                      {role.year}
+                                    </span>
+                                  </div>
+                                  <div
+                                    className={`mt-2 text-xs md:text-base font-normal ${
+                                      darkMode ? "text-[#A0A0A0]" : "text-[#646464]"
+                                    }`}
+                                  >
+                                    <p className="mb-2">{role.description}</p>
+                                    {role.technologies && (
+                                      <div className="flex flex-wrap gap-2 mt-2">
+                                        {role.technologies.map((tech, i) => (
+                                          <span
+                                            key={i}
+                                            className={`text-[10px] md:text-xs px-2 py-1 rounded-sm transform transition-all duration-300 ${
+                                              darkMode
+                                                ? "bg-[#242424] text-[#ECECEC]"
+                                                : "bg-[#e9e9e9] text-[#464545]"
+                                            }`}
+                                          >
+                                            {tech}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        ) : (
+                          <div
+                            className={`mt-2 pl-4 text-sm md:text-base font-normal border-l-2 transition-all duration-500 overflow-hidden max-w-[90%] md:max-w-[40%] ${
+                              expandedExperience === index
+                                ? "max-h-[300px] opacity-100"
+                                : "max-h-0 opacity-0"
+                            } ${
+                              darkMode
+                                ? "border-[#242424] text-[#A0A0A0]"
+                                : "border-[#d2d2d2] text-[#646464]"
+                            }`}
+                          >
+                            <p className="mb-2">{item.description}</p>
+                            {item.technologies && (
+                              <div className="flex flex-wrap gap-2 mt-2">
+                                {item.technologies.map((tech, i) => (
+                                  <span
+                                    key={i}
+                                    className={`text-xs px-2 py-1 rounded-sm transform transition-all duration-300 ${
+                                      darkMode
+                                        ? "bg-[#242424] text-[#ECECEC]"
+                                        : "bg-[#e9e9e9] text-[#464545]"
+                                    }`}
+                                    style={{
+                                      transitionDelay: `${i * 50}ms`,
+                                      opacity: expandedExperience === index ? 1 : 0,
+                                      transform:
+                                        expandedExperience === index
+                                          ? "translateY(0px)"
+                                          : "translateY(10px)",
+                                    }}
+                                  >
+                                    {tech}
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+          </div>
+        </div>
+      </div>
+
+      {/* PROJECTS */}
+      <div
+        className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
+          darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
+        }`}
+      >
+              {/* Title with toggle */}
+              <div
+                className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
+                  darkMode
+                    ? "text-[#464545] hover:text-[#8BCD00]"
+                    : "text-[#aaaaaa] hover:text-[#8BCD00]"
+                }`}
+                onClick={() => toggleSection("projects")}
+        >
+          <span className="font-gambarino">Projects</span>
+                <button
+                  className={`ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#8BCD00] ${
+                    darkMode ? "hover:text-[#8BCD00]" : "hover:text-[#8BCD00]"
+                  }`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleSection("projects");
+                  }}
+                >
+                  {expandedSections.projects ? (
+                    <span className="text-sm md:text-lg transform translate-y-[-2px]">
+                      −
+                    </span>
+                  ) : (
+                    <span className="text-sm md:text-lg">+</span>
+                  )}
+                </button>
+        </div>
+        {/* Items */}
+              <div
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${
+                  expandedSections.projects
+                    ? "max-h-[2600px] opacity-100"
+                    : "max-h-0 opacity-0"
+                }`}
+              >
+        <div
+          className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
+            darkMode ? " text-[#c2c1c1]" : "text-[#3c3c3c]"
+                  }`}
+        >
+                  <div className="flex flex-col gap-3 md:gap-6 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
+            {data.projects.items.map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex flex-col w-full transform transition-all duration-300"
+                        style={{
+                          transitionDelay: `${index * 80}ms`,
+                          opacity: expandedSections.projects ? 1 : 0,
+                          transform: expandedSections.projects
+                            ? "translateY(0px)"
+                            : "translateY(20px)",
+                        }}
+                      >
+                        <div className="flex justify-between w-full">
+                <div className="flex flex-col gap-2 md:gap-4 md:flex md:flex-row md:items-end">
+                            <div className="flex items-center group/item">
+                  <a
+                    href={item.url}
+                    className={`border-b-[1px] border-dashed hover:border-solid hover:text-[#8BCD00] cursor-pointer transition ${
+                      darkMode
+                        ? "border-[#ECECEC] hover:border-[#8BCD00]"
+                        : "border-[#3c3c3c] hover:border-[#8BCD00]"
+                    }`}
+                  >
+                    {item.name}
+                  </a>
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  toggleProject(index);
+                                }}
+                                className={`ml-2 w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded-full hover:text-[#8BCD00] transition-colors duration-300 group-hover/item:text-[#8BCD00]`}
+                              >
+                                {expandedProject === index ? (
+                                  <span className="text-xl md:text-xl transform translate-y-[-2px]">
+                                    −
+                                  </span>
+                                ) : (
+                                  <span className="text-xl md:text-xl">+</span>
+                                )}
+                              </button>
+                            </div>
+
+                  <span
+                    className={`font-esenka font-light text-xs md:text-base ${
+                      darkMode ? " text-[#464545]" : "text-[#939393]"
+                    }`}
+                  >
+                    {item.role}, &nbsp; {item.year}
+                  </span>
+                </div>
+                <span className="font-esenka font-normal text-xs md:text-xl mt-3 md:mt-0">
+                  {item.number}
+                </span>
+              </div>
+
                         <div
-                          className={`mt-2 pl-4 text-sm md:text-base font-normal border-l-2 transition-all duration-500 overflow-hidden max-w-[90%] md:max-w-[40%] ${
-                            expandedExperience === index
+                          className={`mt-2 pl-4 text-sm md:text-base font-normal border-l-2 transition-all duration-500 overflow-hidden max-w-[90%] md:max-w-[50%] ${
+                            expandedProject === index
                               ? "max-h-[300px] opacity-100"
                               : "max-h-0 opacity-0"
                           } ${
@@ -1140,19 +1598,11 @@ const Landing = () => {
                               {item.technologies.map((tech, i) => (
                                 <span
                                   key={i}
-                                  className={`text-xs px-2 py-1 rounded-sm transform transition-all duration-300 ${
+                                  className={`text-xs px-2 py-1 rounded-sm ${
                                     darkMode
                                       ? "bg-[#242424] text-[#ECECEC]"
                                       : "bg-[#e9e9e9] text-[#464545]"
                                   }`}
-                                  style={{
-                                    transitionDelay: `${i * 50}ms`,
-                                    opacity: expandedExperience === index ? 1 : 0,
-                                    transform:
-                                      expandedExperience === index
-                                        ? "translateY(0px)"
-                                        : "translateY(10px)",
-                                  }}
                                 >
                                   {tech}
                                 </span>
@@ -1162,6 +1612,89 @@ const Landing = () => {
                         </div>
                       </div>
                     ))}
+
+              {/* Bootcamp Capstone Projects (subdued) */}
+              <div className="mt-6 md:mt-10">
+                <div
+                  className={`mb-3 flex items-center justify-between text-xl md:text-2xl font-gambarino font-semibold ${
+                    darkMode ? "text-[#464545]" : "text-[#939393]"
+                  }`}
+                >
+                  <span>{data.projects.bootcampCapstones.title}</span>
+                </div>
+                <div className="mt-2 flex flex-col gap-3 md:gap-4">
+                  {data.projects.bootcampCapstones.items.map((item, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col w-full transform transition-all duration-300"
+                      style={{
+                        transitionDelay: `${index * 60}ms`,
+                        opacity: expandedSections.projects ? 1 : 0,
+                        transform: expandedSections.projects
+                          ? "translateY(0px)"
+                          : "translateY(15px)",
+                      }}
+                    >
+                      <div className="flex justify-between w-full">
+                        <div className="flex flex-col gap-1 md:gap-2 md:flex md:flex-row md:items-end">
+                          <div className="flex items-center group/item">
+                            <a
+                              href={item.url}
+                              className={`border-b-[1px] border-dashed hover:border-solid hover:text-[#8BCD00] cursor-pointer transition ${
+                                darkMode
+                                  ? "border-[#707070] hover:border-[#8BCD00]"
+                                  : "border-[#bdbdbd] hover:border-[#8BCD00]"
+                              }`}
+                            >
+                              {item.name}
+                            </a>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                toggleCapstone(index);
+                              }}
+                              className={`ml-2 w-5 h-5 flex items-center justify-center rounded-full hover:text-[#8BCD00] transition-colors duration-300 group-hover/item:text-[#8BCD00]`}
+                            >
+                              {expandedCapstone === index ? (
+                                <span className="text-lg transform translate-y-[-2px]">−</span>
+                              ) : (
+                                <span className="text-lg">+</span>
+                              )}
+                            </button>
+                          </div>
+                          <span
+                            className={`font-esenka font-light text-[10px] md:text-sm ${
+                              darkMode ? " text-[#606060]" : "text-[#9c9c9c]"
+                            }`}
+                          >
+                            {item.role}, &nbsp; {item.year}
+                          </span>
+                        </div>
+                        <span
+                          className={`font-esenka font-normal text-xs md:text-base ${
+                            darkMode ? "text-[#606060]" : "text-[#9c9c9c]"
+                          }`}
+                        >
+                          {item.number}
+                        </span>
+                      </div>
+                      <div
+                        className={`mt-2 pl-4 text-xs md:text-sm font-normal border-l-2 transition-all duration-500 overflow-hidden max-w-[90%] md:max-w-[50%] ${
+                          expandedCapstone === index
+                            ? "max-h-[250px] opacity-100"
+                            : "max-h-0 opacity-0"
+                        } ${
+                          darkMode
+                            ? "border-[#242424] text-[#7a7a7a]"
+                            : "border-[#d2d2d2] text-[#7a7a7a]"
+                        }`}
+                      >
+                        <p className="mb-2">{item.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
                   </div>
           </div>
         </div>
@@ -1193,7 +1726,7 @@ const Landing = () => {
                   }}
                 >
                   {expandedSections.education ? (
-                    <span className="text-sm md:text-lg transform translate-y-[-2px]">
+                    <span className={`text-sm md:text-lg transform translate-y-[-2px] ${expandedSections.education ? 'text-[#8BCD00]' : ''}`}>
                       −
                     </span>
                   ) : (
@@ -1315,7 +1848,7 @@ const Landing = () => {
                   }}
                 >
                   {expandedSections.socials ? (
-                    <span className="text-sm md:text-lg transform translate-y-[-2px]">
+                    <span className={`text-sm md:text-lg transform translate-y-[-2px] ${expandedSections.socials ? 'text-[#8BCD00]' : ''}`}>
                       −
                     </span>
                   ) : (
@@ -1333,7 +1866,7 @@ const Landing = () => {
               >
         <div
           className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${
-            darkMode ? " text-[#ECECEC]" : "text-[#3c3c3c]"
+            darkMode ? " text-[#c2c1c1]" : "text-[#3c3c3c]"
                   }`}
         >
           <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
@@ -1408,16 +1941,16 @@ const Landing = () => {
                   +1 (214) 899-2025
                 </a>
                 <span
-                  className="text-[#515151]/75 invisible lg:visible transition-colors duration-300 mt-3"
+                  className="text-[#515151]/75 transition-colors duration-300 mt-3"
                 >
                   Green Card Holder
                 </span>
               </div>
 
               <div className="flex flex-col text-right md:text-left">
-                <p className="font-medium">Frisco, Texas, USA</p>
+                <p className="font-medium">Mountain View, California, USA</p>
                 <p className="mt-2 text-xs md:text-sm">
-                  Full-Stack Developer & Video Game Producer
+                  Software Dev
                 </p>
                 {!isMobile && (
                   <div className="flex justify-center mt-3 mb-2 opacity-80">
