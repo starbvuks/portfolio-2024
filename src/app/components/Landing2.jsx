@@ -287,14 +287,19 @@ const data = {
         number: "4",
       },
       {
-        name: "SPOTIFY",
-        url: "https://open.spotify.com/user/nl8l3a15fcwt16ziq91rp82eq?si=x_g4W9_6SbqNENbHlJkjCg",
-        number: "5",
-      },
-      {
         name: "X / (twitter)",
         url: "https://x.com/strbvuks",
         number: "6",
+      },
+      {
+        name: "SPOTIFY",
+        url: "https://open.spotify.com/user/nl8l3a15fcwt16ziq91rp82eq?si=x_g4W9_6SbqNENbHlJkjCg",
+        number: "6",
+      },
+      {
+        name: "LAST.FM",
+        url: "https://www.last.fm/user/sarvag_kalari",
+        number: "7",
       },
       // {
       //   name: "INSTAGRAM",
