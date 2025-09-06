@@ -282,9 +282,19 @@ const data = {
         number: "3",
       },
       {
+        name: "LEETCODE",
+        url: "https://leetcode.com/u/sarvag/",
+        number: "4",
+      },
+      {
         name: "SPOTIFY",
         url: "https://open.spotify.com/user/nl8l3a15fcwt16ziq91rp82eq?si=x_g4W9_6SbqNENbHlJkjCg",
-        number: "4",
+        number: "5",
+      },
+      {
+        name: "X / (twitter)",
+        url: "https://x.com/strbvuks",
+        number: "6",
       },
       // {
       //   name: "INSTAGRAM",
