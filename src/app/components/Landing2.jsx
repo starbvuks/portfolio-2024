@@ -227,7 +227,7 @@ const data = {
       },
       {
         label: "Passions",
-        items: ["executing on random project ideas", "coffee", "film", "music",],
+        items: ["executing on random project ideas", "coffee", "film", "music", "amatuer mixology"],
       },
       {
         label: "Currently learning",
@@ -630,7 +630,7 @@ const Landing = () => {
     };
   }, []);
 
-  const toggleMode = () => {
+  const toggleMode = (e) => {
     setIsTransitioning(true);
     setIsRotating(true);
     
@@ -639,7 +639,7 @@ const Landing = () => {
       setIsRotating(false);
     }, 2000);
 
-    // Create transition effect
+    // Create transition effect overlay
     const transitionCanvas = document.createElement("canvas");
     transitionCanvas.className = "fixed inset-0 z-50 pointer-events-none";
     document.body.appendChild(transitionCanvas);
@@ -651,19 +651,39 @@ const Landing = () => {
     // Store the canvas in ref for cleanup
     transitionRef.current = transitionCanvas;
 
-    // Calculate center point (where the toggle button is)
-    const centerX = window.innerWidth - 80;
-    const centerY = 50;
+    // Calculate center point based on the toggle button position (fallback to click position)
+    let centerX = window.innerWidth - 80;
+    let centerY = 50;
+    const buttonRect = toggleButtonRef.current?.getBoundingClientRect();
+    if (buttonRect) {
+      centerX = buttonRect.left + buttonRect.width / 2;
+      centerY = buttonRect.top + buttonRect.height / 2;
+    } else if (e && e.clientX != null && e.clientY != null) {
+      centerX = e.clientX;
+      centerY = e.clientY;
+    }
 
     // Animation variables
     let radius = 0;
-    const maxRadius =
-      Math.sqrt(
-        Math.pow(window.innerWidth, 2) + Math.pow(window.innerHeight, 2)
-      ) * 1.2;
-    const targetColor = darkMode ? "#DBDBDB" : "#131313";
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    const maxRadius = Math.max(
+      Math.hypot(centerX, centerY),
+      Math.hypot(w - centerX, centerY),
+      Math.hypot(centerX, h - centerY),
+      Math.hypot(w - centerX, h - centerY)
+    );
+    const previousColor = darkMode ? "#131313" : "#DBDBDB";
     let startTime = null;
-    const duration = 900; // Animation duration in ms
+    const duration = 1300; // Slightly slower for a more noticeable reveal
+
+    // Paint the screen with the previous color BEFORE switching theme
+    ctx.globalCompositeOperation = "source-over";
+    ctx.fillStyle = previousColor;
+    ctx.fillRect(0, 0, transitionCanvas.width, transitionCanvas.height);
+
+    // Switch theme underneath immediately; overlay will reveal it progressively
+    setDarkMode((prevMode) => !prevMode);
 
     // Easing function for smoother animation
     const easeInOutCubic = (t) => {
@@ -681,39 +701,36 @@ const Landing = () => {
 
       radius = maxRadius * easedProgress;
 
-      ctx.clearRect(0, 0, transitionCanvas.width, transitionCanvas.height);
+      // Cover with previous color, then punch a hole revealing new theme beneath
+      ctx.globalCompositeOperation = "source-over";
+      ctx.fillStyle = previousColor;
+      ctx.fillRect(0, 0, transitionCanvas.width, transitionCanvas.height);
 
-      // Draw expanding circle
+      ctx.globalCompositeOperation = "destination-out";
       ctx.beginPath();
       ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-      ctx.fillStyle = targetColor;
       ctx.fill();
+
+      // Reset comp op
+      ctx.globalCompositeOperation = "source-over";
 
       if (progress < 1) {
         requestAnimationFrame(animate);
       } else {
-        // Animation complete - toggle the actual mode
-    setDarkMode((prevMode) => !prevMode);
-
-        // Clean up with a fade out effect
+        // Clean up with a quick fade out effect
         const fadeOut = (opacity) => {
           if (!transitionRef.current) return;
-
-          transitionRef.current.style.opacity = opacity;
-
+          transitionRef.current.style.opacity = String(opacity);
           if (opacity <= 0) {
             if (transitionRef.current) {
               document.body.removeChild(transitionRef.current);
               transitionRef.current = null;
             }
-
-            // Reset transition state
             setIsTransitioning(false);
           } else {
-            setTimeout(() => fadeOut(opacity - 0.1), 20);
+            setTimeout(() => fadeOut(opacity - 0.1), 16);
           }
         };
-
         fadeOut(1.0);
       }
     };
@@ -1885,7 +1902,7 @@ const Landing = () => {
               <div
                 className={`overflow-hidden transition-all duration-500 ease-in-out ${
                   expandedSections.socials
-                    ? "max-h-[300px] opacity-100"
+                    ? "max-h-[800px] opacity-100"
                     : "max-h-0 opacity-0"
                 }`}
               >
@@ -1955,13 +1972,13 @@ const Landing = () => {
               <div className="flex flex-col mb-4 md:mb-0">
                 <a
                   href="mailto:sarvagk@gmail.com"
-                  className="hover:text-[#8BCD00] transition-colors duration-300"
+                  className="hover:text-[#8BCD00] text-[#8b8b8b] transition-colors duration-300"
                 >
                   sarvagk@gmail.com
                 </a>
                 <a
                   href="tel:+1 (214) 899-2025"
-                  className="hover:text-[#8BCD00] transition-colors duration-300"
+                  className="hover:text-[#8BCD00] text-[#8b8b8b] transition-colors duration-300"
                 >
                   +1 (214) 899-2025
                 </a>
