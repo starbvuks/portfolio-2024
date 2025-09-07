@@ -378,6 +378,8 @@ const Landing = () => {
         -webkit-tap-highlight-color: transparent;
         -webkit-touch-callout: none;
       }
+      /* Hide native cursor */
+      html, body, * { cursor: none !important; }
       
       @keyframes spin-slow {
         from {
@@ -419,6 +421,14 @@ const Landing = () => {
         transform: translateY(110vh) rotate(var(--rot, 0deg));
         transition: transform 1.1s cubic-bezier(.2,.7,.2,1);
       }
+
+      /* Custom cursor */
+      .cursor-ring, .cursor-dot { position: fixed; left: 0; top: 0; pointer-events: none; border-radius: 9999px; transform: translate(-50%, -50%); z-index: 99999; }
+      .cursor-ring { width: 26px; height: 26px; border: 2px solid #8BCD00; mix-blend-mode: difference; transition: width .18s ease, height .18s ease, border-color .18s ease, background-color .18s ease, opacity .2s ease; opacity: .9; }
+      .cursor-dot { width: 6px; height: 6px; background: #8BCD00; mix-blend-mode: difference; opacity: .95; }
+      .cursor-ring.is-active { width: 40px; height: 40px; }
+      .cursor-ring.is-press { width: 20px; height: 20px; }
+      .cursor-ring.is-hidden, .cursor-dot.is-hidden { opacity: 0; }
     `;
     document.head.appendChild(style);
     
@@ -627,6 +637,76 @@ const Landing = () => {
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Custom cursor overlay
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const ring = document.createElement('div');
+    const dot = document.createElement('div');
+    ring.className = 'cursor-ring';
+    dot.className = 'cursor-dot';
+    document.body.appendChild(ring);
+    document.body.appendChild(dot);
+
+    let mouseX = 0, mouseY = 0;
+    let rafId;
+
+    const move = (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    };
+
+    const press = () => ring.classList.add('is-press');
+    const release = () => ring.classList.remove('is-press');
+
+    const setActive = (active) => {
+      if (active) ring.classList.add('is-active'); else ring.classList.remove('is-active');
+    };
+
+    const animate = () => {
+      ring.style.left = `${mouseX}px`;
+      ring.style.top = `${mouseY}px`;
+      dot.style.left = `${mouseX}px`;
+      dot.style.top = `${mouseY}px`;
+      rafId = requestAnimationFrame(animate);
+    };
+    rafId = requestAnimationFrame(animate);
+
+    const enterDoc = () => { ring.classList.remove('is-hidden'); dot.classList.remove('is-hidden'); };
+    const leaveDoc = () => { ring.classList.add('is-hidden'); dot.classList.add('is-hidden'); };
+
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mousedown', press);
+    window.addEventListener('mouseup', release);
+    window.addEventListener('mouseenter', enterDoc);
+    window.addEventListener('mouseleave', leaveDoc);
+
+    // Make interactive elements enlarge the cursor ring
+    const interactiveSelector = 'a, button, [role="button"], input, textarea, select, .group:hover .group-hover\\:cursor-pointer';
+    const handleOver = (e) => {
+      const target = e.target;
+      if (target.closest(interactiveSelector)) setActive(true);
+    };
+    const handleOut = (e) => {
+      const target = e.target;
+      if (target.closest(interactiveSelector)) setActive(false);
+    };
+    document.addEventListener('mouseover', handleOver, true);
+    document.addEventListener('mouseout', handleOut, true);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mousedown', press);
+      window.removeEventListener('mouseup', release);
+      window.removeEventListener('mouseenter', enterDoc);
+      window.removeEventListener('mouseleave', leaveDoc);
+      document.removeEventListener('mouseover', handleOver, true);
+      document.removeEventListener('mouseout', handleOut, true);
+      document.body.removeChild(ring);
+      document.body.removeChild(dot);
     };
   }, []);
 
@@ -934,7 +1014,7 @@ const Landing = () => {
           <div className="relative group">
           <button
               ref={toggleButtonRef}
-            onClick={toggleMode}
+            onClick={(e) => toggleMode(e)}
               disabled={isTransitioning}
               onMouseEnter={() => setShowToggleText(true)}
               onMouseLeave={() => setShowToggleText(false)}
@@ -987,6 +1067,7 @@ const Landing = () => {
           darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
         }`}
       >
+        
               {/* Title with toggle */}
               <div
                 className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
@@ -1076,6 +1157,7 @@ const Landing = () => {
           darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
         }`}
       >
+        
               {/* Title with toggle */}
               <div
                 className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
@@ -1186,6 +1268,7 @@ const Landing = () => {
           darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
         }`}
       >
+        
               {/* Title with toggle */}
               <div
                 className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
@@ -1307,6 +1390,7 @@ const Landing = () => {
           darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
         }`}
       >
+        
               {/* Title with toggle */}
               <div
                 className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
@@ -1526,6 +1610,7 @@ const Landing = () => {
           darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
         }`}
       >
+        
               {/* Title with toggle */}
               <div
                 className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
@@ -1748,6 +1833,7 @@ const Landing = () => {
           darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
         }`}
       >
+        
               {/* Title with toggle */}
               <div
                 className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
@@ -1870,6 +1956,7 @@ const Landing = () => {
           darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
         }`}
       >
+        
               {/* Title with toggle */}
               <div
                 className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
