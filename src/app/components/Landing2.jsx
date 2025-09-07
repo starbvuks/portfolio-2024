@@ -227,7 +227,7 @@ const data = {
       },
       {
         label: "Passions",
-        items: ["executing on random project ideas", "coffee", "film", "music", "amatuer mixology"],
+        items: ["executing on random project ideas", "coffee", "film", "music", "amateur mixology"],
       },
       {
         label: "Currently learning",
