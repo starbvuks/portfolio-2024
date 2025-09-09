@@ -14,29 +14,12 @@ const data = {
   },
   techStack: {
     title: ["Tech", "Stack"],
-    items: [
-      { name: "JAVASCRIPT", number: "1" },
-      { name: "REACT JS", number: "2" },
-      { name: "REACT NATIVE", number: "3" },
-      { name: "NEXT JS", number: "4" },
-      { name: "NODE JS", number: "5" },
-      { name: "EXPRESS JS", number: "6" },
-      { name: "RUST", number: "7" },
-      { name: "TAILWIND CSS", number: "8" },
-      { name: "FIREBASE", number: "9" },
-      { name: "MONGODB", number: "10" },
-      { name: "POSTGRESQL", number: "11" },
-      { name: "NEONDB", number: "12" },
-      { name: "PRISMA", number: "13" },
-      { name: "STRAPI CMS", number: "14" },
-      { name: "AWS SUITE", number: "15" },
-      { name: "DOCKER", number: "16" },
-      { name: "NGINX", number: "17" },
-      { name: "VERCEL", number: "18" },
-      { name: "GIT & GITHUB", number: "19" },
-      { name: "POSTMAN", number: "20" },
-      { name: "FIGMA", number: "21" },
-      { name: "CLICKUP", number: "22" },
+    groups: [
+      { label: "Languages", items: ["JavaScript", "Rust"] },
+      { label: "Frameworks & Libraries", items: ["React", "React Native", "Next.js", "Node.js", "Express.js", "Tailwind CSS"] },
+      { label: "Databases & ORM", items: ["MongoDB", "PostgreSQL", "NeonDB", "Prisma", "Firebase"] },
+      { label: "Cloud & DevOps", items: ["AWS", "Docker", "Nginx", "Vercel"] },
+      { label: "Tools", items: ["Git & GitHub", "Postman", "Figma", "ClickUp"] },
     ],
   },
   experience: {
@@ -227,7 +210,7 @@ const data = {
       },
       {
         label: "Passions",
-        items: ["executing on random project ideas", "coffee", "film", "music", "amateur mixology"],
+        items: ["random tech projects", "coffee", "film", "music", "amateur mixology"],
       },
       {
         label: "Currently learning",
@@ -378,8 +361,10 @@ const Landing = () => {
         -webkit-tap-highlight-color: transparent;
         -webkit-touch-callout: none;
       }
-      /* Hide native cursor */
-      html, body, * { cursor: none !important; }
+      /* Hide native cursor only on precise pointers (desktops) */
+      @media (pointer: fine) {
+        html, body, * { cursor: none !important; }
+      }
       
       @keyframes spin-slow {
         from {
@@ -429,6 +414,33 @@ const Landing = () => {
       .cursor-ring.is-active { width: 40px; height: 40px; }
       .cursor-ring.is-press { width: 20px; height: 20px; }
       .cursor-ring.is-hidden, .cursor-dot.is-hidden { opacity: 0; }
+
+      /* Site background layers */
+      .site-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+      .site-bg-gradient, .site-bg-noise, .site-bg-vignette { position: absolute; inset: 0; }
+      .bg-theme-dark .site-bg-gradient {
+        background:
+          radial-gradient(1000px 700px at 0% -10%, rgba(139,205,0,0.06), transparent 40%),
+          radial-gradient(900px 600px at 100% 110%, rgba(139,205,0,0.05), transparent 45%),
+          linear-gradient(180deg, #121212 0%, #131313 50%, #0f0f0f 100%);
+      }
+      .bg-theme-light .site-bg-gradient {
+        background:
+          radial-gradient(800px 520px at 0% -10%, rgba(0,0,0,0.035), transparent 45%),
+          radial-gradient(700px 460px at 100% 110%, rgba(0,0,0,0.03), transparent 45%),
+          linear-gradient(180deg, #F3F3F3 0%, #EFEFEF 60%, #EAEAEA 100%);
+      }
+      /* Tiny SVG grain tiled */
+      .bg-theme-dark .site-bg-noise {
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='128' height='128'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.18'/></svg>");
+        background-size: 220px 220px; background-repeat: repeat; mix-blend-mode: overlay; opacity: 0.6;
+      }
+      .bg-theme-light .site-bg-noise {
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='128' height='128'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.10'/></svg>");
+        background-size: 220px 220px; background-repeat: repeat; mix-blend-mode: soft-light; opacity: 0.55;
+      }
+      .bg-theme-dark .site-bg-vignette { background: radial-gradient(1200px 700px at 50% 30%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.45) 100%); }
+      .bg-theme-light .site-bg-vignette { background: radial-gradient(1200px 700px at 50% 30%, rgba(0,0,0,0) 65%, rgba(0,0,0,0.12) 100%); }
     `;
     document.head.appendChild(style);
     
@@ -640,9 +652,11 @@ const Landing = () => {
     };
   }, []);
 
-  // Custom cursor overlay
+  // Custom cursor overlay (desktop only)
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    const isFine = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+    if (!isFine) return; // skip on touch devices
     const ring = document.createElement('div');
     const dot = document.createElement('div');
     ring.className = 'cursor-ring';
@@ -892,6 +906,9 @@ const Landing = () => {
     // Apply background color to html and body elements
     document.documentElement.style.backgroundColor = darkMode ? '#131313' : '#DBDBDB';
     document.body.style.backgroundColor = darkMode ? '#131313' : '#DBDBDB';
+    // Theme class for background layers
+    document.documentElement.classList.toggle('bg-theme-dark', !!darkMode);
+    document.documentElement.classList.toggle('bg-theme-light', !darkMode);
   }, [darkMode]);
 
   // Add subtle animation to toggle button
@@ -933,11 +950,17 @@ const Landing = () => {
 
   return (
     <div
-      className={`flex flex-col min-h-screen transition-all duration-500 ${
-        darkMode ? `text-[#DBDBDB] bg-[#131313]` : `text-[#131313] bg-[#DBDBDB]`
+      className={`relative z-10 flex flex-col min-h-screen transition-all duration-500 ${
+        darkMode ? `text-[#DBDBDB] bg-[#131313]` : `text-[#131313] bg-[#F2F2F2]`
       }`}
       ref={contentRef}
     >
+      {/* Background layers */}
+      <div className="site-bg" aria-hidden>
+        <div className="site-bg-gradient" />
+        <div className="site-bg-noise" />
+        <div className="site-bg-vignette" />
+      </div>
       {/* Matrix rain canvas */}
       {showMatrix && (
         <canvas
@@ -1300,86 +1323,32 @@ const Landing = () => {
                   </button>
                 </span>
         </div>
-        {/* Items */}
+        {/* Grouped Items */}
         <div
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                  expandedSections.techStack
-                    ? "max-h-[1200px] opacity-100"
-                    : "max-h-0 opacity-0"
-                }`}
-              >
-                <div
-                  className={`transition-all duration-500 ${
-            darkMode ? " text-[#c2c1c1]" : "text-[#3c3c3c]"
-                  }`}
-                >
-                  <div className="font-esenka text-lg md:text-3xl font-black py-4 md:py-8 w-full">
-                    {/* Three column layout with proper alignment */}
-                    <div className="flex justify-between w-full">
-                      {[...Array(3)].map((_, colIndex) => {
-                        const itemsPerColumn = Math.ceil(
-                          data.techStack.items.length / 3
-                        );
-                        const startIndex = colIndex * itemsPerColumn;
-                        const columnItems = data.techStack.items.slice(
-                          startIndex,
-                          startIndex + itemsPerColumn
-                        );
-
-                        return (
-                          <div
-                            key={colIndex}
-                            className={`flex flex-col gap-2 md:gap-4 ${
-                              colIndex === 0
-                                ? ""
-                                : colIndex === 1
-                                ? "items-center text-center"
-                                : "items-end text-right"
-                            }`}
-                          >
-                            {columnItems.map((item, index) => (
-                              <div
-                                key={index}
-                                className={`flex items-center transform transition-all duration-300 hover:translate-x-1 ${
-                                  colIndex === 0
-                                    ? ""
-                                    : colIndex === 1
-                                    ? "justify-center"
-                                    : "flex-row-reverse"
-                                }`}
-                                style={{
-                                  transitionDelay: `${index * 30}ms`,
-                                  opacity: expandedSections.techStack ? 1 : 0,
-                                  transform: expandedSections.techStack
-                                    ? "translateY(0px)"
-                                    : "translateY(20px)",
-                                }}
-                              >
-                                <div
-                                  className={`w-6 md:w-8 text-center font-esenka font-normal text-xs md:text-xl ${
-                                    darkMode ? "text-[#464545]" : "text-[#aaaaaa]"
-                                  }`}
-                >
-                  {item.number}
-                                </div>
-                                <div
-                                  className={`${
-                                    colIndex === 0
-                                      ? "ml-3"
-                                      : colIndex === 1
-                                      ? "mx-3"
-                                      : "mr-3"
-                                  } hover:text-[#8BCD00] transition-colors duration-300`}
-                                >
-                                  {item.name}
-                                </div>
-              </div>
-            ))}
-                          </div>
-                        );
-                      })}
-                    </div>
+          className={`overflow-hidden transition-all duration-500 ease-in-out ${
+            expandedSections.techStack ? "max-h-[1400px] opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className={`transition-all duration-500 ${darkMode ? " text-[#c2c1c1]" : "text-[#3c3c3c]"}`}>
+            <div className="font-esenka text-sm md:text-xl py-3 md:py-8 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+              {data.techStack.groups.map((group, gi) => (
+                <div key={gi} className="flex flex-col">
+                  <span className={`font-gambarino text-base md:text-2xl ${darkMode ? 'text-[#9a9a9a]' : 'text-[#7a7a7a]'}`}>{group.label}</span>
+                  <div className="mt-2 md:mt-3 flex flex-wrap gap-1.5 md:gap-2">
+                    {group.items.map((chip, ci) => (
+                      <span
+                        key={ci}
+                        className={`text-[11px] md:text-sm px-2 py-1 rounded-sm ${
+                          darkMode ? 'bg-[#242424] text-[#ECECEC]' : 'bg-[#e9e9e9] text-[#464545]'
+                        }`}
+                      >
+                        {chip}
+                      </span>
+                    ))}
                   </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
