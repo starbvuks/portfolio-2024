@@ -15,7 +15,7 @@ const data = {
   techStack: {
     title: ["Tech", "Stack"],
     groups: [
-      { label: "Languages", items: ["JavaScript", "Rust"] },
+      { label: "Languages", items: ["JavaScript", "TypeScript", "Rust", "Python"] },
       { label: "Frameworks & Libraries", items: ["React", "React Native", "Next.js", "Node.js", "Express.js", "Tailwind CSS"] },
       { label: "Databases & ORM", items: ["MongoDB", "PostgreSQL", "NeonDB", "Prisma", "Firebase"] },
       { label: "Cloud & DevOps", items: ["AWS", "Docker", "Nginx", "Vercel"] },
@@ -210,7 +210,7 @@ const data = {
       },
       {
         label: "Passions",
-        items: ["random tech projects", "coffee", "film", "music", "amateur mixology"],
+        items: ["random tech projects", "coffee", "film", "music", "mixology"],
       },
       {
         label: "Currently learning",
@@ -313,21 +313,34 @@ const Landing = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [hasExpandedContent, setHasExpandedContent] = useState(false);
+  const [showCommand, setShowCommand] = useState(false);
+  const [commandQuery, setCommandQuery] = useState("");
+  const [commandIndex, setCommandIndex] = useState(0);
+  const [cmdKey, setCmdKey] = useState("⌘");
   const canvasRef = useRef(null);
   const contactRef = useRef(null);
   const contentRef = useRef(null);
   const mainContentRef = useRef(null);
+  const lightCanvasRef = useRef(null);
+  const grainCanvasRef = useRef(null);
   const matrixTimeoutRef = useRef(null);
   const transitionRef = useRef(null);
   const toggleButtonRef = useRef(null);
+  const aboutRef = useRef(null);
+  const whatIDoRef = useRef(null);
+  const techRef = useRef(null);
+  const expRef = useRef(null);
+  const projRef = useRef(null);
+  const eduRef = useRef(null);
+  const socialsRef = useRef(null);
   const [expandedSections, setExpandedSections] = useState({
-    whatIDo: false,
-    techStack: false,
-    experience: false,
-    projects: false,
-    about: false,
-    education: false,
-    socials: false,
+    whatIDo: true,
+    techStack: true,
+    experience: true,
+    projects: true,
+    about: true,
+    education: true,
+    socials: true,
     contact: true, // Contact always open
   });
   const [showToggleText, setShowToggleText] = useState(false);
@@ -344,6 +357,9 @@ const Landing = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 1008);
     };
+    // Detect platform meta key
+    const isMac = /Mac|iPod|iPhone|iPad/.test(navigator.platform);
+    setCmdKey(isMac ? '⌘' : 'Ctrl');
     
     checkMobile();
     window.addEventListener("resize", checkMobile);
@@ -351,6 +367,38 @@ const Landing = () => {
     return () => {
       window.removeEventListener("resize", checkMobile);
     };
+  }, []);
+
+  // Keyboard nav within Command Palette
+  useEffect(() => {
+    if (!showCommand) return;
+    const onKeyDown = (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'Tab') { e.preventDefault(); setCommandIndex((i) => i + 1); }
+      if (e.key === 'ArrowUp') { e.preventDefault(); setCommandIndex((i) => Math.max(0, i - 1)); }
+      if (e.key === 'Enter') {
+        const buttons = document.querySelectorAll('[data-cmd-item]');
+        const target = buttons[commandIndex % buttons.length];
+        if (target) target.click();
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [showCommand, commandIndex]);
+
+  // Subtle parallax on section titles
+  useEffect(() => {
+    const onScroll = () => {
+      const titles = document.querySelectorAll('.parallax-title');
+      titles.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const viewH = window.innerHeight || 1;
+        const progress = Math.min(1, Math.max(0, 1 - rect.top / viewH));
+        el.style.transform = `translateY(${(-6 + progress * 12).toFixed(2)}px)`;
+      });
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   // Add global styles for animations and mobile tap highlight prevention
@@ -391,6 +439,7 @@ const Landing = () => {
       .ascii-pulse {
         animation: asciiPulse 1.2s ease-in-out infinite;
       }
+      .animate-pulse-slow { animation: asciiPulse 2.2s ease-in-out infinite; }
 
       @keyframes asciiPulse {
         0%, 100% { opacity: 0.85; }
@@ -418,29 +467,27 @@ const Landing = () => {
       /* Site background layers */
       .site-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
       .site-bg-gradient, .site-bg-noise, .site-bg-vignette { position: absolute; inset: 0; }
+      /* Softer single-spot gradient */
       .bg-theme-dark .site-bg-gradient {
-        background:
-          radial-gradient(1000px 700px at 0% -10%, rgba(139,205,0,0.06), transparent 40%),
-          radial-gradient(900px 600px at 100% 110%, rgba(139,205,0,0.05), transparent 45%),
-          linear-gradient(180deg, #121212 0%, #131313 50%, #0f0f0f 100%);
+        background: radial-gradient(900px 640px at 50% 22%, rgba(139,205,0,0.035), transparent 60%);
       }
       .bg-theme-light .site-bg-gradient {
-        background:
-          radial-gradient(800px 520px at 0% -10%, rgba(0,0,0,0.035), transparent 45%),
-          radial-gradient(700px 460px at 100% 110%, rgba(0,0,0,0.03), transparent 45%),
-          linear-gradient(180deg, #F3F3F3 0%, #EFEFEF 60%, #EAEAEA 100%);
+        background: radial-gradient(900px 640px at 50% 25%, rgba(0,0,0,0.03), transparent 60%);
       }
-      /* Tiny SVG grain tiled */
-      .bg-theme-dark .site-bg-noise {
-        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='128' height='128'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.18'/></svg>");
-        background-size: 220px 220px; background-repeat: repeat; mix-blend-mode: overlay; opacity: 0.6;
-      }
-      .bg-theme-light .site-bg-noise {
-        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='128' height='128'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.10'/></svg>");
-        background-size: 220px 220px; background-repeat: repeat; mix-blend-mode: soft-light; opacity: 0.55;
-      }
-      .bg-theme-dark .site-bg-vignette { background: radial-gradient(1200px 700px at 50% 30%, rgba(0,0,0,0) 60%, rgba(0,0,0,0.45) 100%); }
-      .bg-theme-light .site-bg-vignette { background: radial-gradient(1200px 700px at 50% 30%, rgba(0,0,0,0) 65%, rgba(0,0,0,0.12) 100%); }
+      /* Canvas grain (no pixelation) */
+      .site-bg-noise { overflow: hidden; }
+      .bg-theme-dark .site-bg-vignette { background: radial-gradient(1200px 700px at 50% 30%, rgba(0,0,0,0) 65%, rgba(0,0,0,0.35) 100%); }
+      .bg-theme-light .site-bg-vignette { background: radial-gradient(1200px 700px at 50% 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,0.10) 100%); }
+
+      /* Interactive spotlight canvas */
+      .site-interactive { position: fixed; inset: 0; z-index: 1; pointer-events: none; mix-blend-mode: overlay; opacity: 0.4; }
+
+      /* Section title accent */
+      .parallax-title { position: relative; }
+      .parallax-title::after { content: ""; position: absolute; left: 0; bottom: -8px; width: 48px; height: 2px; background: linear-gradient(90deg, rgba(139,205,0,0.6), rgba(139,205,0,0)); opacity: 0.3; border-radius: 1px; transition: width .3s ease, opacity .3s ease; }
+      .parallax-title:hover::after { width: 84px; opacity: 0.6; }
+
+      /* (removed) heading sheen */
     `;
     document.head.appendChild(style);
     
@@ -517,6 +564,15 @@ const Landing = () => {
       "ArrowUpArrowUpArrowDownArrowDownArrowLeftArrowRightArrowLeftArrowRightba";
 
     const handleKeyPress = (event) => {
+      // Command palette toggle
+      if ((event.metaKey || event.ctrlKey) && (event.key === 'k' || event.key === 'K')) {
+        event.preventDefault();
+        setShowCommand((s) => !s);
+        setCommandQuery("");
+        setCommandIndex(0);
+        return;
+      }
+
       const { key } = event;
 
       // Handle s3crets sequence
@@ -644,6 +700,10 @@ const Landing = () => {
         canvasRef.current.width = window.innerWidth;
         canvasRef.current.height = window.innerHeight;
       }
+      if (lightCanvasRef.current) {
+        lightCanvasRef.current.width = window.innerWidth;
+        lightCanvasRef.current.height = window.innerHeight;
+      }
     };
 
     window.addEventListener("resize", handleResize);
@@ -651,6 +711,118 @@ const Landing = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  // Subtle interactive light canvas
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const isFine = window.matchMedia('(pointer: fine)').matches;
+    const canvas = document.createElement('canvas');
+    canvas.className = 'site-interactive';
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    lightCanvasRef.current = canvas;
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+    let raf;
+    let pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    let target = { x: pointer.x, y: pointer.y };
+
+    const onMove = (e) => {
+      if (!isFine) return;
+      target.x = e.clientX;
+      target.y = e.clientY;
+    };
+
+    const onTouch = (e) => {
+      const t = e.touches[0];
+      if (!t) return;
+      target.x = t.clientX;
+      target.y = t.clientY;
+    };
+
+    const draw = () => {
+      pointer.x += (target.x - pointer.x) * 0.08;
+      pointer.y += (target.y - pointer.y) * 0.08;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const r = Math.max(320, Math.min(680, Math.hypot(window.innerWidth, window.innerHeight) * 0.28));
+      const grd = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, r);
+      const c0 = darkMode ? 'rgba(139,205,0,0.45)' : 'rgba(120,120,120,0.32)';
+      const c1 = darkMode ? 'rgba(139,205,0,0.12)' : 'rgba(120,120,120,0.10)';
+      grd.addColorStop(0, c0);
+      grd.addColorStop(0.6, c1);
+      grd.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = grd;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      raf = requestAnimationFrame(draw);
+    };
+
+    window.addEventListener('mousemove', onMove);
+    window.addEventListener('touchmove', onTouch, { passive: true });
+    raf = requestAnimationFrame(draw);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('touchmove', onTouch);
+      if (lightCanvasRef.current) {
+        document.body.removeChild(lightCanvasRef.current);
+        lightCanvasRef.current = null;
+      }
+    };
+  }, [darkMode]);
+
+  // High-res grain via canvas to avoid pixelation
+  useEffect(() => {
+    const canvas = document.createElement('canvas');
+    canvas.width = window.innerWidth * 2;
+    canvas.height = window.innerHeight * 2;
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.position = 'absolute';
+    canvas.style.inset = '0';
+    canvas.style.opacity = darkMode ? '0.22' : '0.18';
+    canvas.style.mixBlendMode = 'overlay';
+    grainCanvasRef.current = canvas;
+    const host = document.querySelector('.site-bg-noise');
+    if (host) host.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+    const w = canvas.width, h = canvas.height;
+    const imageData = ctx.createImageData(w, h);
+    for (let i = 0; i < imageData.data.length; i += 4) {
+      const v = 128 + (Math.random() * 50 - 25);
+      imageData.data[i] = v;
+      imageData.data[i + 1] = v;
+      imageData.data[i + 2] = v;
+      imageData.data[i + 3] = 18; // alpha
+    }
+    ctx.putImageData(imageData, 0, 0);
+
+    const onResize = () => {
+      canvas.width = window.innerWidth * 2;
+      canvas.height = window.innerHeight * 2;
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      const ctx2 = canvas.getContext('2d');
+      const w2 = canvas.width, h2 = canvas.height;
+      const data2 = ctx2.createImageData(w2, h2);
+      for (let i = 0; i < data2.data.length; i += 4) {
+        const v = 128 + (Math.random() * 50 - 25);
+        data2.data[i] = v;
+        data2.data[i + 1] = v;
+        data2.data[i + 2] = v;
+        data2.data[i + 3] = 18;
+      }
+      ctx2.putImageData(data2, 0, 0);
+    };
+    window.addEventListener('resize', onResize);
+    return () => {
+      window.removeEventListener('resize', onResize);
+      if (grainCanvasRef.current && host) host.removeChild(grainCanvasRef.current);
+      grainCanvasRef.current = null;
+    };
+  }, [darkMode]);
 
   // Custom cursor overlay (desktop only)
   useEffect(() => {
@@ -884,6 +1056,37 @@ const Landing = () => {
     }));
   };
 
+  // Magnetic hover for chips
+  useEffect(() => {
+    const container = contentRef.current;
+    if (!container) return;
+    const isFine = typeof window !== 'undefined' && window.matchMedia('(pointer: fine)').matches;
+    if (!isFine) return;
+
+    const handleMouseMove = (e) => {
+      const targets = container.querySelectorAll('span[magnet-chip]');
+      targets.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const dx = e.clientX - (rect.left + rect.width / 2);
+        const dy = e.clientY - (rect.top + rect.height / 2);
+        const dist = Math.min(1, Math.hypot(dx, dy) / 160);
+        const strength = (1 - dist) * 8; // px offset
+        el.style.transform = `translate(${(dx / 160) * strength}px, ${(dy / 160) * strength}px)`;
+      });
+    };
+    const reset = () => {
+      const targets = container.querySelectorAll('span[magnet-chip]');
+      targets.forEach((el) => { el.style.transform = 'translate(0px, 0px)'; });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseleave', reset);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseleave', reset);
+    };
+  }, []);
+
   // Add a mobile-friendly way to trigger Matrix effect
   const triggerMatrixEffect = () => {
     setShowEgg(true);
@@ -961,6 +1164,17 @@ const Landing = () => {
         <div className="site-bg-noise" />
         <div className="site-bg-vignette" />
       </div>
+      {/* Interactive light canvas injected via effect */}
+      {(!isMobile) && (
+        <div className={`${darkMode ? 'border-[#2a2a2a] bg-[#0f0f0f]/40 text-[#9a9a9a]' : 'border-[#d4d4d4] bg-white/80 text-[#5c5c5c]'} pointer-events-none fixed bottom-4 left-1/2 -translate-x-1/2 z-20 hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border backdrop-blur-sm text-[11px]`}>
+          <span>Press</span>
+          <span className="inline-flex items-center gap-1">
+            <span className={`inline-grid place-items-center w-5 h-5 rounded-[6px] border ${darkMode ? 'border-[#2a2a2a] bg-[#131313] text-[#DBDBDB]' : 'border-[#d4d4d4] bg-white text-[#333]'} animate-pulse-slow`}>{cmdKey}</span>
+            <span className={`inline-grid place-items-center w-5 h-5 rounded-[6px] border ${darkMode ? 'border-[#2a2a2a] bg-[#131313] text-[#DBDBDB]' : 'border-[#d4d4d4] bg-white text-[#333]'}`}>K</span>
+          </span>
+          <span>for Command Palette</span>
+        </div>
+      )}
       {/* Matrix rain canvas */}
       {showMatrix && (
         <canvas
@@ -988,6 +1202,72 @@ const Landing = () => {
               />
             </div>
             <div className={`mt-2 text-center text-[10px] md:text-xs ${darkMode ? 'text-[#6a6a6a]' : 'text-[#7a7a7a]'}`}>{loadProgress}%</div>
+          </div>
+        </div>
+      )}
+
+      {/* Command Palette */}
+      {showCommand && (
+        <div className="fixed inset-0 z-[60] flex items-start justify-center pt-24 md:pt-40" role="dialog" aria-modal="true">
+          <div className={`absolute inset-0 ${darkMode ? 'bg-black/60' : 'bg-black/30'}`} onClick={() => setShowCommand(false)} />
+          <div className={`relative w-[92%] md:w-[680px] max-w-3xl rounded-xl border ${darkMode ? 'border-[#2a2a2a] bg-[#0f0f0f]/90' : 'border-[#d8d8d8] bg-[#ffffff]/92'} backdrop-blur-md shadow-2xl`}> 
+            <div className="flex items-center gap-2 p-3 md:p-4 border-b border-[#2a2a2a]/40">
+              <input
+                autoFocus
+                value={commandQuery}
+                onChange={(e) => { setCommandQuery(e.target.value); setCommandIndex(0); }}
+                placeholder={`Type a command… (Press ${cmdKey}+K to close)`}
+                className={`w-full bg-transparent outline-none ${darkMode ? 'text-[#DBDBDB] placeholder-[#6a6a6a]' : 'text-[#131313] placeholder-[#7a7a7a]'} text-sm md:text-base`}
+              />
+            </div>
+            <div className="max-h-[50vh] overflow-auto p-2 md:p-3">
+              {[
+                { label: 'Navigate', items: [
+                  { name: 'Go to About', ref: 'about' },
+                  { name: 'Go to What I Do', ref: 'what' },
+                  { name: 'Go to Tech Stack', ref: 'tech' },
+                  { name: 'Go to Experience', ref: 'exp' },
+                  { name: 'Go to Projects', ref: 'proj' },
+                  { name: 'Go to Education', ref: 'edu' },
+                  { name: 'Go to Socials', ref: 'socials' },
+                  { name: 'Go to Contact', ref: 'contact' },
+                ]},
+                { label: 'Theme', items: [
+                  { name: darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode', action: 'toggleTheme' },
+                ]},
+                { label: 'Sections', items: [
+                  { name: 'Expand all', action: 'expandAll' },
+                  { name: 'Collapse all', action: 'collapseAll' },
+                ]},
+              ].map((group, gi) => (
+                <div key={gi} className="mb-2">
+                  <div className={`px-2 py-1 text-[10px] md:text-xs uppercase tracking-wider ${darkMode ? 'text-[#6a6a6a]' : 'text-[#7a7a7a]'}`}>{group.label}</div>
+                  {group.items
+                    .filter(it => it.name.toLowerCase().includes(commandQuery.toLowerCase()))
+                    .map((it, idx) => {
+                      const absoluteIndex = idx; // simple per-group index for highlight
+                      const active = (absoluteIndex === commandIndex);
+                      return (
+                        <button data-cmd-item
+                          key={idx}
+                          onClick={() => {
+                            if (it.action === 'toggleTheme') { toggleMode(new Event('click')); setShowCommand(false); return; }
+                            if (it.action === 'expandAll') { setExpandedSections({ whatIDo:true, techStack:true, experience:true, projects:true, about:true, education:true, socials:true, contact:true }); setShowCommand(false); return; }
+                            if (it.action === 'collapseAll') { setExpandedSections({ whatIDo:false, techStack:false, experience:false, projects:false, about:false, education:false, socials:false, contact:true }); setShowCommand(false); return; }
+                            const map = { about: aboutRef, what: whatIDoRef, tech: techRef, exp: expRef, proj: projRef, edu: eduRef, socials: socialsRef, contact: contactRef };
+                            const r = map[it.ref];
+                            if (r && r.current) { r.current.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+                            setShowCommand(false);
+                          }}
+                          className={`w-full text-left px-3 py-2 rounded-md transition ${active ? (darkMode ? 'bg-[#1b1b1b] text-[#DBDBDB]' : 'bg-[#efefef] text-[#131313]') : (darkMode ? 'text-[#c2c1c1] hover:bg-[#161616]' : 'text-[#3c3c3c] hover:bg-[#f2f2f2]')}`}
+                        >
+                          {it.name}
+                        </button>
+                      );
+                    })}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -1085,7 +1365,7 @@ const Landing = () => {
           {/* Content sections container */}
           <div className="flex flex-col">
       {/* ABOUT ME (first section) */}
-      <div
+      <div ref={aboutRef}
         className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
           darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
         }`}
@@ -1093,7 +1373,7 @@ const Landing = () => {
         
               {/* Title with toggle */}
               <div
-                className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
+                className={`parallax-title flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
                   darkMode
                     ? "text-[#464545] hover:text-[#8BCD00]"
                     : "text-[#aaaaaa] hover:text-[#8BCD00]"
@@ -1154,7 +1434,7 @@ const Landing = () => {
                     </p>
                     <div className="mt-2 flex flex-wrap gap-2">
                       {group.items.map((chip, ci) => (
-                        <span
+                        <span magnet-chip
                           key={ci}
                           className={`text-xs md:text-sm px-2 py-1 rounded-sm ${
                             darkMode
@@ -1175,7 +1455,7 @@ const Landing = () => {
       </div>
 
       {/* WHAT I DO */}
-      <div
+      <div ref={whatIDoRef}
         className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
           darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
         }`}
@@ -1183,7 +1463,7 @@ const Landing = () => {
         
               {/* Title with toggle */}
               <div
-                className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
+                className={`parallax-title flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
                   darkMode
                     ? "text-[#464545] hover:text-[#8BCD00]"
                     : "text-[#aaaaaa] hover:text-[#8BCD00]"
@@ -1286,7 +1566,7 @@ const Landing = () => {
       </div>
 
       {/* TECH STACK */}
-      <div
+      <div ref={techRef}
         className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
           darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
         }`}
@@ -1294,7 +1574,7 @@ const Landing = () => {
         
               {/* Title with toggle */}
               <div
-                className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
+                className={`parallax-title flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
                   darkMode
                     ? "text-[#464545] hover:text-[#8BCD00]"
                     : "text-[#aaaaaa] hover:text-[#8BCD00]"
@@ -1336,7 +1616,7 @@ const Landing = () => {
                   <span className={`font-gambarino text-base md:text-2xl ${darkMode ? 'text-[#9a9a9a]' : 'text-[#7a7a7a]'}`}>{group.label}</span>
                   <div className="mt-2 md:mt-3 flex flex-wrap gap-1.5 md:gap-2">
                     {group.items.map((chip, ci) => (
-                      <span
+                      <span magnet-chip
                         key={ci}
                         className={`text-[11px] md:text-sm px-2 py-1 rounded-sm ${
                           darkMode ? 'bg-[#242424] text-[#ECECEC]' : 'bg-[#e9e9e9] text-[#464545]'
@@ -1354,7 +1634,7 @@ const Landing = () => {
       </div>
 
       {/* EXPERIENCE */}
-      <div
+      <div ref={expRef}
         className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
           darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
         }`}
@@ -1362,7 +1642,7 @@ const Landing = () => {
         
               {/* Title with toggle */}
               <div
-                className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
+                className={`parallax-title flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
                   darkMode
                     ? "text-[#464545] hover:text-[#8BCD00]"
                     : "text-[#aaaaaa] hover:text-[#8BCD00]"
@@ -1574,7 +1854,7 @@ const Landing = () => {
       </div>
 
       {/* PROJECTS */}
-      <div
+      <div ref={projRef}
         className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
           darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
         }`}
@@ -1582,7 +1862,7 @@ const Landing = () => {
         
               {/* Title with toggle */}
               <div
-                className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
+                className={`parallax-title flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
                   darkMode
                     ? "text-[#464545] hover:text-[#8BCD00]"
                     : "text-[#aaaaaa] hover:text-[#8BCD00]"
@@ -1797,7 +2077,7 @@ const Landing = () => {
       </div>
 
       {/* EDUCATION */}
-      <div
+      <div ref={eduRef}
         className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
           darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
         }`}
@@ -1805,7 +2085,7 @@ const Landing = () => {
         
               {/* Title with toggle */}
               <div
-                className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
+                className={`parallax-title flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
                   darkMode
                     ? "text-[#464545] hover:text-[#8BCD00]"
                     : "text-[#aaaaaa] hover:text-[#8BCD00]"
@@ -1920,7 +2200,7 @@ const Landing = () => {
       </div>
 
       {/* SOCIALS */}
-      <div
+      <div ref={socialsRef}
         className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-all duration-500 ${
           darkMode ? " border-[#242424]" : "border-[#d2d2d2]"
         }`}
@@ -1928,7 +2208,7 @@ const Landing = () => {
         
               {/* Title with toggle */}
               <div
-                className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
+                className={`parallax-title flex justify-between text-2xl md:text-4xl transition-all duration-500 cursor-pointer group ${
                   darkMode
                     ? "text-[#464545] hover:text-[#8BCD00]"
                     : "text-[#aaaaaa] hover:text-[#8BCD00]"
