@@ -15,9 +15,6 @@ module.exports = {
         gambarino: ["var(--gambarino)", "sans-serif"],
         esenka: ["var(--esenka)", "sans-serif"],
       },
-      backgroundImage: {
-        "grainy-bg": "url('/assets/bg-gradient.png')",
-      },
       keyframes: {
         fadeIn: {
           from: { opacity: 0 },
