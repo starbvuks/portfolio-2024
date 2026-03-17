@@ -10,7 +10,7 @@ export default function ExperienceSection({ expanded }) {
   const toggle = (i) => setExpandedItem(expandedItem === i ? null : i);
 
   return (
-    <div className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${darkMode ? "text-[#c2c1c1]" : "text-[#3c3c3c]"}`}>
+    <div className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${darkMode ? "text-[#c0c2cc]" : "text-[#3c3c3c]"}`}>
       <div className="flex flex-col gap-3 md:gap-6 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
         {data.experience.items.map((item, index) => (
           <div
@@ -27,15 +27,15 @@ export default function ExperienceSection({ expanded }) {
                 <div className="flex items-center group/item">
                   <a
                     href={item.url}
-                    className={`border-b-[1px] border-dashed hover:border-solid hover:text-[#8BCD00] cursor-pointer transition ${
-                      darkMode ? "border-[#ECECEC] hover:border-[#8BCD00]" : "border-[#3c3c3c] hover:border-[#8BCD00]"
+                    className={`border-b-[1px] border-dashed hover:border-solid hover:text-[#B8C0DC] cursor-pointer transition ${
+                      darkMode ? "border-[#dcdde2] hover:border-[#B8C0DC]" : "border-[#3c3c3c] hover:border-[#B8C0DC]"
                     }`}
                   >
                     {item.name}
                   </a>
                   <button
                     onClick={(e) => { e.stopPropagation(); toggle(index); }}
-                    className="ml-2 w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded-full hover:text-[#8BCD00] transition-colors duration-300 group-hover/item:text-[#8BCD00]"
+                    className="ml-2 w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded-full hover:text-[#B8C0DC] transition-colors duration-300 group-hover/item:text-[#B8C0DC]"
                   >
                     <span className={`text-xl ${expandedItem === index ? "transform translate-y-[-2px]" : ""}`}>
                       {expandedItem === index ? "\u2212" : "+"}
@@ -43,12 +43,12 @@ export default function ExperienceSection({ expanded }) {
                   </button>
                 </div>
                 {item.role && (
-                  <span className={`font-esenka font-light text-xs md:text-base ${darkMode ? "text-[#464545]" : "text-[#939393]"}`}>
+                  <span className={`font-esenka font-light text-xs md:text-base ${darkMode ? "text-[#5a5c6a]" : "text-[#939393]"}`}>
                     {item.role}, &nbsp; {item.year}
                   </span>
                 )}
               </div>
-              <span className="font-esenka font-normal text-xs md:text-xl mt-3 md:mt-0 transition-all duration-300 hover:translate-x-1 hover:text-[#8BCD00]"
+              <span className="font-esenka font-normal text-xs md:text-xl mt-3 md:mt-0 transition-all duration-300 hover:translate-x-1 hover:text-[#B8C0DC]"
                 style={index === 0 ? { paddingRight: "3px" } : {}}>
                 {item.number}
               </span>
@@ -63,7 +63,7 @@ export default function ExperienceSection({ expanded }) {
                   {item.roles.map((role, rIndex) => (
                     <div
                       key={rIndex}
-                      className={`border-l-2 pl-4 md:pl-5 font-normal ${darkMode ? "border-[#242424]" : "border-[#d2d2d2]"}`}
+                      className={`border-l-2 pl-4 md:pl-5 font-normal ${darkMode ? "border-[#1c1d24]" : "border-[#d2d2d2]"}`}
                       style={{
                         transitionDelay: `${rIndex * 80}ms`,
                         opacity: expandedItem === index ? 1 : 0,
@@ -73,17 +73,17 @@ export default function ExperienceSection({ expanded }) {
                     >
                       <div className="flex items-baseline justify-between">
                         <span className="text-base md:text-2xl font-medium">{role.title}</span>
-                        <span className={`font-esenka font-light text-[10px] md:text-sm ${darkMode ? "text-[#464545]" : "text-[#939393]"}`}>
+                        <span className={`font-esenka font-light text-[10px] md:text-sm ${darkMode ? "text-[#5a5c6a]" : "text-[#939393]"}`}>
                           {role.year}
                         </span>
                       </div>
-                      <div className={`mt-2 text-xs md:text-base font-normal ${darkMode ? "text-[#A0A0A0]" : "text-[#646464]"}`}>
+                      <div className={`mt-2 text-xs md:text-base font-normal ${darkMode ? "text-[#8a8c98]" : "text-[#646464]"}`}>
                         <p className="mb-2">{role.description}</p>
                         {role.technologies && (
                           <div className="flex flex-wrap gap-2 mt-2">
                             {role.technologies.map((tech, i) => (
                               <span key={i} className={`text-[10px] md:text-xs px-2 py-1 rounded-sm ${
-                                darkMode ? "bg-[#242424] text-[#ECECEC]" : "bg-[#e9e9e9] text-[#464545]"
+                                darkMode ? "bg-[#1c1d24] text-[#dcdde2]" : "bg-[#e9e9e9] text-[#5a5c6a]"
                               }`}>{tech}</span>
                             ))}
                           </div>
@@ -96,13 +96,13 @@ export default function ExperienceSection({ expanded }) {
             ) : (
               <div className={`mt-2 pl-4 text-sm md:text-base font-normal border-l-2 transition-all duration-500 overflow-hidden max-w-[90%] md:max-w-[40%] ${
                 expandedItem === index ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"
-              } ${darkMode ? "border-[#242424] text-[#A0A0A0]" : "border-[#d2d2d2] text-[#646464]"}`}>
+              } ${darkMode ? "border-[#1c1d24] text-[#8a8c98]" : "border-[#d2d2d2] text-[#646464]"}`}>
                 <p className="mb-2">{item.description}</p>
                 {item.technologies && (
                   <div className="flex flex-wrap gap-2 mt-2">
                     {item.technologies.map((tech, i) => (
                       <span key={i} className={`text-xs px-2 py-1 rounded-sm ${
-                        darkMode ? "bg-[#242424] text-[#ECECEC]" : "bg-[#e9e9e9] text-[#464545]"
+                        darkMode ? "bg-[#1c1d24] text-[#dcdde2]" : "bg-[#e9e9e9] text-[#5a5c6a]"
                       }`}
                         style={{
                           transitionDelay: `${i * 50}ms`,

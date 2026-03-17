@@ -57,22 +57,22 @@ export default function Loader({ onDone }) {
     <div
       className={`fixed inset-0 z-50 flex flex-col items-center justify-center transition-opacity duration-500 ${
         done ? "opacity-0" : "opacity-100"
-      } ${darkMode ? "bg-[#131313] text-[#DBDBDB]" : "bg-[#DBDBDB] text-[#131313]"}`}
+      } ${darkMode ? "bg-[#101014] text-[#dcdde2]" : "bg-[#dcdde2] text-[#101014]"}`}
       aria-hidden={done}
     >
-      <div className={`font-mono text-xs md:text-sm select-none ${darkMode ? "text-[#8BCD00]" : "text-[#3c3c3c]"}`}>
+      <div className={`font-mono text-xs md:text-sm select-none ${darkMode ? "text-[#B8C0DC]" : "text-[#3c3c3c]"}`}>
         <span className="tracking-widest">[ {frames[spinnerIndex]} ]</span>
         <span className="ml-2">Loading portfolio</span>
       </div>
       <div className="mt-4 w-[82%] md:w-[60%] max-w-md">
-        <div className={`h-2 md:h-3 rounded-sm overflow-hidden ${darkMode ? "bg-[#1c1c1c]" : "bg-[#cfcfcf]"}`}
+        <div className={`h-2 md:h-3 rounded-sm overflow-hidden ${darkMode ? "bg-[#18191f]" : "bg-[#cfcfcf]"}`}
           style={{ transform: "perspective(600px) rotateX(8deg) rotateY(-8deg)" }}>
           <div
-            className="h-full bg-[#8BCD00] transition-all duration-150"
+            className="h-full bg-[#B8C0DC] transition-all duration-150"
             style={{ width: `${progress}%` }}
           />
         </div>
-        <div className={`mt-2 text-center text-[10px] md:text-xs ${darkMode ? "text-[#6a6a6a]" : "text-[#7a7a7a]"}`}>
+        <div className={`mt-2 text-center text-[10px] md:text-xs ${darkMode ? "text-[#52545e]" : "text-[#7a7a7a]"}`}>
           {progress}%
         </div>
       </div>

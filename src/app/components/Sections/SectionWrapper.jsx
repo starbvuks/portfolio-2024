@@ -38,7 +38,7 @@ const SectionWrapper = forwardRef(function SectionWrapper(
     <div
       ref={ref}
       className={`flex flex-col px-4 md:px-8 py-4 md:py-6 border-b-2 transition-colors duration-500 ${
-        darkMode ? "border-[#242424]" : "border-[#d2d2d2]"
+        darkMode ? "border-[#1c1d24]" : "border-[#d2d2d2]"
       }`}
     >
       {/* Title */}
@@ -47,7 +47,7 @@ const SectionWrapper = forwardRef(function SectionWrapper(
         data-reveal
         className={`parallax-title flex justify-between text-2xl md:text-4xl transition-all duration-500 ${
           alwaysOpen ? "" : "cursor-pointer group"
-        } ${darkMode ? "text-[#464545] hover:text-[#8BCD00]" : "text-[#aaaaaa] hover:text-[#8BCD00]"}`}
+        } ${darkMode ? "text-[#5a5c6a] hover:text-[#B8C0DC]" : "text-[#aaaaaa] hover:text-[#B8C0DC]"}`}
         onClick={alwaysOpen ? undefined : onToggle}
       >
         {title.length === 1 ? (
@@ -55,10 +55,10 @@ const SectionWrapper = forwardRef(function SectionWrapper(
             <span className="font-gambarino">{title[0]}</span>
             {!alwaysOpen && (
               <button
-                className="ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#8BCD00]"
+                className="ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#B8C0DC]"
                 onClick={(e) => { e.stopPropagation(); onToggle(); }}
               >
-                <span className={`text-sm md:text-lg ${expanded ? "text-[#8BCD00] transform translate-y-[-2px]" : ""}`}>
+                <span className={`text-sm md:text-lg ${expanded ? "text-[#B8C0DC] transform translate-y-[-2px]" : ""}`}>
                   {expanded ? "\u2212" : "+"}
                 </span>
               </button>
@@ -71,10 +71,10 @@ const SectionWrapper = forwardRef(function SectionWrapper(
               {title[1]}
               {!alwaysOpen && (
                 <button
-                  className="ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#8BCD00]"
+                  className="ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#B8C0DC]"
                   onClick={(e) => { e.stopPropagation(); onToggle(); }}
                 >
-                  <span className={`text-sm md:text-lg ${expanded ? "text-[#8BCD00] transform translate-y-[-2px]" : ""}`}>
+                  <span className={`text-sm md:text-lg ${expanded ? "text-[#B8C0DC] transform translate-y-[-2px]" : ""}`}>
                     {expanded ? "\u2212" : "+"}
                   </span>
                 </button>
@@ -90,10 +90,10 @@ const SectionWrapper = forwardRef(function SectionWrapper(
               {title[title.length - 1]}
               {!alwaysOpen && (
                 <button
-                  className="ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#8BCD00]"
+                  className="ml-2 md:ml-4 w-6 h-6 md:w-8 md:h-8 flex items-center justify-center rounded-full transition-colors duration-300 group-hover:text-[#B8C0DC]"
                   onClick={(e) => { e.stopPropagation(); onToggle(); }}
                 >
-                  <span className={`text-xl md:text-2xl ${expanded ? "text-[#8BCD00] transform translate-y-[-2px]" : ""}`}>
+                  <span className={`text-xl md:text-2xl ${expanded ? "text-[#B8C0DC] transform translate-y-[-2px]" : ""}`}>
                     {expanded ? "\u2212" : "+"}
                   </span>
                 </button>

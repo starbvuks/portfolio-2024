@@ -70,7 +70,7 @@ export default function Landing() {
   return (
     <div
       className={`relative z-10 flex flex-col min-h-screen transition-all duration-500 ${
-        darkMode ? "text-[#DBDBDB] bg-[#131313]" : "text-[#131313] bg-[#F2F2F2]"
+        darkMode ? "text-[#dcdde2] bg-[#101014]" : "text-[#101014] bg-[#F2F2F2]"
       }`}
     >
       {/* Background effects */}
@@ -84,7 +84,7 @@ export default function Landing() {
       {/* Konami egg popup */}
       {showEgg && (
         <div className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none">
-          <div className={`p-6 ${darkMode ? "text-[#ECECEC]" : "text-[#3c3c3c]"}`}>
+          <div className={`p-6 ${darkMode ? "text-[#dcdde2]" : "text-[#3c3c3c]"}`}>
             <p className="font-gambarino text-xl font-bold mb-2">Konami Code Activated</p>
           </div>
         </div>
@@ -93,15 +93,15 @@ export default function Landing() {
       {/* Command palette hint */}
       {!isMobile && (
         <div className={`${
-          darkMode ? "border-[#2a2a2a] bg-[#0f0f0f]/40 text-[#9a9a9a]" : "border-[#d4d4d4] bg-white/80 text-[#5c5c5c]"
+          darkMode ? "border-[#22232c] bg-[#0c0c12]/40 text-[#6e7080]" : "border-[#d4d4d4] bg-white/80 text-[#5c5c5c]"
         } pointer-events-none fixed bottom-4 left-1/2 -translate-x-1/2 z-20 hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full border backdrop-blur-sm text-[11px]`}>
           <span>Press</span>
           <span className="inline-flex items-center gap-1">
             <span className={`inline-grid place-items-center w-5 h-5 rounded-[6px] border ${
-              darkMode ? "border-[#2a2a2a] bg-[#131313] text-[#DBDBDB]" : "border-[#d4d4d4] bg-white text-[#333]"
+              darkMode ? "border-[#22232c] bg-[#101014] text-[#dcdde2]" : "border-[#d4d4d4] bg-white text-[#333]"
             } animate-pulse-slow`}>{cmdKey}</span>
             <span className={`inline-grid place-items-center w-5 h-5 rounded-[6px] border ${
-              darkMode ? "border-[#2a2a2a] bg-[#131313] text-[#DBDBDB]" : "border-[#d4d4d4] bg-white text-[#333]"
+              darkMode ? "border-[#22232c] bg-[#101014] text-[#dcdde2]" : "border-[#d4d4d4] bg-white text-[#333]"
             }`}>K</span>
           </span>
           <span>for Command Palette</span>

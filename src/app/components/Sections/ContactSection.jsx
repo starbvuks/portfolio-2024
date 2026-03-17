@@ -12,22 +12,22 @@ const ContactSection = forwardRef(function ContactSection(props, ref) {
       ref={ref}
       className={`flex flex-col px-4 md:px-8 py-4 md:py-6 transition-all duration-300 ${!isMobile ? "pt-72" : ""}`}
     >
-      <div className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 ${darkMode ? "text-[#464545]" : "text-[#aaaaaa]"}`}>
+      <div className={`flex justify-between text-2xl md:text-4xl transition-all duration-500 ${darkMode ? "text-[#5a5c6a]" : "text-[#aaaaaa]"}`}>
         <span className="font-gambarino">Contact</span>
         <span className="font-gambarino">Me</span>
       </div>
 
       <div className="transition-all duration-500 ease-in-out">
-        <div className={`flex flex-row justify-between mt-8 md:mt-20 font-gambarino text-sm md:text-xl tracking-normal ${darkMode ? "text-[#515151]" : "text-[#939393]"}`}>
+        <div className={`flex flex-row justify-between mt-8 md:mt-20 font-gambarino text-sm md:text-xl tracking-normal ${darkMode ? "text-[#3e4050]" : "text-[#939393]"}`}>
           <div className="flex flex-col mb-4 md:mb-0">
-            <a href="mailto:sarvagk@gmail.com" className="hover:text-[#8BCD00] text-[#8b8b8b] transition-colors duration-300">
+            <a href="mailto:sarvagk@gmail.com" className="hover:text-[#B8C0DC] text-[#787a88] transition-colors duration-300">
               sarvagk@gmail.com
             </a>
-            <a href="tel:+1 (214) 899-2025" className="hover:text-[#8BCD00] text-[#8b8b8b] transition-colors duration-300">
+            <a href="tel:+1 (214) 899-2025" className="hover:text-[#B8C0DC] text-[#787a88] transition-colors duration-300">
               +1 (214) 899-2025
             </a>
-            <span className="text-[#515151]/75 transition-colors duration-300 mt-3">
-              Green Card Holder / <span className="text-[#515151]/50">Indian Citizen</span>
+            <span className="text-[#3e4050]/75 transition-colors duration-300 mt-3">
+              Green Card Holder / <span className="text-[#3e4050]/50">Indian Citizen</span>
             </span>
           </div>
 

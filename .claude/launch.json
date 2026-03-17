@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "dev",
+      "runtimeExecutable": "/Users/s/.local/share/mise/installs/node/20.20.1/bin/npx",
+      "runtimeArgs": ["next", "dev"],
+      "port": 3000,
+      "env": {
+        "PATH": "/Users/s/.local/share/mise/installs/pnpm/10.32.1:/Users/s/.local/share/mise/installs/node/20.20.1/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+      }
+    }
+  ]
+}

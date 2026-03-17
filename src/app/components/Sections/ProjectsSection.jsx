@@ -9,7 +9,7 @@ export default function ProjectsSection({ expanded }) {
   const [expandedCapstone, setExpandedCapstone] = useState(null);
 
   return (
-    <div className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${darkMode ? "text-[#c2c1c1]" : "text-[#3c3c3c]"}`}>
+    <div className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${darkMode ? "text-[#c0c2cc]" : "text-[#3c3c3c]"}`}>
       <div className="flex flex-col gap-3 md:gap-6 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
         {data.projects.items.map((item, index) => (
           <div
@@ -26,39 +26,39 @@ export default function ProjectsSection({ expanded }) {
                 <div className="flex items-center group/item">
                   <a
                     href={item.url}
-                    className={`border-b-[1px] border-dashed hover:border-solid hover:text-[#8BCD00] cursor-pointer transition ${
-                      darkMode ? "border-[#ECECEC] hover:border-[#8BCD00]" : "border-[#3c3c3c] hover:border-[#8BCD00]"
+                    className={`border-b-[1px] border-dashed hover:border-solid hover:text-[#B8C0DC] cursor-pointer transition ${
+                      darkMode ? "border-[#dcdde2] hover:border-[#B8C0DC]" : "border-[#3c3c3c] hover:border-[#B8C0DC]"
                     }`}
                   >
                     {item.name}
                   </a>
                   <button
                     onClick={(e) => { e.stopPropagation(); setExpandedProject(expandedProject === index ? null : index); }}
-                    className="ml-2 w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded-full hover:text-[#8BCD00] transition-colors duration-300 group-hover/item:text-[#8BCD00]"
+                    className="ml-2 w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded-full hover:text-[#B8C0DC] transition-colors duration-300 group-hover/item:text-[#B8C0DC]"
                   >
                     <span className={`text-xl ${expandedProject === index ? "transform translate-y-[-2px]" : ""}`}>
                       {expandedProject === index ? "\u2212" : "+"}
                     </span>
                   </button>
                 </div>
-                <span className={`font-esenka font-light text-xs md:text-base ${darkMode ? "text-[#464545]" : "text-[#939393]"}`}>
+                <span className={`font-esenka font-light text-xs md:text-base ${darkMode ? "text-[#5a5c6a]" : "text-[#939393]"}`}>
                   {item.role}, &nbsp; {item.year}
                 </span>
               </div>
-              <span className="font-esenka font-normal text-xs md:text-xl mt-3 md:mt-0 transition-all duration-300 hover:translate-x-1 hover:text-[#8BCD00]">
+              <span className="font-esenka font-normal text-xs md:text-xl mt-3 md:mt-0 transition-all duration-300 hover:translate-x-1 hover:text-[#B8C0DC]">
                 {item.number}
               </span>
             </div>
 
             <div className={`mt-2 pl-4 text-sm md:text-base font-normal border-l-2 transition-all duration-500 overflow-hidden max-w-[90%] md:max-w-[50%] ${
               expandedProject === index ? "max-h-[300px] opacity-100" : "max-h-0 opacity-0"
-            } ${darkMode ? "border-[#242424] text-[#A0A0A0]" : "border-[#d2d2d2] text-[#646464]"}`}>
+            } ${darkMode ? "border-[#1c1d24] text-[#8a8c98]" : "border-[#d2d2d2] text-[#646464]"}`}>
               <p className="mb-2">{item.description}</p>
               {item.technologies && (
                 <div className="flex flex-wrap gap-2 mt-2">
                   {item.technologies.map((tech, i) => (
                     <span key={i} className={`text-xs px-2 py-1 rounded-sm ${
-                      darkMode ? "bg-[#242424] text-[#ECECEC]" : "bg-[#e9e9e9] text-[#464545]"
+                      darkMode ? "bg-[#1c1d24] text-[#dcdde2]" : "bg-[#e9e9e9] text-[#5a5c6a]"
                     }`}>{tech}</span>
                   ))}
                 </div>
@@ -70,7 +70,7 @@ export default function ProjectsSection({ expanded }) {
         {/* Bootcamp Capstones */}
         <div className="mt-6 md:mt-10">
           <div className={`mb-3 flex items-center justify-between text-xl md:text-2xl font-gambarino font-semibold ${
-            darkMode ? "text-[#464545]" : "text-[#939393]"
+            darkMode ? "text-[#5a5c6a]" : "text-[#939393]"
           }`}>
             <span>{data.projects.bootcampCapstones.title}</span>
           </div>
@@ -90,32 +90,32 @@ export default function ProjectsSection({ expanded }) {
                     <div className="flex items-center group/item">
                       <a
                         href={item.url}
-                        className={`border-b-[1px] border-dashed hover:border-solid hover:text-[#8BCD00] cursor-pointer transition ${
-                          darkMode ? "border-[#707070] hover:border-[#8BCD00]" : "border-[#bdbdbd] hover:border-[#8BCD00]"
+                        className={`border-b-[1px] border-dashed hover:border-solid hover:text-[#B8C0DC] cursor-pointer transition ${
+                          darkMode ? "border-[#585a66] hover:border-[#B8C0DC]" : "border-[#bdbdbd] hover:border-[#B8C0DC]"
                         }`}
                       >
                         {item.name}
                       </a>
                       <button
                         onClick={(e) => { e.stopPropagation(); setExpandedCapstone(expandedCapstone === index ? null : index); }}
-                        className="ml-2 w-5 h-5 flex items-center justify-center rounded-full hover:text-[#8BCD00] transition-colors duration-300 group-hover/item:text-[#8BCD00]"
+                        className="ml-2 w-5 h-5 flex items-center justify-center rounded-full hover:text-[#B8C0DC] transition-colors duration-300 group-hover/item:text-[#B8C0DC]"
                       >
                         <span className={`text-lg ${expandedCapstone === index ? "transform translate-y-[-2px]" : ""}`}>
                           {expandedCapstone === index ? "\u2212" : "+"}
                         </span>
                       </button>
                     </div>
-                    <span className={`font-esenka font-light text-[10px] md:text-sm ${darkMode ? "text-[#606060]" : "text-[#9c9c9c]"}`}>
+                    <span className={`font-esenka font-light text-[10px] md:text-sm ${darkMode ? "text-[#50525e]" : "text-[#9c9c9c]"}`}>
                       {item.role}, &nbsp; {item.year}
                     </span>
                   </div>
-                  <span className={`font-esenka font-normal text-xs md:text-base ${darkMode ? "text-[#606060]" : "text-[#9c9c9c]"}`}>
+                  <span className={`font-esenka font-normal text-xs md:text-base ${darkMode ? "text-[#50525e]" : "text-[#9c9c9c]"}`}>
                     {item.number}
                   </span>
                 </div>
                 <div className={`mt-2 pl-4 text-xs md:text-sm font-normal border-l-2 transition-all duration-500 overflow-hidden max-w-[90%] md:max-w-[50%] ${
                   expandedCapstone === index ? "max-h-[250px] opacity-100" : "max-h-0 opacity-0"
-                } ${darkMode ? "border-[#242424] text-[#7a7a7a]" : "border-[#d2d2d2] text-[#7a7a7a]"}`}>
+                } ${darkMode ? "border-[#1c1d24] text-[#7a7a7a]" : "border-[#d2d2d2] text-[#7a7a7a]"}`}>
                   <p className="mb-2">{item.description}</p>
                 </div>
               </div>

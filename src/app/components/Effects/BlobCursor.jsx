@@ -165,7 +165,7 @@ export default function BlobCursor() {
           ctx.beginPath();
           ctx.moveTo(trail[i].x, trail[i].y);
           ctx.lineTo(trail[i + 1].x, trail[i + 1].y);
-          ctx.strokeStyle = `rgba(139, 205, 0, ${alpha})`;
+          ctx.strokeStyle = `rgba(184, 192, 220, ${alpha})`;
           ctx.lineWidth = width;
           ctx.stroke();
         }
@@ -200,14 +200,14 @@ export default function BlobCursor() {
         ctx.quadraticCurveTo(curr.x, curr.y, (curr.x + next.x) / 2, (curr.y + next.y) / 2);
       }
       ctx.closePath();
-      ctx.strokeStyle = "#8BCD00";
+      ctx.strokeStyle = "#B8C0DC";
       ctx.lineWidth = 1.5;
       ctx.stroke();
 
       // --- Center dot ---
       ctx.beginPath();
       ctx.arc(s.mouseX, s.mouseY, 3, 0, Math.PI * 2);
-      ctx.fillStyle = "#8BCD00";
+      ctx.fillStyle = "#B8C0DC";
       ctx.fill();
 
       ctx.restore();

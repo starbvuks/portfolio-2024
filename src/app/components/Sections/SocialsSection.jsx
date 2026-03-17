@@ -6,7 +6,7 @@ export default function SocialsSection({ expanded }) {
   const { darkMode } = useTheme();
 
   return (
-    <div className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${darkMode ? "text-[#c2c1c1]" : "text-[#3c3c3c]"}`}>
+    <div className={`flex justify-between font-esenka text-lg md:text-3xl transition-all duration-500 ${darkMode ? "text-[#c0c2cc]" : "text-[#3c3c3c]"}`}>
       <div className="flex flex-col gap-1 md:gap-4 font-black pl-4 md:pl-8 py-4 md:py-8 w-full">
         {data.socials.items.map((item, index) => (
           <div
@@ -20,7 +20,7 @@ export default function SocialsSection({ expanded }) {
           >
             <a
               href={item.url}
-              className="hover:text-[#8BCD00] hover:translate-x-1 cursor-pointer transition-all duration-300 inline-block"
+              className="hover:text-[#B8C0DC] hover:translate-x-1 cursor-pointer transition-all duration-300 inline-block"
             >
               {item.name}
             </a>

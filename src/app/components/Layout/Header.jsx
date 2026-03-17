@@ -16,21 +16,21 @@ export default function Header() {
   return (
     <div
       className={`flex justify-between items-end p-4 md:p-8 border-b-2 transition-all duration-500
-        ${darkMode ? "border-[#242424]" : "border-[#d2d2d2]"}`}
+        ${darkMode ? "border-[#1c1d24]" : "border-[#d2d2d2]"}`}
     >
       <div className="flex items-end">
         <span
           className={`font-gambarino text-4xl md:text-7xl tracking-tight transition-all duration-500 header-name ${
             darkMode
-              ? "hover:text-[#DBDBDB] text-[#8BCD00]/80"
-              : "hover:text-[#464545] text-[#8BCD00]/80"
+              ? "hover:text-white text-[#dcdde2]"
+              : "hover:text-[#131313] text-[#3c3c3c]"
           }`}
         >
           Sarvag Kalari
         </span>
         <span
           className={`flex items-center font-gambarino font-light text-xs md:text-lg tracking-tight transition-all duration-500 ${
-            darkMode ? "text-[#464545]" : "text-[#aaaaaa]"
+            darkMode ? "text-[#5a5c6a]" : "text-[#aaaaaa]"
           }`}
         >
           <span className="text-base md:text-2xl tracking-tighter">
@@ -46,8 +46,8 @@ export default function Header() {
           disabled={isTransitioning}
           className={`relative rounded-full w-10 h-10 text-lg md:w-16 md:h-16 md:text-xl flex items-center justify-center border-[1px] md:border-[2px] hover:scale-110 transform transition-all duration-300 ${
             darkMode
-              ? "border-[#242424] hover:border-[#8BCD00]"
-              : "border-[#aaaaaa] hover:border-[#8BCD00]"
+              ? "border-[#1c1d24] hover:border-[#B8C0DC]"
+              : "border-[#aaaaaa] hover:border-[#B8C0DC]"
           } ${isTransitioning ? "opacity-0" : "opacity-100"}`}
           aria-label={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
         >

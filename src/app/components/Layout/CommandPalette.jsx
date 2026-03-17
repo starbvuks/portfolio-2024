@@ -94,9 +94,9 @@ export default function CommandPalette({ sectionRefs, onToggleTheme }) {
     <div className="fixed inset-0 z-[60] flex items-start justify-center pt-24 md:pt-40" role="dialog" aria-modal="true">
       <div className={`absolute inset-0 ${darkMode ? "bg-black/60" : "bg-black/30"}`} onClick={() => setShow(false)} />
       <div className={`relative w-[92%] md:w-[680px] max-w-3xl rounded-xl border ${
-        darkMode ? "border-[#2a2a2a] bg-[#0f0f0f]/90" : "border-[#d8d8d8] bg-[#ffffff]/92"
+        darkMode ? "border-[#22232c] bg-[#0c0c12]/90" : "border-[#d8d8d8] bg-[#ffffff]/92"
       } backdrop-blur-md shadow-2xl`}>
-        <div className={`flex items-center gap-2 p-3 md:p-4 border-b ${darkMode ? "border-[#2a2a2a]/40" : "border-[#d8d8d8]/40"}`}>
+        <div className={`flex items-center gap-2 p-3 md:p-4 border-b ${darkMode ? "border-[#22232c]/40" : "border-[#d8d8d8]/40"}`}>
           <input
             ref={inputRef}
             autoFocus
@@ -104,7 +104,7 @@ export default function CommandPalette({ sectionRefs, onToggleTheme }) {
             onChange={(e) => { setQuery(e.target.value); setIndex(0); }}
             placeholder={`Type a command\u2026 (${cmdKey}+K to close)`}
             className={`w-full bg-transparent outline-none ${
-              darkMode ? "text-[#DBDBDB] placeholder-[#6a6a6a]" : "text-[#131313] placeholder-[#7a7a7a]"
+              darkMode ? "text-[#dcdde2] placeholder-[#52545e]" : "text-[#101014] placeholder-[#7a7a7a]"
             } text-sm md:text-base`}
           />
         </div>
@@ -117,7 +117,7 @@ export default function CommandPalette({ sectionRefs, onToggleTheme }) {
             return (
               <div key={gi} className="mb-2">
                 <div className={`px-2 py-1 text-[10px] md:text-xs uppercase tracking-wider ${
-                  darkMode ? "text-[#6a6a6a]" : "text-[#7a7a7a]"
+                  darkMode ? "text-[#52545e]" : "text-[#7a7a7a]"
                 }`}>
                   {group.label}
                 </div>
@@ -130,8 +130,8 @@ export default function CommandPalette({ sectionRefs, onToggleTheme }) {
                       onClick={() => handleClick(it)}
                       className={`w-full text-left px-3 py-2 rounded-md transition ${
                         active
-                          ? darkMode ? "bg-[#1b1b1b] text-[#DBDBDB]" : "bg-[#efefef] text-[#131313]"
-                          : darkMode ? "text-[#c2c1c1] hover:bg-[#161616]" : "text-[#3c3c3c] hover:bg-[#f2f2f2]"
+                          ? darkMode ? "bg-[#1a1b22] text-[#dcdde2]" : "bg-[#efefef] text-[#101014]"
+                          : darkMode ? "text-[#c0c2cc] hover:bg-[#16171e]" : "text-[#3c3c3c] hover:bg-[#f2f2f2]"
                       }`}
                     >
                       {it.name}

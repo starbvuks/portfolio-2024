@@ -10,8 +10,8 @@ export function ThemeProvider({ children }) {
 
   // Sync body/html classes and bg color
   useEffect(() => {
-    document.documentElement.style.backgroundColor = darkMode ? "#131313" : "#DBDBDB";
-    document.body.style.backgroundColor = darkMode ? "#131313" : "#DBDBDB";
+    document.documentElement.style.backgroundColor = darkMode ? "#101014" : "#dcdde2";
+    document.body.style.backgroundColor = darkMode ? "#101014" : "#dcdde2";
     document.documentElement.classList.toggle("bg-theme-dark", darkMode);
     document.documentElement.classList.toggle("bg-theme-light", !darkMode);
   }, [darkMode]);
@@ -58,7 +58,7 @@ export function ThemeProvider({ children }) {
       Math.hypot(centerX, h - centerY),
       Math.hypot(w - centerX, h - centerY)
     );
-    const prevColor = darkMode ? "#131313" : "#DBDBDB";
+    const prevColor = darkMode ? "#101014" : "#dcdde2";
 
     ctx.fillStyle = prevColor;
     ctx.fillRect(0, 0, w, h);

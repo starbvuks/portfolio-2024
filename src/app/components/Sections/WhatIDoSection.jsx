@@ -6,7 +6,7 @@ export default function WhatIDoSection({ expanded }) {
   const { darkMode } = useTheme();
 
   return (
-    <div className={`transition-all duration-500 ${darkMode ? "text-[#c2c1c1]" : "text-[#3c3c3c]"}`}>
+    <div className={`transition-all duration-500 ${darkMode ? "text-[#c0c2cc]" : "text-[#3c3c3c]"}`}>
       <div className="font-esenka text-lg md:text-3xl font-black py-4 md:py-8 w-full">
         <div className="flex justify-between w-full">
           {[...Array(2)].map((_, colIndex) => {
@@ -26,11 +26,11 @@ export default function WhatIDoSection({ expanded }) {
                     }}
                   >
                     <div className={`w-6 md:w-8 text-center font-esenka font-normal text-xs md:text-xl transition-all duration-300 ${
-                      darkMode ? "text-[#464545]" : "text-[#aaaaaa]"
+                      darkMode ? "text-[#5a5c6a]" : "text-[#aaaaaa]"
                     }`}>
                       {item.number}
                     </div>
-                    <div className={`${colIndex === 0 ? "ml-3" : "mr-3"} hover:text-[#8BCD00] transition-colors duration-300`}>
+                    <div className={`${colIndex === 0 ? "ml-3" : "mr-3"} hover:text-[#B8C0DC] transition-colors duration-300`}>
                       {item.name}
                     </div>
                   </div>
