@@ -4,8 +4,9 @@ const data = {
     items: [
       { name: "FULL STACK DEV", number: "1" },
       { name: "MOBILE APP DEV", number: "2" },
-      { name: "API DESIGN & DEV", number: "3" },
+      { name: "API ENGINEERING", number: "3" },
       { name: "EMBEDDED SYSTEMS (learning)", number: "4" },
+      { name: "ML SYSTEMS & EDGE AI ARCHITECTURE", number: "5" },
     ],
   },
   techStack: {
@@ -14,7 +15,8 @@ const data = {
       { label: "Languages", items: ["JavaScript", "TypeScript", "Rust", "Python"] },
       { label: "Frameworks & Libraries", items: ["React", "React Native", "Next.js", "Node.js", "Express.js", "Tailwind CSS"] },
       { label: "Databases & ORM", items: ["MongoDB", "PostgreSQL", "NeonDB", "Prisma", "Firebase"] },
-      { label: "Cloud & DevOps", items: ["AWS", "Docker", "Nginx", "Vercel"] },
+      { label: "AI & ML", items: ["PyTorch", "Hugging Face Transformers", "On-Device Inference", "LLM Fine-tuning", "SQLite-vec", "ASR/VAD Pipelines", "Model Quantization", "Prompt Engineering", "RAG"] },
+      { label: "Cloud & DevOps", items: ["AWS", "Docker", "Nginx", "Vercel", "Kubernetes (k3s)", "Tailscale", "NATS"] },
       { label: "Tools", items: ["Git & GitHub", "Postman", "Figma", "ClickUp"] },
     ],
   },
@@ -22,13 +24,38 @@ const data = {
     title: ["Experience"],
     items: [
       {
-        name: "GAMITRONICS",
-        url: "https://gamitronics.com",
+        name: "LIMI AI",
+        url: "https://limiai.co",
+        role: "Founding Engineer",
+        year: "Current",
         number: "1",
         roles: [
           {
+            title: "Principal Founding ML Product Engineer",
+            year: "",
+            description:
+              "Founding engineer at LIMI AI, a hardware AI startup building ambient intelligence infrastructure embedded in premium light fixtures. Leading ML product development and systems architecture — designing the on-device intelligence layer, privacy-first data pipeline, and multi-model orchestration system. Driving product strategy, technical roadmap, and investor-facing demos as we raise our seed round.",
+            technologies: [
+              "Edge AI",
+              "On-Device ML",
+              "Privacy Architecture",
+              "Model Orchestration",
+              "Embedded Systems",
+              "Product Strategy",
+            ],
+          },
+        ],
+      },
+      {
+        name: "GAMITRONICS",
+        url: "https://gamitronics.com",
+        role: "Video Game Producer",
+        year: "Apr 2024 - May 2025",
+        number: "2",
+        roles: [
+          {
             title: "Video Game Producer",
-            year: "Aug 2024 - April 2025",
+            year: "Aug 2024 - May 2025",
             description:
               "Managed cross-team coordination and weekly task planning across active game projects. Oversaw task tracking and documentation using ClickUp and internal wiki systems. Built workflows for testing, daily logs, and milestone-based reporting.",
             technologies: [
@@ -40,7 +67,7 @@ const data = {
           },
           {
             title: "Game Backend Developer - Intern",
-            year: "May 2024 - Aug 2024",
+            year: "Apr 2024 - Aug 2024",
             description:
               "Developed an end-to-end Backend for a Unity VR game. Tasks included API design and development, Database architecture and implementation, integration and deployment. Worked with various platform SDKs to implement player authentication and cross-platform functionality.",
             technologies: [
@@ -58,7 +85,7 @@ const data = {
         role: "Chapter Director",
         year: "Feb 2024 - Apr 2025",
         url: "https://www.startupgrind.com/hyderabad/",
-        number: "2",
+        number: "3",
         description:
           "Appointed as Chapter Director for the Hyderabad Startup Grind Chapter. Role includes: Hosting events, community management, strong communication and network outreach, and most importantly making friends along the way.",
         technologies: [
@@ -73,7 +100,7 @@ const data = {
         role: "Co-Founder",
         year: "Feb 2023 - June 2025",
         url: "https://talentmapp.co",
-        number: "3",
+        number: "4",
         description:
           "Co-founder at talentmapp, a startup built to solve the current issues in talent sourcing and build a global community for talented individuals in various industries. The platform is an AI People Search platform that understands subjective talent needs and intelligently returns matching profiles. Currently under development, working prototype is for laptop screens only.",
         technologies: [
@@ -110,7 +137,7 @@ const data = {
         name: "ALEPH INNOVATION",
         role: "Founder",
         year: "Nov 2023 - Present",
-        url: "https://alephinnov.com",
+        url: null,
         number: "2",
         description:
           "Services start-up proficient in digital product design and development. Provides end-to-end solutions for UI/UX Design, Web Development, Application Development and Cloud services.",
@@ -132,10 +159,10 @@ const data = {
         technologies: ["NextJS", "TailwindCSS", "Strapi CMS", "AWS EC2", "S3"],
       },
       {
-        name: "HOSPITAL MANAGEMENT SYSTEM",
+        name: "GOVERNMENT HMS",
         role: "Lead Developer",
         year: "Oct 2023 - Dec 2023",
-        url: "https://github.com/starbvuks/ayush-hms",
+        url: null,
         number: "4",
         description:
           "End-To-End Hospital + Dispensary management system for Samsung Tablets, developed in React Native, Expo SDK front end and a PostgreSQL backend. Attendance Management with geolocation and calculation of employee to dispensary location distance. EHR, i.e: patient entry records. Fully interactive admin dashboard for data visualization and employee management.",
@@ -198,19 +225,15 @@ const data = {
   about: {
     title: ["About", "Me"],
     bio:
-      "I pick things up fast, build things that work, and figure out the rest along the way. CS grad who's been shipping real products — not just coursework.",
+      "I pick things up fast, build things that work, and figure out the rest along the way. Currently driving ML systems and product development at LIMI AI and actively raising our seed round to scale ambient intelligence infrastructure.",
     highlights: [
       {
         label: "Into",
-        items: ["building things", "systems thinking", "video games", "writing"],
-      },
-      {
-        label: "Outside of code",
-        items: ["film", "music", "coffee"],
+        items: ["film", "video games", "vinyl collecting", "writing", "coffee"],
       },
       {
         label: "Currently exploring",
-        items: ["Rust", "graphics pipelines", "embedded systems", "AI compliance"],
+        items: ["edge inference", "on-device fine-tuning", "privacy-first ML", "audio ML", "k3s", "Rust"],
       },
     ],
   },
@@ -265,20 +288,20 @@ const data = {
         url: "https://leetcode.com/u/sarvag/",
         number: "4",
       },
-      {
-        name: "X / (twitter)",
-        url: "https://x.com/strbvuks",
-        number: "6",
-      },
+      // {
+      //   name: "X / (twitter)",
+      //   url: "https://x.com/strbvuks",
+      //   number: "6",
+      // },
       {
         name: "SPOTIFY",
         url: "https://open.spotify.com/user/nl8l3a15fcwt16ziq91rp82eq?si=x_g4W9_6SbqNENbHlJkjCg",
-        number: "6",
+        number: "5",
       },
       {
         name: "LAST.FM",
         url: "https://www.last.fm/user/sarvag_kalari",
-        number: "7",
+        number: "6",
       },
     ],
   },

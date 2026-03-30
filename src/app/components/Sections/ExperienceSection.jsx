@@ -27,6 +27,8 @@ export default function ExperienceSection({ expanded }) {
                 <div className="flex items-center group/item">
                   <a
                     href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`border-b-[1px] border-dashed hover:border-solid hover:text-[#B8C0DC] cursor-pointer transition ${
                       darkMode ? "border-[#dcdde2] hover:border-[#B8C0DC]" : "border-[#3c3c3c] hover:border-[#B8C0DC]"
                     }`}

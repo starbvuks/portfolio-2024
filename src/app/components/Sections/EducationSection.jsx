@@ -23,7 +23,7 @@ export default function EducationSection({ expanded }) {
             <div className="flex justify-between w-full">
               <div className="flex flex-col gap-0 md:gap-4 md:flex md:flex-row md:items-end">
                 <div className="flex items-center group/item">
-                  <a href={item.url} className="hover:text-[#B8C0DC] cursor-pointer transition mt-2 md:mt-0">
+                  <a href={item.url} target="_blank" rel="noopener noreferrer" className="hover:text-[#B8C0DC] cursor-pointer transition mt-2 md:mt-0">
                     {item.name}
                   </a>
                   <button

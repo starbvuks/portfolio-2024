@@ -73,6 +73,7 @@ export default function Landing() {
         darkMode ? "text-[#dcdde2] bg-[#101014]" : "text-[#101014] bg-[#F2F2F2]"
       }`}
     >
+    <div className="w-full max-w-[1400px] mx-auto flex flex-col min-h-screen">
       {/* Background effects */}
       <MeshBackground />
       <BlobCursor />
@@ -150,6 +151,7 @@ export default function Landing() {
 
         <ContactSection ref={contactRef} />
       </div>
+    </div>
     </div>
   );
 }

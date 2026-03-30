@@ -20,6 +20,8 @@ export default function SocialsSection({ expanded }) {
           >
             <a
               href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-[#B8C0DC] hover:translate-x-1 cursor-pointer transition-all duration-300 inline-block"
             >
               {item.name}

@@ -33,7 +33,7 @@ const ContactSection = forwardRef(function ContactSection(props, ref) {
 
           <div className="flex flex-col text-right md:text-left">
             <p className="font-medium">Mountain View, California, USA</p>
-            <p className="mt-2 text-xs md:text-sm">Software Dev</p>
+            <p className="mt-2 text-xs md:text-sm">Founding AI Engineer</p>
             {!isMobile && (
               <div className="flex justify-center mt-3 mb-2 opacity-80">
                 <div className="flex items-center space-x-1 cursor-help" title="Try the Konami code!">

@@ -24,14 +24,20 @@ export default function ProjectsSection({ expanded }) {
             <div className="flex justify-between w-full">
               <div className="flex flex-col gap-2 md:gap-4 md:flex md:flex-row md:items-end">
                 <div className="flex items-center group/item">
-                  <a
-                    href={item.url}
-                    className={`border-b-[1px] border-dashed hover:border-solid hover:text-[#B8C0DC] cursor-pointer transition ${
-                      darkMode ? "border-[#dcdde2] hover:border-[#B8C0DC]" : "border-[#3c3c3c] hover:border-[#B8C0DC]"
-                    }`}
-                  >
-                    {item.name}
-                  </a>
+                  {item.url ? (
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`border-b-[1px] border-dashed hover:border-solid hover:text-[#B8C0DC] cursor-pointer transition ${
+                        darkMode ? "border-[#dcdde2] hover:border-[#B8C0DC]" : "border-[#3c3c3c] hover:border-[#B8C0DC]"
+                      }`}
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    <span>{item.name}</span>
+                  )}
                   <button
                     onClick={(e) => { e.stopPropagation(); setExpandedProject(expandedProject === index ? null : index); }}
                     className="ml-2 w-5 h-5 md:w-6 md:h-6 flex items-center justify-center rounded-full hover:text-[#B8C0DC] transition-colors duration-300 group-hover/item:text-[#B8C0DC]"
@@ -90,6 +96,8 @@ export default function ProjectsSection({ expanded }) {
                     <div className="flex items-center group/item">
                       <a
                         href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className={`border-b-[1px] border-dashed hover:border-solid hover:text-[#B8C0DC] cursor-pointer transition ${
                           darkMode ? "border-[#585a66] hover:border-[#B8C0DC]" : "border-[#bdbdbd] hover:border-[#B8C0DC]"
                         }`}
